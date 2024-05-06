@@ -16,12 +16,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
+import br.com.pokedex.model.GeneticButtonProperties
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
@@ -62,16 +64,8 @@ fun CardPokemon(pokemon: Pokemon) {
                         .padding(top = 16.dp, bottom = 16.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ }
-                    ) {
-                        Text(text = "${pokemon.tipo}")
-                    }
-                    Button(
-                        onClick = { /*TODO*/ }
-                    ) {
-                        Text(text = "Venenoso")
-                    }
+                    ElementGrassButton()
+                    ElementPoisonButton()
                 }
                 Text(
                     text = pokemon.descricao
