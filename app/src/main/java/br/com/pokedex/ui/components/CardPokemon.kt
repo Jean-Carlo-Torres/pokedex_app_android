@@ -1,6 +1,7 @@
 package br.com.pokedex.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -61,7 +62,10 @@ fun CardPokemon(pokemon: Pokemon) {
                 )
                 Row(
                     modifier = Modifier
-                        .padding(top = 16.dp, bottom = 16.dp),
+                        .padding(
+                            top = 16.dp,
+                            bottom = 16.dp
+                        ),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ElementGrassButton()
@@ -70,7 +74,17 @@ fun CardPokemon(pokemon: Pokemon) {
                 Text(
                     text = pokemon.descricao
                 )
-                PokemonDetails(pokemon = pokemon)
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    PokemonDetails(pokemon = pokemon)
+                    PokemonWeaknesses(
+                        { ElementFireButton() },
+                        { ElementPsychicButton() },
+                        { ElementFlyingButton() },
+                        { ElementIceButton() },
+                    )
+                }
             }
         }
     }

@@ -5,10 +5,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -136,6 +140,34 @@ fun PokemonDetails(pokemon: Pokemon) {
     }
 }
 
+@Composable
+fun PokemonWeaknesses(vararg elementButtons: @Composable () -> Unit) {
+    PokedexTheme {
+        Surface {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "Fraquezas",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(500)
+                )
+                for (i in elementButtons.indices step 2) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        elementButtons[i]()
+                        elementButtons.getOrElse(i + 1) { {} }()
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 @Preview
 @Composable
@@ -158,4 +190,15 @@ private fun PokemonDetailsPreview() {
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PokemonWeaknessesPreview() {
+    PokemonWeaknesses(
+        { ElementFireButton() },
+        { ElementPsychicButton() },
+        { ElementFlyingButton() },
+        { ElementIceButton() },
+    )
 }
