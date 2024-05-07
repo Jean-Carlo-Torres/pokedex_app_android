@@ -1,16 +1,28 @@
 package br.com.pokedex.ui.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
@@ -21,37 +33,47 @@ fun PokemonDetails(pokemon: Pokemon) {
         modifier = Modifier.padding(top = 16.dp)
     ) {
         Row {
-            Row(
+            Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Peso:",
-                    fontSize = 8.sp,
+                    text = "PESO",
+                    fontSize = 8.sp
                 )
                 Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier
+                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .width(154.dp)
+                        .height(43.dp)
                 ) {
                     Text(
                         text = "${pokemon.peso} kg",
-                        modifier = Modifier.padding(8.dp)
+                        fontWeight = FontWeight(500),
+                        modifier = Modifier.padding(8.dp),
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
-            Row(
+            Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Altura:",
-                    fontSize = 8.sp,
+                    text = "ALTURA",
+                    fontSize = 8.sp
                 )
                 Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier
+                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .width(154.dp)
+                        .height(43.dp)
                 ) {
                     Text(
                         text = "${pokemon.altura} m",
-                        modifier = Modifier.padding(8.dp)
+                        fontWeight = FontWeight(500),
+                        modifier = Modifier.padding(8.dp),
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -59,42 +81,53 @@ fun PokemonDetails(pokemon: Pokemon) {
         Row(
             modifier = Modifier.padding(top = 8.dp)
         ) {
-            Row(
+            Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Categoria:",
-                    fontSize = 8.sp,
+                    text = "CATEGORIA",
+                    fontSize = 8.sp
                 )
                 Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier
+                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .width(154.dp)
+                        .height(43.dp)
                 ) {
                     Text(
                         text = pokemon.categoria.name,
-                        modifier = Modifier.padding(8.dp)
+                        fontWeight = FontWeight(500),
+                        modifier = Modifier.padding(8.dp),
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
-            Row(
+            Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Habilidades:",
-                    fontSize = 8.sp,
+                    text = "HABILIDADES",
+                    fontSize = 8.sp
                 )
-                Column(
-                    modifier = Modifier.padding(start = 8.dp)
-                ) {
-                    pokemon.habilidades.forEach { habilidade ->
-                        Surface(
-                            shape = RoundedCornerShape(4.dp),
-                            modifier = Modifier.padding(top = 4.dp)
+                Column {
+                    Surface(
+                        modifier = Modifier
+                            .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                            .width(154.dp)
+                            .heightIn(min = 43.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            verticalArrangement = Arrangement.Center
                         ) {
-                            Text(
-                                text = habilidade,
-                                modifier = Modifier.padding(8.dp)
-                            )
+                            pokemon.habilidades.forEach { habilidade ->
+                                Text(
+                                    text = habilidade,
+                                    fontWeight = FontWeight(500),
+                                    fontSize = 18.sp
+                                )
+                            }
                         }
                     }
                 }

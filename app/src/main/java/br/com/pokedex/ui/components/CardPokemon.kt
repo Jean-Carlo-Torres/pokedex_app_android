@@ -94,7 +94,6 @@ private fun CardPokemonPreview() {
                     altura = 0.7,
                     categoria = Categoria.SEED,
                     habilidades = habilidades.toTypedArray()
-
                 )
             )
         }
