@@ -1,6 +1,5 @@
 package br.com.pokedex.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,16 +9,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -174,18 +169,17 @@ fun PokemonWeaknesses(vararg elementButtons: @Composable () -> Unit) {
 private fun PokemonDetailsPreview() {
     PokedexTheme {
         Surface {
-            val habilidades = listOf("Overgrow", "Chlorophyll")
             PokemonDetails(
                 Pokemon(
-                    imagem = "https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png",
+                    imagemPokemon = "https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png",
+                    background = painterResource(id = R.drawable.header_grass),
                     nome = "Bulbasaur",
-                    numero = 1,
-                    tipo = "Grama",
+                    numero = "001",
                     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
                     peso = 6.9,
                     altura = 0.7,
                     categoria = Categoria.SEED,
-                    habilidades = habilidades.toTypedArray()
+                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray()
                 )
             )
         }

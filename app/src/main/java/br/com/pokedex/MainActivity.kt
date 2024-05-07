@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.res.painterResource
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.CardPokemon
@@ -15,18 +16,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                val habilidades = listOf("Overgrow", "Chlorophyll")
                 CardPokemon(
                     Pokemon(
-                        imagem = "https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png",
+                        imagemPokemon = "https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png",
+                        background = painterResource(id = R.drawable.header_grass),
                         nome = "Bulbasaur",
-                        numero = 1,
-                        tipo = "Grama",
+                        numero = "001",
                         descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
                         peso = 6.9,
                         altura = 0.7,
                         categoria = Categoria.SEED,
-                        habilidades = habilidades.toTypedArray()
+                        habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray()
                     )
                 )
             }
