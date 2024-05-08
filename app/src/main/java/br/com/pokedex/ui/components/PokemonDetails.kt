@@ -171,7 +171,7 @@ private fun PokemonDetailsPreview() {
         Surface {
             PokemonDetails(
                 Pokemon(
-                    imagemPokemon = "https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png",
+                    imagemPokemon = painterResource(R.drawable.bulbasaur),
                     background = painterResource(id = R.drawable.header_grass),
                     nome = "Bulbasaur",
                     numero = "001",

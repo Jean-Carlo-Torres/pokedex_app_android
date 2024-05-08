@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import br.com.pokedex.model.enums.Categoria
 
 class Pokemon(
-    val imagemPokemon: String? = null,
+    val imagemPokemon: Painter,
     val background: Painter,
     val nome: String,
     val numero: String,
