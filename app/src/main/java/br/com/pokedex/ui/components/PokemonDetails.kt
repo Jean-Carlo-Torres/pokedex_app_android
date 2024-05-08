@@ -136,7 +136,7 @@ fun PokemonDetails(pokemon: Pokemon) {
 }
 
 @Composable
-fun PokemonWeaknesses(vararg elementButtons: @Composable () -> Unit) {
+fun PokemonWeaknesses(fraquezas: List<@Composable () -> Unit>) {
     PokedexTheme {
         Surface {
             Column(
@@ -148,20 +148,19 @@ fun PokemonWeaknesses(vararg elementButtons: @Composable () -> Unit) {
                     fontSize = 18.sp,
                     fontWeight = FontWeight(500)
                 )
-                for (i in elementButtons.indices step 2) {
+                for (i in fraquezas.indices step 2) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        elementButtons[i]()
-                        elementButtons.getOrElse(i + 1) { {} }()
+                        fraquezas[i]()
+                        fraquezas.getOrElse(i + 1) { {} }()
                     }
                 }
             }
         }
     }
 }
-
 
 
 @Preview
@@ -179,20 +178,11 @@ private fun PokemonDetailsPreview() {
                     peso = 6.9,
                     altura = 0.7,
                     categoria = Categoria.SEED,
-                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray()
+                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
+                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
+                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
                 )
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PokemonWeaknessesPreview() {
-    PokemonWeaknesses(
-        { ElementFireButton() },
-        { ElementPsychicButton() },
-        { ElementFlyingButton() },
-        { ElementIceButton() },
-    )
 }

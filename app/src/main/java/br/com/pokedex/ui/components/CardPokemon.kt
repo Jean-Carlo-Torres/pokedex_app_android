@@ -71,22 +71,49 @@ fun CardPokemon(pokemon: Pokemon) {
                         .padding(top = 16.dp, bottom = 16.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    ElementGrassButton()
-                    ElementPoisonButton()
+                    pokemon.element.forEach { element ->
+                        element()
+                    }
                 }
                 Text(text = pokemon.descricao)
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                     PokemonDetails(pokemon = pokemon)
-                    PokemonWeaknesses(
-                        { ElementFireButton() },
-                        { ElementPsychicButton() },
-                        { ElementFlyingButton() },
-                        { ElementIceButton() }
-                    )
+                    PokemonWeaknesses(pokemon.fraquezas)
                 }
             }
         }
     }
+}
+
+@Composable
+fun ElementPokemon(vararg elementButtons: @Composable () -> Unit) {
+    PokedexTheme {
+        Surface {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                for (i in elementButtons.indices step 2) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        elementButtons[i]()
+                        elementButtons.getOrElse(i + 1) { {} }()
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ElementPokemonPreview() {
+    ElementPokemon(
+        { ElementGrassButton() },
+        { ElementPoisonButton() }
+    )
 }
 
 
@@ -106,7 +133,33 @@ private fun CardPokemonPreview() {
                     peso = 6.9,
                     altura = 0.7,
                     categoria = Categoria.SEED,
-                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray()
+                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
+                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
+                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CardPokemonPreview2() {
+    PokedexTheme {
+        Surface {
+            CardPokemon(
+                Pokemon(
+                    imagemPokemon = painterResource(R.drawable.charizard),
+                    background = painterResource(id = R.drawable.header_grass),
+                    nome = "Bulbasaur",
+                    numero = "001",
+                    descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
+                    peso = 6.9,
+                    altura = 0.7,
+                    categoria = Categoria.SEED,
+                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
+                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
+                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
                 )
             )
         }
