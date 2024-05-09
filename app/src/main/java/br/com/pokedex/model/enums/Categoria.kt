@@ -6,5 +6,11 @@ enum class Categoria {
     LIZARD,
     TURTLE,
     SHELLFISH,
-    POISON_BEE,
+    MOUSE,
+    FAIRY,
+    DIGGER,
+    ROCK,
+    LICKING,
+    POISON,
+    PSYCHIC,
 }
