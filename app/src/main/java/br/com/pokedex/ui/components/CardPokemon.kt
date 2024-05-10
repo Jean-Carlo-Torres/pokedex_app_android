@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -47,18 +51,43 @@ fun CardPokemon(pokemon: Pokemon) {
         ) { }
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(
+                    top = 100.dp,
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 16.dp
+                )
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Image(
-                painter = pokemon.imagemPokemon,
-                contentDescription = null,
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(340.dp)
-                    .padding(top = 150.dp)
-            )
+                    .heightIn(max = 280.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = pokemon.imagemPokemon,
+                    contentDescription = null,
+                    modifier = if (pokemon.imagemPokemon.intrinsicSize.width > 200 && pokemon.imagemPokemon.intrinsicSize.height > 200) {
+                        Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(pokemon.imagemPokemon.intrinsicSize.width / pokemon.imagemPokemon.intrinsicSize.height)
+                            .padding(
+                                top = 16.dp,
+                                start = 16.dp,
+                                end = 16.dp,
+                                bottom = 24.dp
+                            )
+                    } else {
+                        Modifier
+                            .fillMaxWidth()
+                            .height(240.dp)
+                            .padding(16.dp)
+                    },
+                    alignment = Alignment.TopCenter
+                )
+            }
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = pokemon.nome,
@@ -117,7 +146,6 @@ private fun ElementPokemonPreview() {
 }
 
 
-
 @Preview
 @Composable
 private fun CardPokemonPreview() {
@@ -125,7 +153,7 @@ private fun CardPokemonPreview() {
         Surface {
             CardPokemon(
                 Pokemon(
-                    imagemPokemon = painterResource(R.drawable.bulbasaur),
+                    imagemPokemon = painterResource(R.drawable.charmander),
                     background = painterResource(id = R.drawable.header_grass),
                     nome = "Bulbasaur",
                     numero = "001",
@@ -135,7 +163,11 @@ private fun CardPokemonPreview() {
                     categoria = Categoria.SEED,
                     habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
                     element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
-                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
+                    fraquezas = listOf(
+                        { ElementFireButton() },
+                        { ElementPsychicButton() },
+                        { ElementFlyingButton() },
+                        { ElementIceButton() })
                 )
             )
         }
@@ -159,7 +191,11 @@ private fun CardPokemonPreview2() {
                     categoria = Categoria.SEED,
                     habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
                     element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
-                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
+                    fraquezas = listOf(
+                        { ElementFireButton() },
+                        { ElementPsychicButton() },
+                        { ElementFlyingButton() },
+                        { ElementIceButton() })
                 )
             )
         }

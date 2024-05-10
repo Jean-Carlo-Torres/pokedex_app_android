@@ -4,9 +4,13 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -35,7 +39,6 @@ import br.com.pokedex.ui.components.ElementStoneButton
 import br.com.pokedex.ui.components.ElementTerrestrialButton
 import br.com.pokedex.ui.components.ElementWaterButton
 import br.com.pokedex.ui.theme.PokedexTheme
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
