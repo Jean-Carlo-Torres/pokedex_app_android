@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
+import br.com.pokedex.model.PokemonEvolutionItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
 
@@ -162,7 +163,6 @@ fun PokemonWeaknesses(fraquezas: List<@Composable () -> Unit>) {
     }
 }
 
-
 @Preview
 @Composable
 private fun PokemonDetailsPreview() {
@@ -180,7 +180,21 @@ private fun PokemonDetailsPreview() {
                     categoria = Categoria.SEED,
                     habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
                     element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
-                    fraquezas = listOf({ ElementFireButton() }, { ElementPsychicButton() }, { ElementFlyingButton() }, { ElementIceButton() })
+                    fraquezas = listOf(
+                        { ElementFireButton() },
+                        { ElementPsychicButton() },
+                        { ElementFlyingButton() },
+                        { ElementIceButton() }),
+                    evolucao = listOf(PokemonEvolutionItem(
+                        nome = "Bulbasaur",
+                        numero = "001",
+                        imagemPokemon = painterResource(R.drawable.bulbasaur),
+                        background = painterResource(R.drawable.bg_evolution_grass),
+                        element = listOf(
+                            { ElementGrassButtonSmall() },
+                            { ElementPoisonButtonSmall() }
+                        ),
+                    ))
                 )
             )
         }

@@ -12,9 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,9 +27,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
+import br.com.pokedex.model.PokemonEvolutionItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
-import coil.compose.AsyncImage
 
 @Composable
 fun CardPokemon(pokemon: Pokemon) {
@@ -108,41 +105,11 @@ fun CardPokemon(pokemon: Pokemon) {
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                     PokemonDetails(pokemon = pokemon)
                     PokemonWeaknesses(pokemon.fraquezas)
+                    PokemonEvolution(pokemon.evolucao)
                 }
             }
         }
     }
-}
-
-@Composable
-fun ElementPokemon(vararg elementButtons: @Composable () -> Unit) {
-    PokedexTheme {
-        Surface {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                for (i in elementButtons.indices step 2) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        elementButtons[i]()
-                        elementButtons.getOrElse(i + 1) { {} }()
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun ElementPokemonPreview() {
-    ElementPokemon(
-        { ElementGrassButton() },
-        { ElementPoisonButton() }
-    )
 }
 
 
@@ -167,7 +134,41 @@ private fun CardPokemonPreview() {
                         { ElementFireButton() },
                         { ElementPsychicButton() },
                         { ElementFlyingButton() },
-                        { ElementIceButton() })
+                        { ElementIceButton() }
+                    ),
+                    evolucao = listOf(
+                        PokemonEvolutionItem(
+                            nome = "Bulbasaur",
+                            numero = "001",
+                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            background = painterResource(R.drawable.bg_evolution_grass),
+                            element = listOf(
+                                { ElementGrassButtonSmall() },
+                                { ElementPoisonButtonSmall() }
+                            ),
+
+                            ),
+                        PokemonEvolutionItem(
+                            nome = "Bulbasaur",
+                            numero = "001",
+                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            background = painterResource(R.drawable.bg_evolution_grass),
+                            element = listOf(
+                                { ElementGrassButtonSmall() },
+                                { ElementPoisonButtonSmall() }
+                            ),
+                        ),
+                        PokemonEvolutionItem(
+                            nome = "Bulbasaur",
+                            numero = "001",
+                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            background = painterResource(R.drawable.bg_evolution_grass),
+                            element = listOf(
+                                { ElementGrassButtonSmall() },
+                                { ElementPoisonButtonSmall() }
+                            ),
+                        )
+                    )
                 )
             )
         }
@@ -195,7 +196,19 @@ private fun CardPokemonPreview2() {
                         { ElementFireButton() },
                         { ElementPsychicButton() },
                         { ElementFlyingButton() },
-                        { ElementIceButton() })
+                        { ElementIceButton() }),
+                    evolucao = listOf(
+                        PokemonEvolutionItem(
+                            nome = "Bulbasaur",
+                            numero = "001",
+                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            background = painterResource(R.drawable.bg_evolution_grass),
+                            element = listOf(
+                                { ElementGrassButtonSmall() },
+                                { ElementPoisonButtonSmall() }
+                            ),
+                        )
+                    )
                 )
             )
         }
