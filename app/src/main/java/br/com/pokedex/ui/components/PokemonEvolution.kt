@@ -61,7 +61,8 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonEvolutionItem>) {
                 Row(
                     modifier = Modifier
                         .padding(8.dp)
-                        .widthIn(min = 296.dp)
+                        .widthIn(min =
+                        296.dp)
                         .height(76.dp)
                         .border(0.5.dp, Color.Gray, RoundedCornerShape(50.dp))
                 ) {
