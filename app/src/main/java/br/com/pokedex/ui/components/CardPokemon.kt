@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,10 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
+import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
@@ -60,28 +65,16 @@ fun CardPokemon(pokemon: Pokemon) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(max = 280.dp),
+                    .heightIn(max = 420.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = pokemon.imagemPokemon,
                     contentDescription = null,
-                    modifier = if (pokemon.imagemPokemon.intrinsicSize.width > 200 && pokemon.imagemPokemon.intrinsicSize.height > 200) {
+                    modifier =
                         Modifier
                             .fillMaxWidth()
-                            .aspectRatio(pokemon.imagemPokemon.intrinsicSize.width / pokemon.imagemPokemon.intrinsicSize.height)
-                            .padding(
-                                top = 16.dp,
-                                start = 16.dp,
-                                end = 16.dp,
-                                bottom = 24.dp
-                            )
-                    } else {
-                        Modifier
-                            .fillMaxWidth()
-                            .height(240.dp)
-                            .padding(16.dp)
-                    },
+                            .heightIn(min = 250.dp),
                     alignment = Alignment.TopCenter
                 )
             }
@@ -112,7 +105,6 @@ fun CardPokemon(pokemon: Pokemon) {
     }
 }
 
-
 @Preview
 @Composable
 private fun CardPokemonPreview() {
@@ -120,7 +112,7 @@ private fun CardPokemonPreview() {
         Surface {
             CardPokemon(
                 Pokemon(
-                    imagemPokemon = painterResource(R.drawable.charmander),
+                    imagemPokemon = painterResource(R.drawable.bulbasaur),
                     background = painterResource(id = R.drawable.header_grass),
                     nome = "Bulbasaur",
                     numero = "001",
@@ -146,8 +138,7 @@ private fun CardPokemonPreview() {
                                 { ElementGrassButtonSmall() },
                                 { ElementPoisonButtonSmall() }
                             ),
-
-                            ),
+                        ),
                         PokemonEvolutionItem(
                             nome = "Bulbasaur",
                             numero = "001",
