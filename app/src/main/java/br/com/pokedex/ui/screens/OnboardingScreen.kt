@@ -1,5 +1,6 @@
 package br.com.pokedex.ui.screens
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -25,23 +27,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.CadastroUsuarioActivity
 import br.com.pokedex.ui.components.GenericButton
 
 @Composable
 fun OnboardingScreen() {
     var currentPage by remember { mutableStateOf(0) }
+    val context = LocalContext.current
 
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
-        0 -> {
-            Onboarding1(onNext)
-        }
-        1 -> {
-            Onboarding2(onNext)
-        }
-        2 -> {
-            Onboarding3 {}
+        0 -> Onboarding1(onNext)
+        1 -> Onboarding2(onNext)
+        2 -> Onboarding3(onNext)
+        3 -> {
+            context.startActivity(Intent(context, CadastroUsuarioActivity::class.java))
         }
     }
 }

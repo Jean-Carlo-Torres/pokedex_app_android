@@ -15,9 +15,12 @@
         android:theme="@style/Theme.Pokedex"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.CadastroUsuarioActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Pokedex" />
+        <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
-            android:label="@string/title_activity_splash"
             android:theme="@style/Theme.Pokedex">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +31,8 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Pokedex">
-        </activity>
-        <activity android:name=".ui.activity.OnboardingActivity"/>
+            android:theme="@style/Theme.Pokedex"></activity>
+        <activity android:name=".ui.activity.OnboardingActivity" />
     </application>
 
 </manifest>
