@@ -1,4 +1,4 @@
-package br.com.pokedex
+package br.com.pokedex.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,7 +20,7 @@ class SplashActivity : ComponentActivity() {
 
         Timer().schedule(object : TimerTask() {
             override fun run() {
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                startActivity(Intent(this@SplashActivity, OnboardingActivity::class.java))
                 finish()
             }
         }, 2000)

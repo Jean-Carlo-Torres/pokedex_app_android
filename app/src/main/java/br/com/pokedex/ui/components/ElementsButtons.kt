@@ -7,13 +7,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.pokedex.R
-import br.com.pokedex.model.GeneticButtonProperties
+import br.com.pokedex.model.ElementGenericButtonProperties
 import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
 fun ElementWaterButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_water),
             text = "Água",
             backgroundColor = Color(0xFF5090D6),
@@ -24,7 +24,7 @@ fun ElementWaterButton() {
 @Composable
 fun ElementDragonButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_dragon),
             text = "Dragão",
             backgroundColor = Color(0xFF0B6DC3),
@@ -35,7 +35,7 @@ fun ElementDragonButton() {
 @Composable
 fun ElementElectricButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_electric),
             text = "Elétrico",
             backgroundColor = Color(0xFFFFD740),
@@ -46,7 +46,7 @@ fun ElementElectricButton() {
 @Composable
 fun ElementFairyButtom(){
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fairy),
             text = "Fada",
             backgroundColor = Color(0xFFEC8FE6),
@@ -57,7 +57,7 @@ fun ElementFairyButtom(){
 @Composable
 fun ElementFireButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fire),
             text = "Fogo",
             backgroundColor = Color(0xFFFF9D55),
@@ -68,7 +68,7 @@ fun ElementFireButton() {
 @Composable
 fun ElementGrassButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_grass),
             text = "Grama",
             backgroundColor = Color(0xFF63BC5A),
@@ -79,7 +79,7 @@ fun ElementGrassButton() {
 @Composable
 fun ElementGhostButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ghost),
             text = "Fantasma",
             backgroundColor = Color(0xFF5269AD),
@@ -90,7 +90,7 @@ fun ElementGhostButton() {
 @Composable
 fun ElementIceButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ice),
             text = "Gelo",
             backgroundColor = Color(0xFF7DCEE9),
@@ -101,7 +101,7 @@ fun ElementIceButton() {
 @Composable
 fun ElementInsectButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_insect),
             text = "Inseto",
             backgroundColor = Color(0xFF91C12F),
@@ -112,7 +112,7 @@ fun ElementInsectButton() {
 @Composable
 fun ElementFighterButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fighter),
             text = "Lutador",
             backgroundColor = Color(0xFFCE416B),
@@ -123,7 +123,7 @@ fun ElementFighterButton() {
 @Composable
 fun ElementNormalButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_normal),
             text = "Normal",
             backgroundColor = Color(0xFF939393),
@@ -134,7 +134,7 @@ fun ElementNormalButton() {
 @Composable
 fun ElementNocturnalButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_nocturnal),
             text = "Nocturno",
             backgroundColor = Color(0xFF5A5465),
@@ -145,7 +145,7 @@ fun ElementNocturnalButton() {
 @Composable
 fun ElementMetalButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_metal),
             text = "Metal",
             backgroundColor = Color(0xFF5A8EA2),
@@ -156,7 +156,7 @@ fun ElementMetalButton() {
 @Composable
 fun ElementStoneButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_stone),
             text = "Pedra",
             backgroundColor = Color(0xFFC5B78C),
@@ -167,7 +167,7 @@ fun ElementStoneButton() {
 @Composable
 fun ElementPsychicButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_psychic),
             text = "Psíquico",
             backgroundColor = Color(0xFFF96464),
@@ -178,7 +178,7 @@ fun ElementPsychicButton() {
 @Composable
 fun ElementPoisonButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_poison),
             text = "Veneno",
             backgroundColor = Color(0xFFB567CE),
@@ -189,7 +189,7 @@ fun ElementPoisonButton() {
 @Composable
 fun ElementTerrestrialButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_terrestrial),
             text = "Terrestre",
             backgroundColor = Color(0xFFD97845),
@@ -200,7 +200,7 @@ fun ElementTerrestrialButton() {
 @Composable
 fun ElementFlyingButton() {
     GenericButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_flying),
             text = "Voador",
             backgroundColor = Color(0xFF89AAE3),
@@ -211,7 +211,7 @@ fun ElementFlyingButton() {
 @Composable
 fun ElementWaterButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_water),
             backgroundColor = Color(0xFF5090D6),
         )
@@ -221,7 +221,7 @@ fun ElementWaterButtonSmall() {
 @Composable
 fun ElementDragonButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_dragon),
             backgroundColor = Color(0xFF0B6DC3),
         )
@@ -231,7 +231,7 @@ fun ElementDragonButtonSmall() {
 @Composable
 fun ElementElectricButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_electric),
             backgroundColor = Color(0xFFFFD740),
         )
@@ -241,7 +241,7 @@ fun ElementElectricButtonSmall() {
 @Composable
 fun ElementFairyButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fairy),
             backgroundColor = Color(0xFFEC8FE6),
         )
@@ -251,7 +251,7 @@ fun ElementFairyButtonSmall() {
 @Composable
 fun ElementFireButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fire),
             backgroundColor = Color(0xFFFF9D55),
         )
@@ -261,7 +261,7 @@ fun ElementFireButtonSmall() {
 @Composable
 fun ElementGrassButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_grass),
             backgroundColor = Color(0xFF63BC5A),
         )
@@ -271,7 +271,7 @@ fun ElementGrassButtonSmall() {
 @Composable
 fun ElementGhostButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ghost),
             backgroundColor = Color(0xFF5269AD),
         )
@@ -281,7 +281,7 @@ fun ElementGhostButtonSmall() {
 @Composable
 fun ElementIceButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ice),
             backgroundColor = Color(0xFF7DCEE9),
         )
@@ -291,7 +291,7 @@ fun ElementIceButtonSmall() {
 @Composable
 fun ElementInsectButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_insect),
             backgroundColor = Color(0xFF91C12F),
         )
@@ -301,7 +301,7 @@ fun ElementInsectButtonSmall() {
 @Composable
 fun ElementFighterButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fighter),
             backgroundColor = Color(0xFFCE416B),
         )
@@ -311,7 +311,7 @@ fun ElementFighterButtonSmall() {
 @Composable
 fun ElementNormalButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_normal),
             backgroundColor = Color(0xFF939393),
         )
@@ -321,7 +321,7 @@ fun ElementNormalButtonSmall() {
 @Composable
 fun ElementNocturnalButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_nocturnal),
             backgroundColor = Color(0xFF5A5465),
         )
@@ -331,7 +331,7 @@ fun ElementNocturnalButtonSmall() {
 @Composable
 fun ElementMetalButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_metal),
             backgroundColor = Color(0xFF5A8EA2),
         )
@@ -341,7 +341,7 @@ fun ElementMetalButtonSmall() {
 @Composable
 fun ElementStoneButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_stone),
             backgroundColor = Color(0xFFC5B78C),
         )
@@ -351,7 +351,7 @@ fun ElementStoneButtonSmall() {
 @Composable
 fun ElementPsychicButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_psychic),
             backgroundColor = Color(0xFFF96464),
         )
@@ -361,7 +361,7 @@ fun ElementPsychicButtonSmall() {
 @Composable
 fun ElementPoisonButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_poison),
             backgroundColor = Color(0xFFB567CE),
         )
@@ -371,7 +371,7 @@ fun ElementPoisonButtonSmall() {
 @Composable
 fun ElementTerrestrialButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_terrestrial),
             backgroundColor = Color(0xFFD97845),
         )
@@ -381,7 +381,7 @@ fun ElementTerrestrialButtonSmall() {
 @Composable
 fun ElementFlyingButtonSmall() {
     ElementEvolutionButton(
-        properties = GeneticButtonProperties(
+        properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_flying),
             backgroundColor = Color(0xFF89AAE3),
         )

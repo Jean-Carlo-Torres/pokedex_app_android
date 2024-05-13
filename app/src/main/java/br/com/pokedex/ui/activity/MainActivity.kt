@@ -1,4 +1,4 @@
-package br.com.pokedex
+package br.com.pokedex.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
