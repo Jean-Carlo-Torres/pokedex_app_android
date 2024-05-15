@@ -11,19 +11,25 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import br.com.pokedex.ui.activity.ui.theme.PokedexTheme
-import br.com.pokedex.ui.screens.CadastroUsuarioScreen
+import br.com.pokedex.ui.screens.FormularioCadastroScreen
 
-class CadastroUsuarioActivity : ComponentActivity() {
+class FormularioCadastroUsuarioActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                CadastroUsuarioScreen ()
+                FormularioCadastroScreen()
             }
         }
     }
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    PokedexTheme {
+        FormularioCadastroScreen()
+    }
+}

@@ -2,4 +2,6 @@
     <string name="app_name">Pokedex</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_cadastro_usuario">CadastroUsuarioActivity</string>
+    <string name="title_activity_formulario_cadastro_usuario">FormularioCadastroUsuarioActivity
+    </string>
 </resources>

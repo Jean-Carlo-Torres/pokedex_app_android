@@ -28,7 +28,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.ElementGenericButtonProperties
 
 @Composable
-fun GenericButton(properties: ElementGenericButtonProperties) {
+fun ElementGenericButton(properties: ElementGenericButtonProperties, onClick: () -> Unit = {}) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -97,7 +97,7 @@ fun ElementEvolutionButton(properties: ElementGenericButtonProperties) {
 @Preview
 @Composable
 private fun ButtonGrassPreview() {
-    GenericButton(
+    ElementGenericButton(
         ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_grass),
             text = "Grama",

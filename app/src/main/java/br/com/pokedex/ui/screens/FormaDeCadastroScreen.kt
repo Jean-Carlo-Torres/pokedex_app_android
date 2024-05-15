@@ -1,14 +1,11 @@
 package br.com.pokedex.ui.screens
 
-import android.app.Activity
 import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,11 +28,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.FormularioCadastroUsuarioActivity
 import br.com.pokedex.ui.activity.OnboardingActivity
 import br.com.pokedex.ui.components.GenericButton
+import br.com.pokedex.ui.components.PageHeader
 
 @Composable
-fun CadastroUsuarioScreen() {
+fun FormaDeCadastroScreen() {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -48,37 +46,14 @@ fun CadastroUsuarioScreen() {
                 top = 48.dp
             ),
     ) {
-        Row {
-            Box {
-                IconButton(
-                    onClick = {
-                        val intent = Intent(
-                            context,
-                            OnboardingActivity::class.java
-                        )
-                        context.startActivity(intent)
-                        (context as Activity).finish()
-                    },
-                    modifier = Modifier
-                        .width(52.dp)
-                        .height(52.dp)
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow),
-                        contentDescription = null
-                    )
-                }
-                Text(
-                    text = "Cadastro Usuario",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight(500),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 14.dp),
+        PageHeader(onClick = {
+            context.startActivity(
+                Intent(
+                    context,
+                    OnboardingActivity::class.java
                 )
-            }
-        }
+            )
+        }, title = "Forma de cadastro")
         Image(
             painter = painterResource(id = R.drawable.image145),
             contentDescription = null,
@@ -115,8 +90,17 @@ fun CadastroUsuarioScreen() {
                 imagem = painterResource(id = R.drawable.ic_google),
                 text = "Continuar com o Google"
             )
-            GenericButton(text = "Continuar com um e-mail") {
-            }
+            GenericButton(
+                text = "Continuar com um e-mail",
+                onClick = {
+                    context.startActivity(
+                        Intent(
+                            context,
+                            FormularioCadastroUsuarioActivity::class.java
+                        )
+                    )
+                }
+            )
         }
     }
 }
@@ -156,5 +140,5 @@ private fun GenericNoFillButton(imagem: Painter, text: String) {
 @Preview(showBackground = true)
 @Composable
 private fun CadastroUsuarioScreenPreview() {
-    CadastroUsuarioScreen()
+    FormaDeCadastroScreen()
 }

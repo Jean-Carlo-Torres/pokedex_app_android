@@ -12,7 +12,7 @@ import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
 fun ElementWaterButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_water),
             text = "Água",
@@ -23,7 +23,7 @@ fun ElementWaterButton() {
 
 @Composable
 fun ElementDragonButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_dragon),
             text = "Dragão",
@@ -34,7 +34,7 @@ fun ElementDragonButton() {
 
 @Composable
 fun ElementElectricButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_electric),
             text = "Elétrico",
@@ -45,7 +45,7 @@ fun ElementElectricButton() {
 
 @Composable
 fun ElementFairyButtom(){
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fairy),
             text = "Fada",
@@ -56,7 +56,7 @@ fun ElementFairyButtom(){
 
 @Composable
 fun ElementFireButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fire),
             text = "Fogo",
@@ -67,7 +67,7 @@ fun ElementFireButton() {
 
 @Composable
 fun ElementGrassButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_grass),
             text = "Grama",
@@ -78,7 +78,7 @@ fun ElementGrassButton() {
 
 @Composable
 fun ElementGhostButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ghost),
             text = "Fantasma",
@@ -89,7 +89,7 @@ fun ElementGhostButton() {
 
 @Composable
 fun ElementIceButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_ice),
             text = "Gelo",
@@ -100,7 +100,7 @@ fun ElementIceButton() {
 
 @Composable
 fun ElementInsectButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_insect),
             text = "Inseto",
@@ -111,7 +111,7 @@ fun ElementInsectButton() {
 
 @Composable
 fun ElementFighterButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_fighter),
             text = "Lutador",
@@ -122,7 +122,7 @@ fun ElementFighterButton() {
 
 @Composable
 fun ElementNormalButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_normal),
             text = "Normal",
@@ -133,7 +133,7 @@ fun ElementNormalButton() {
 
 @Composable
 fun ElementNocturnalButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_nocturnal),
             text = "Nocturno",
@@ -144,7 +144,7 @@ fun ElementNocturnalButton() {
 
 @Composable
 fun ElementMetalButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_metal),
             text = "Metal",
@@ -155,7 +155,7 @@ fun ElementMetalButton() {
 
 @Composable
 fun ElementStoneButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_stone),
             text = "Pedra",
@@ -166,7 +166,7 @@ fun ElementStoneButton() {
 
 @Composable
 fun ElementPsychicButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_psychic),
             text = "Psíquico",
@@ -177,7 +177,7 @@ fun ElementPsychicButton() {
 
 @Composable
 fun ElementPoisonButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_poison),
             text = "Veneno",
@@ -188,7 +188,7 @@ fun ElementPoisonButton() {
 
 @Composable
 fun ElementTerrestrialButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_terrestrial),
             text = "Terrestre",
@@ -199,7 +199,7 @@ fun ElementTerrestrialButton() {
 
 @Composable
 fun ElementFlyingButton() {
-    GenericButton(
+    ElementGenericButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_flying),
             text = "Voador",
