@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,102 +50,183 @@ fun FormularioCadastroScreen() {
         2 -> CadastroNomeTemplate(onNext)
     }
 }
+
 @Composable
 private fun CadastroEmailTemplate(onNext: () -> Unit) {
+    var email by rememberSaveable { mutableStateOf("") }
+    var showError by remember { mutableStateOf(false) }
+    val isEmailValid = email.isNotBlank() && email.contains("@")
+
     CadastroTemplate(
         headerText = "Vamos começar!",
         subHeaderText = "Qual é o seu e-mail?",
-        onNext = onNext
+        onNext = {
+            if (isEmailValid) {
+                onNext()
+            } else {
+                showError = true
+            }
+        }
     ) {
-        var email by rememberSaveable { mutableStateOf("") }
         CustomTextField(
             value = email,
-            onValueChange = { email = it },
+            onValueChange = {
+                email = it
+                showError = false
+            },
             label = "Email",
-            placeholder = "example@gmail.com"
+            placeholder = "example@gmail.com",
+            isError = showError
         )
-        Text(
-            text = "Use um endereço de e-mail válido.",
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        if (showError) {
+            Text(
+                text = "Por favor, insira um e-mail válido.",
+                color = Color.Red,
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
+            )
+        } else {
+            Text(
+                text = "Use um endereço de e-mail válido.",
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            GenericButton(text = "Continuar", onClick = onNext)
+            GenericButton(text = "Continuar", onClick = {
+                if (isEmailValid) onNext() else showError = true
+            }
+            )
         }
     }
 }
 
+
 @Composable
 private fun CadastroSenhaTemplate(onNext: () -> Unit) {
+    var showPassword by remember { mutableStateOf(false) }
+    var password by remember { mutableStateOf("") }
+    var showError by remember { mutableStateOf(false) }
+    val isPasswordValid = password.isNotBlank() && password.length >= 8
+
     CadastroTemplate(
         headerText = "Agora...",
         subHeaderText = "Crie uma senha",
-        onNext = onNext
+        onNext = {
+            if (isPasswordValid) {
+                onNext()
+            } else {
+                showError = true
+            }
+        }
     ) {
-        var showPassword by remember { mutableStateOf(false) }
-        var password by remember { mutableStateOf("") }
         CustomTextField(
             value = password,
-            onValueChange = { password = it },
+            onValueChange = {
+                password = it
+                showError = false
+            },
             label = "Senha",
             placeholder = "Senha",
             isPassword = true,
             showPassword = showPassword,
-            onShowPasswordChange = { showPassword = !showPassword }
+            onShowPasswordChange = { showPassword = !showPassword },
+            isError = showError
         )
-        Text(
-            text = "Sua senha deve ter pelo menos 8 caracteres",
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        if (showError) {
+            Text(
+                text = "Sua senha deve ter pelo menos 8 caracteres.",
+                color = Color.Red,
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
+            )
+        } else {
+            Text(
+                text = "Sua senha deve ter pelo menos 8 caracteres",
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            GenericButton(text = "Continuar", onClick = onNext)
+            GenericButton(text = "Continuar", onClick = { if (isPasswordValid) onNext() else showError = true })
         }
     }
 }
 
+
 @Composable
 private fun CadastroNomeTemplate(onNext: () -> Unit) {
+    var name by rememberSaveable { mutableStateOf("") }
+    var showError by remember { mutableStateOf(false) }
+    val isNameValid = name.isNotBlank()
+
     CadastroTemplate(
         headerText = "Para finalizar",
         subHeaderText = "Qual é o seu nome?",
-        onNext = onNext
+        onNext = {
+            if (isNameValid) {
+                onNext()
+            } else {
+                showError = true
+            }
+        }
     ) {
-        var name by rememberSaveable { mutableStateOf("") }
         CustomTextField(
             value = name,
-            onValueChange = { name = it },
+            onValueChange = {
+                name = it
+                showError = false
+            },
             label = "Nome",
-            placeholder = "Nome"
+            placeholder = "Nome",
+            isError = showError
         )
-        Text(
-            text = "Esse será seu nome de usuário no aplicativo.",
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        if (showError) {
+            Text(
+                text = "Por favor, insira um nome válido.",
+                color = Color.Red,
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
+            )
+        } else {
+            Text(
+                text = "Esse será seu nome de usuário no aplicativo.",
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            GenericButton(text = "Criar conta", onClick = onNext)
+            GenericButton(text = "Criar conta", onClick = { if (isNameValid) onNext() else showError = true })
         }
     }
 }

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -50,14 +52,26 @@ fun Onboarding1(onNext: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(
+                top = 150.dp,
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 32.dp
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         padraoImagem(painterResource(id = R.drawable.image134))
         padraoTextoPrimario("Todos os Pokémons em um só Lugar")
         padraoTextoSecundario("Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo")
-        GenericButton("Continuar", onClick = onNext)
+        Spacer(modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            GenericButton(text = "Continuar", onClick = onNext)
+        }
     }
 }
 
@@ -66,14 +80,26 @@ fun Onboarding2(onNext: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(
+                top = 150.dp,
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 32.dp
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         padraoImagem(imagem = painterResource(id = R.drawable.sprite_hilda))
         padraoTextoPrimario("Mantenha sua Pokédex atualizada")
         padraoTextoSecundario("Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.")
-        GenericButton("Vamos começar!", onClick = onNext)
+        Spacer(modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            GenericButton(text = "Vamos começar!", onClick = onNext)
+        }
     }
 }
 
@@ -82,14 +108,26 @@ fun Onboarding3(onNext: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(
+                top = 150.dp,
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 32.dp
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         padraoImagem(imagem = painterResource(id = R.drawable.trainers))
         padraoTextoPrimario("Está pronto para essa aventura?")
         padraoTextoSecundario("Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!")
-        GenericButton("Criar conta", onClick = onNext)
+        Spacer(modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            GenericButton(text = "Criar conta", onClick = onNext)
+        }
     }
 }
 
@@ -132,8 +170,18 @@ private fun padraoImagem(imagem: Painter) {
 
 @Preview(showBackground = true)
 @Composable
-private fun OnboardingScreenPreview() {
-    // Onboarding1()
-    // Onboarding2()
-    // Onboarding3()
+private fun Onboarding1Preview() {
+     Onboarding1(onNext = {})
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Onboarding2Preview() {
+    Onboarding2(onNext = {})
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Onboarding3Preview() {
+    Onboarding3(onNext = {})
 }
