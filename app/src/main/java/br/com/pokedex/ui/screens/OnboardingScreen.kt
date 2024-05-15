@@ -133,7 +133,7 @@ fun Onboarding3(onNext: () -> Unit) {
 
 
 @Composable
-private fun padraoTextoSecundario(text: String) {
+ fun padraoTextoSecundario(text: String) {
     Text(
         text = text,
         fontSize = 16.sp,
@@ -147,7 +147,7 @@ private fun padraoTextoSecundario(text: String) {
 }
 
 @Composable
-private fun padraoTextoPrimario(text: String) {
+ fun padraoTextoPrimario(text: String) {
     Text(
         text = text,
         fontSize = 26.sp,
@@ -157,7 +157,7 @@ private fun padraoTextoPrimario(text: String) {
 }
 
 @Composable
-private fun padraoImagem(imagem: Painter) {
+ fun padraoImagem(imagem: Painter) {
     Image(
         painter = imagem,
         contentDescription = null,

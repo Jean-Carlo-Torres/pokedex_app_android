@@ -41,13 +41,13 @@ import br.com.pokedex.ui.components.PageHeader
 @Composable
 fun FormularioCadastroScreen() {
     var currentPage by remember { mutableStateOf(0) }
-
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
         0 -> CadastroEmailTemplate(onNext)
         1 -> CadastroSenhaTemplate(onNext)
         2 -> CadastroNomeTemplate(onNext)
+        3 -> CadastroRealizadoScreen()
     }
 }
 
@@ -110,7 +110,6 @@ private fun CadastroEmailTemplate(onNext: () -> Unit) {
         }
     }
 }
-
 
 @Composable
 private fun CadastroSenhaTemplate(onNext: () -> Unit) {
