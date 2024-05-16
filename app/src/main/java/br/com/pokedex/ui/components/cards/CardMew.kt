@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundPsychic
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementGhostButton
 import br.com.pokedex.ui.components.ElementInsectButton
@@ -31,9 +32,9 @@ fun MewData(): Pokemon {
             { ElementInsectButton() }
         ),
         evolucao = listOf(
-            PokemonEvolutionItem(
+            PokemonListaItem(
                 imagemPokemon = painterResource(id = R.drawable.mew),
-                background = painterResource(id = R.drawable.bg_evolution_psychic),
+                background = BackgroundPsychic(),
                 nome = "Mew",
                 numero = "151",
                 element = listOf { ElementPsychicButtonSmall() }

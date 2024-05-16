@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundElectric
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementElectricButtonSmall
@@ -25,9 +26,9 @@ fun PikachuData(): Pokemon {
         element = listOf { ElementElectricButton() },
         fraquezas = listOf { ElementTerrestrialButton() },
         evolucao = listOf(
-            PokemonEvolutionItem(
+            PokemonListaItem(
                 imagemPokemon = painterResource(id = R.drawable.pikachu),
-                background = painterResource(id = R.drawable.bg_evolution_electric),
+                background = BackgroundElectric(),
                 nome = "Pikachu",
                 numero = "025",
                 element = listOf { ElementElectricButtonSmall() }

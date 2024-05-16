@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundFire
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementFireButton
@@ -82,27 +83,27 @@ fun CharizardData(): Pokemon {
 }
 
 @Composable
-fun chamanderEvolution(): List<PokemonEvolutionItem> {
+fun chamanderEvolution(): List<PokemonListaItem> {
     return listOf(
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Chamander",
             numero = "004",
             imagemPokemon = painterResource(R.drawable.charmander),
-            background = painterResource(R.drawable.bg_evolution_fire),
+            background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Charmeleon",
             numero = "005",
             imagemPokemon = painterResource(R.drawable.charmeleon),
-            background = painterResource(R.drawable.bg_evolution_fire),
+            background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Charizard",
             numero = "006",
             imagemPokemon = painterResource(R.drawable.charizard),
-            background = painterResource(R.drawable.bg_evolution_fire),
+            background = BackgroundFire(),
             element = listOf(
                 { ElementFireButtonSmall() },
                 { ElementFlyingButtonSmall() }

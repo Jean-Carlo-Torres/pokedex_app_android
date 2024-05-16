@@ -16,5 +16,5 @@ class Pokemon(
     val categoria: Categoria,
     val habilidades: Array<String>,
     val fraquezas: List<@Composable () -> Unit>,
-    val evolucao: List<PokemonEvolutionItem>,
+    val evolucao: List<PokemonListaItem>,
 )

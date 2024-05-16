@@ -1,15 +1,14 @@
 package br.com.pokedex.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -26,10 +25,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 
 @Composable
-fun PokemonEvolution(pokemonEvolution: List<PokemonEvolutionItem>) {
+fun PokemonEvolution(pokemonEvolution: List<PokemonListaItem>) {
     Column {
         Text(
             text = "Evoluções",
@@ -53,21 +52,28 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonEvolutionItem>) {
                 Row(
                     modifier = Modifier
                         .padding(8.dp)
-                        .widthIn(min =
-                        296.dp)
+                        .widthIn(
+                            min =
+                            296.dp
+                        )
                         .height(76.dp)
                         .border(0.5.dp, Color.Gray, RoundedCornerShape(50.dp))
                 ) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(0.3f)
-                            .fillMaxHeight(0.9f),
+                            .width(96.dp)
+                            .background(
+                                color = evolution.background.backgroundColor,
+                                shape = RoundedCornerShape(50.dp)
+                            ),
                         contentAlignment = Alignment.CenterStart
                     ) {
                         Image(
-                            painter = evolution.background,
+                            painter = evolution.background.icone,
                             contentDescription = null,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp)
                         )
                         Image(
                             painter = evolution.imagemPokemon,
@@ -77,7 +83,7 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonEvolutionItem>) {
                     }
                     Column(
                         modifier = Modifier
-                            .padding(horizontal = 8.dp)
+                            .padding(horizontal = 16.dp)
                             .weight(1f)
                     ) {
                         Text(
@@ -126,33 +132,33 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonEvolutionItem>) {
 @Composable
 fun PokemonEvolutionPreview() {
     val evolutionList = listOf(
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
             imagemPokemon = painterResource(R.drawable.bulbasaur),
-            background = painterResource(R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
             imagemPokemon = painterResource(R.drawable.bulbasaur),
-            background = painterResource(R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
             imagemPokemon = painterResource(R.drawable.bulbasaur),
-            background = painterResource(R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
-                { ElementGrassButtonSmall()},
+                { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
         )

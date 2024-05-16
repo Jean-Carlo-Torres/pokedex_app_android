@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundInsect
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFlyingButton
@@ -38,9 +39,9 @@ fun BeedrillData(): Pokemon {
             { ElementStoneButton() },
         ),
         evolucao = listOf(
-            PokemonEvolutionItem(
+            PokemonListaItem(
                 imagemPokemon = painterResource(id = R.drawable.beedrill),
-                background = painterResource(id = R.drawable.bg_evolution_insect),
+                background = BackgroundInsect(),
                 nome = "Beedrill",
                 numero = "015",
                 element = listOf(

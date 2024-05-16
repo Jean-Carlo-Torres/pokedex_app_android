@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundGrass
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFlyingButton
@@ -95,33 +96,33 @@ fun VenusaurData(): Pokemon {
 }
 
 @Composable
-private fun bulbasaurEvolution(): List<PokemonEvolutionItem>{
+private fun bulbasaurEvolution(): List<PokemonListaItem>{
     return listOf(
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
             imagemPokemon = painterResource(R.drawable.bulbasaur),
-            background = painterResource(R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Ivysaur",
             numero = "002",
             imagemPokemon = painterResource(id = R.drawable.ivysaur),
-            background = painterResource(id = R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             )
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             nome = "Venusaur",
             numero = "003",
             imagemPokemon = painterResource(id = R.drawable.venusaur),
-            background = painterResource(id = R.drawable.bg_evolution_grass),
+            background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }

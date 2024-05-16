@@ -6,14 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,17 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
-import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
 
@@ -72,9 +65,9 @@ fun CardPokemon(pokemon: Pokemon) {
                     painter = pokemon.imagemPokemon,
                     contentDescription = null,
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .heightIn(min = 250.dp),
+                    Modifier
+                        .fillMaxWidth()
+                        .heightIn(min = 250.dp),
                     alignment = Alignment.TopCenter
                 )
             }
@@ -129,31 +122,31 @@ private fun CardPokemonPreview() {
                         { ElementIceButton() }
                     ),
                     evolucao = listOf(
-                        PokemonEvolutionItem(
+                        PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
                             imagemPokemon = painterResource(R.drawable.bulbasaur),
-                            background = painterResource(R.drawable.bg_evolution_grass),
+                            background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
                                 { ElementPoisonButtonSmall() }
                             ),
                         ),
-                        PokemonEvolutionItem(
+                        PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
                             imagemPokemon = painterResource(R.drawable.bulbasaur),
-                            background = painterResource(R.drawable.bg_evolution_grass),
+                            background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
                                 { ElementPoisonButtonSmall() }
                             ),
                         ),
-                        PokemonEvolutionItem(
+                        PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
                             imagemPokemon = painterResource(R.drawable.bulbasaur),
-                            background = painterResource(R.drawable.bg_evolution_grass),
+                            background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
                                 { ElementPoisonButtonSmall() }
@@ -189,11 +182,11 @@ private fun CardPokemonPreview2() {
                         { ElementFlyingButton() },
                         { ElementIceButton() }),
                     evolucao = listOf(
-                        PokemonEvolutionItem(
+                        PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
                             imagemPokemon = painterResource(R.drawable.bulbasaur),
-                            background = painterResource(R.drawable.bg_evolution_grass),
+                            background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
                                 { ElementPoisonButtonSmall() }

@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundTerrestrial
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementGrassButton
 import br.com.pokedex.ui.components.ElementIceButton
@@ -31,9 +32,9 @@ fun DugtrioData(): Pokemon {
             { ElementIceButton() }
         ),
         evolucao = listOf(
-            PokemonEvolutionItem(
+            PokemonListaItem(
                 imagemPokemon = painterResource(id = R.drawable.dugtrio),
-                background = painterResource(id = R.drawable.bg_evolution_terrestrial),
+                background = BackgroundTerrestrial(),
                 nome = "Dugtrio",
                 numero = "051",
                 element = listOf { ElementTerrestrialButtonSmall() }

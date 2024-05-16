@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.theme.PokedexTheme
 
@@ -185,11 +185,11 @@ private fun PokemonDetailsPreview() {
                         { ElementPsychicButton() },
                         { ElementFlyingButton() },
                         { ElementIceButton() }),
-                    evolucao = listOf(PokemonEvolutionItem(
+                    evolucao = listOf(PokemonListaItem(
                         nome = "Bulbasaur",
                         numero = "001",
                         imagemPokemon = painterResource(R.drawable.bulbasaur),
-                        background = painterResource(R.drawable.bg_evolution_grass),
+                        background = BackgroundGrass(),
                         element = listOf(
                             { ElementGrassButtonSmall() },
                             { ElementPoisonButtonSmall() }

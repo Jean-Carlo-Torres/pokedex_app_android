@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundWater
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementGrassButton
@@ -75,25 +76,25 @@ fun BlastoiseData(): Pokemon {
 }
 
 @Composable
-fun squirtleEvolution(): List<PokemonEvolutionItem> {
+fun squirtleEvolution(): List<PokemonListaItem> {
     return listOf(
-        PokemonEvolutionItem(
+        PokemonListaItem(
             imagemPokemon = painterResource(id = R.drawable.squirtle),
-            background = painterResource(id = R.drawable.bg_evolution_water),
+            background = BackgroundWater(),
             nome = "Squirtle",
             numero = "007",
             element = listOf { ElementWaterButtonSmall() }
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             imagemPokemon = painterResource(id = R.drawable.wartortle),
-            background = painterResource(id = R.drawable.bg_evolution_water),
+            background = BackgroundWater(),
             nome = "Wartortle",
             numero = "008",
             element = listOf { ElementWaterButtonSmall() }
         ),
-        PokemonEvolutionItem(
+        PokemonListaItem(
             imagemPokemon = painterResource(id = R.drawable.blastoise),
-            background = painterResource(id = R.drawable.bg_evolution_water),
+            background = BackgroundWater(),
             nome = "Blastoise",
             numero = "009",
             element = listOf { ElementWaterButtonSmall() }

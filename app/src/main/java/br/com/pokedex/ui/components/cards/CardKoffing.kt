@@ -3,8 +3,9 @@ package br.com.pokedex.ui.components.cards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.components.BackgroundPoison
 import br.com.pokedex.model.Pokemon
-import br.com.pokedex.model.PokemonEvolutionItem
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.ElementPoisonButton
 import br.com.pokedex.ui.components.ElementPoisonButtonSmall
@@ -29,9 +30,9 @@ fun KoffingData(): Pokemon {
             { ElementTerrestrialButton() }
         ),
         evolucao = listOf(
-            PokemonEvolutionItem(
+            PokemonListaItem(
                 imagemPokemon = painterResource(id = R.drawable.koffing),
-                background = painterResource(id = R.drawable.bg_evolution_poison),
+                background = BackgroundPoison(),
                 nome = "Koffing",
                 numero = "109",
                 element = listOf { ElementPoisonButtonSmall() }
