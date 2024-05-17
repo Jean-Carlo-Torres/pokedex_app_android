@@ -37,7 +37,7 @@ fun ListaCardPokemon(pokemon: PokemonListaItem) {
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 12.dp)
                 .weight(1f)
                 .align(alignment = Alignment.CenterVertically),
         ) {
@@ -53,7 +53,7 @@ fun ListaCardPokemon(pokemon: PokemonListaItem) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(36.dp),
+                    .height(48.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 pokemon.element.forEach { element ->

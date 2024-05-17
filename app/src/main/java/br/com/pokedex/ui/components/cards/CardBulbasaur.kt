@@ -96,12 +96,12 @@ fun VenusaurData(): Pokemon {
 }
 
 @Composable
-private fun bulbasaurEvolution(): List<PokemonListaItem>{
+private fun bulbasaurEvolution(): List<PokemonListaItem> {
     return listOf(
         PokemonListaItem(
-            nome = "Bulbasaur",
-            numero = "001",
-            imagemPokemon = painterResource(R.drawable.bulbasaur),
+            nome = BulbasaurData().nome,
+            numero = BulbasaurData().numero,
+            imagemPokemon = BulbasaurData().imagemPokemon,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
@@ -109,9 +109,9 @@ private fun bulbasaurEvolution(): List<PokemonListaItem>{
             ),
         ),
         PokemonListaItem(
-            nome = "Ivysaur",
-            numero = "002",
-            imagemPokemon = painterResource(id = R.drawable.ivysaur),
+            nome = IvysaurData().nome,
+            numero = IvysaurData().numero,
+            imagemPokemon = IvysaurData().imagemPokemon,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
@@ -119,9 +119,9 @@ private fun bulbasaurEvolution(): List<PokemonListaItem>{
             )
         ),
         PokemonListaItem(
-            nome = "Venusaur",
-            numero = "003",
-            imagemPokemon = painterResource(id = R.drawable.venusaur),
+            nome = VenusaurData().nome,
+            numero = VenusaurData().numero,
+            imagemPokemon = VenusaurData().imagemPokemon,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
@@ -133,6 +133,6 @@ private fun bulbasaurEvolution(): List<PokemonListaItem>{
 
 @Preview
 @Composable
-fun BulbasaurPreview(){
+fun BulbasaurPreview() {
     BulbasaurData()
 }

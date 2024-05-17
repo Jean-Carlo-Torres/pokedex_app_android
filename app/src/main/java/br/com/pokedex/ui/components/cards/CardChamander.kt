@@ -86,23 +86,23 @@ fun CharizardData(): Pokemon {
 fun chamanderEvolution(): List<PokemonListaItem> {
     return listOf(
         PokemonListaItem(
-            nome = "Chamander",
-            numero = "004",
-            imagemPokemon = painterResource(R.drawable.charmander),
+            nome = CharmanderData().nome,
+            numero = CharmanderData().numero,
+            imagemPokemon = CharmanderData().imagemPokemon,
             background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
         PokemonListaItem(
-            nome = "Charmeleon",
-            numero = "005",
-            imagemPokemon = painterResource(R.drawable.charmeleon),
+            nome = CharmeleonData().nome,
+            numero = CharmeleonData().numero,
+            imagemPokemon = CharmeleonData().imagemPokemon,
             background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
         PokemonListaItem(
-            nome = "Charizard",
-            numero = "006",
-            imagemPokemon = painterResource(R.drawable.charizard),
+            nome = CharizardData().nome,
+            numero = CharizardData().numero,
+            imagemPokemon = CharizardData().imagemPokemon,
             background = BackgroundFire(),
             element = listOf(
                 { ElementFireButtonSmall() },
