@@ -39,7 +39,7 @@ fun CardPokemon(pokemon: Pokemon) {
                     color = Color.Transparent
                 )
                 .paint(
-                    painter = pokemon.background,
+                    painter = painterResource(id = pokemon.background) ,
                     contentScale = ContentScale.Crop,
                     alignment = Alignment.TopStart
                 )
@@ -62,7 +62,7 @@ fun CardPokemon(pokemon: Pokemon) {
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = pokemon.imagemPokemon,
+                    painter = painterResource(pokemon.imagemPokemon),
                     contentDescription = null,
                     modifier =
                     Modifier
@@ -105,8 +105,8 @@ private fun CardPokemonPreview() {
         Surface {
             CardPokemon(
                 Pokemon(
-                    imagemPokemon = painterResource(R.drawable.bulbasaur),
-                    background = painterResource(id = R.drawable.header_grass),
+                    imagemPokemon = R.drawable.bulbasaur,
+                    background = R.drawable.header_grass,
                     nome = "Bulbasaur",
                     numero = "001",
                     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
@@ -125,7 +125,7 @@ private fun CardPokemonPreview() {
                         PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
-                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            imagemPokemon = R.drawable.bulbasaur,
                             background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
@@ -135,7 +135,7 @@ private fun CardPokemonPreview() {
                         PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
-                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            imagemPokemon = R.drawable.bulbasaur,
                             background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
@@ -145,7 +145,7 @@ private fun CardPokemonPreview() {
                         PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
-                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            imagemPokemon = R.drawable.bulbasaur,
                             background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },
@@ -166,8 +166,8 @@ private fun CardPokemonPreview2() {
         Surface {
             CardPokemon(
                 Pokemon(
-                    imagemPokemon = painterResource(R.drawable.charizard),
-                    background = painterResource(id = R.drawable.header_grass),
+                    imagemPokemon = R.drawable.charizard,
+                    background = R.drawable.header_grass,
                     nome = "Bulbasaur",
                     numero = "001",
                     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
@@ -185,7 +185,7 @@ private fun CardPokemonPreview2() {
                         PokemonListaItem(
                             nome = "Bulbasaur",
                             numero = "001",
-                            imagemPokemon = painterResource(R.drawable.bulbasaur),
+                            imagemPokemon = R.drawable.bulbasaur,
                             background = BackgroundGrass(),
                             element = listOf(
                                 { ElementGrassButtonSmall() },

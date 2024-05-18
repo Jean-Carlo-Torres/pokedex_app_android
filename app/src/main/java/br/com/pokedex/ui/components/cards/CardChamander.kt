@@ -1,7 +1,6 @@
 package br.com.pokedex.ui.components.cards
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
 import br.com.pokedex.ui.components.BackgroundFire
 import br.com.pokedex.model.Pokemon
@@ -16,23 +15,77 @@ import br.com.pokedex.ui.components.ElementStoneButton
 import br.com.pokedex.ui.components.ElementTerrestrialButton
 import br.com.pokedex.ui.components.ElementWaterButton
 
+val charmander = Pokemon(
+    imagemPokemon = R.drawable.charmander,
+    background = R.drawable.header_fire,
+    nome = "Charmander",
+    numero = "004",
+    descricao = "Tem preferência por coisas quentes. Quando chove, diz-se que o vapor jorra da ponta de sua cauda.\n",
+    peso = 8.5,
+    altura = 0.6,
+    categoria = Categoria.LIZARD,
+    habilidades = listOf("Blaze").toTypedArray(),
+    element = listOf { ElementFireButton() },
+    fraquezas = listOf(
+        { ElementWaterButton() },
+        { ElementTerrestrialButton() },
+        { ElementStoneButton() }),
+    evolucao = emptyList()
+)
+
+val charmeleon = Pokemon(
+    imagemPokemon = R.drawable.charmeleon,
+    background = R.drawable.header_fire,
+    nome = "Charmeleon",
+    numero = "005",
+    descricao = "Tem uma natureza bárbara. Na batalha, ele chicoteia sua cauda de fogo e corta com garras afiadas.\n",
+    peso = 19.0,
+    altura = 1.1,
+    categoria = Categoria.FRAME,
+    habilidades = listOf("Blaze").toTypedArray(),
+    element = listOf { ElementFireButton() },
+    fraquezas = listOf(
+        { ElementWaterButton() },
+        { ElementTerrestrialButton() },
+        { ElementStoneButton() }),
+    evolucao = emptyList()
+)
+
+val charizard = Pokemon(
+    imagemPokemon = R.drawable.charizard,
+    background = R.drawable.header_fire,
+    nome = "Charizard",
+    numero = "006",
+    descricao = "Ele cospe fogo que é quente o suficiente para derreter pedregulhos. Pode causar incêndios florestais soprando chamas.",
+    peso = 90.5,
+    altura = 1.7,
+    categoria = Categoria.FRAME,
+    habilidades = listOf("Blaze").toTypedArray(),
+    element = listOf(
+        { ElementFireButton() },
+        { ElementFlyingButton() }
+    ),
+    fraquezas = listOf(
+        { ElementWaterButton() },
+        { ElementElectricButton() },
+        { ElementStoneButton() }),
+    evolucao = emptyList()
+)
+
 @Composable
 fun CharmanderData(): Pokemon {
     return Pokemon(
-        imagemPokemon = painterResource(id = R.drawable.charmander),
-        background = painterResource(id = R.drawable.header_fire),
-        nome = "Charmander",
-        numero = "004",
-        descricao = "Tem preferência por coisas quentes. Quando chove, diz-se que o vapor jorra da ponta de sua cauda.\n",
-        peso = 8.5,
-        altura = 0.6,
-        categoria = Categoria.LIZARD,
-        habilidades = listOf("Blaze").toTypedArray(),
-        element = listOf { ElementFireButton() },
-        fraquezas = listOf(
-            { ElementWaterButton() },
-            { ElementTerrestrialButton() },
-            { ElementStoneButton() }),
+        imagemPokemon = charmander.imagemPokemon,
+        background = charmander.background,
+        nome = charmander.nome,
+        numero = charmander.numero,
+        descricao = charmander.descricao,
+        peso = charmander.peso,
+        altura = charmander.altura,
+        categoria = charmander.categoria,
+        habilidades = charmander.habilidades,
+        element = charmander.element,
+        fraquezas = charmander.fraquezas,
         evolucao = chamanderEvolution()
     )
 }
@@ -40,20 +93,17 @@ fun CharmanderData(): Pokemon {
 @Composable
 fun CharmeleonData(): Pokemon {
     return Pokemon(
-        imagemPokemon = painterResource(id = R.drawable.charmeleon),
-        background = painterResource(id = R.drawable.header_fire),
-        nome = "Charmeleon",
-        numero = "005",
-        descricao = "Tem uma natureza bárbara. Na batalha, ele chicoteia sua cauda de fogo e corta com garras afiadas.\n",
-        peso = 19.0,
-        altura = 1.1,
-        categoria = Categoria.FRAME,
-        habilidades = listOf("Blaze").toTypedArray(),
-        element = listOf { ElementFireButton() },
-        fraquezas = listOf(
-            { ElementWaterButton() },
-            { ElementTerrestrialButton() },
-            { ElementStoneButton() }),
+        imagemPokemon = charmeleon.imagemPokemon,
+        background = charmeleon.background,
+        nome = charmeleon.nome,
+        numero = charmeleon.numero,
+        descricao = charmeleon.descricao,
+        peso = charmeleon.peso,
+        altura = charmeleon.altura,
+        categoria = charmeleon.categoria,
+        habilidades = charmeleon.habilidades,
+        element = charmeleon.element,
+        fraquezas = charmeleon.fraquezas,
         evolucao = chamanderEvolution()
     )
 }
@@ -61,23 +111,17 @@ fun CharmeleonData(): Pokemon {
 @Composable
 fun CharizardData(): Pokemon {
     return Pokemon(
-        imagemPokemon = painterResource(id = R.drawable.charizard),
-        background = painterResource(id = R.drawable.header_fire),
-        nome = "Charizard",
-        numero = "006",
-        descricao = "Ele cospe fogo que é quente o suficiente para derreter pedregulhos. Pode causar incêndios florestais soprando chamas.",
-        peso = 90.5,
-        altura = 1.7,
-        categoria = Categoria.FRAME,
-        habilidades = listOf("Blaze").toTypedArray(),
-        element = listOf(
-            { ElementFireButton() },
-            { ElementFlyingButton() }
-        ),
-        fraquezas = listOf(
-            { ElementWaterButton() },
-            { ElementElectricButton() },
-            { ElementStoneButton() }),
+        imagemPokemon = charizard.imagemPokemon,
+        background = charizard.background,
+        nome = charizard.nome,
+        numero = charizard.numero,
+        descricao = charizard.descricao,
+        peso = charizard.peso,
+        altura = charizard.altura,
+        categoria = charizard.categoria,
+        habilidades = charizard.habilidades,
+        element = charizard.element,
+        fraquezas = charizard.fraquezas,
         evolucao = chamanderEvolution()
     )
 }
@@ -86,28 +130,61 @@ fun CharizardData(): Pokemon {
 fun chamanderEvolution(): List<PokemonListaItem> {
     return listOf(
         PokemonListaItem(
-            nome = CharmanderData().nome,
-            numero = CharmanderData().numero,
-            imagemPokemon = CharmanderData().imagemPokemon,
+            nome = charmander.nome,
+            numero = charmander.numero,
+            imagemPokemon = charmander.imagemPokemon,
             background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
         PokemonListaItem(
-            nome = CharmeleonData().nome,
-            numero = CharmeleonData().numero,
-            imagemPokemon = CharmeleonData().imagemPokemon,
+            nome = charmeleon.nome,
+            numero = charmeleon.numero,
+            imagemPokemon = charmeleon.imagemPokemon,
             background = BackgroundFire(),
             element = listOf { ElementFireButtonSmall() }
         ),
         PokemonListaItem(
-            nome = CharizardData().nome,
-            numero = CharizardData().numero,
-            imagemPokemon = CharizardData().imagemPokemon,
+            nome = charizard.nome,
+            numero = charizard.numero,
+            imagemPokemon = charizard.imagemPokemon,
             background = BackgroundFire(),
             element = listOf(
                 { ElementFireButtonSmall() },
                 { ElementFlyingButtonSmall() }
             )
         )
+    )
+}
+
+@Composable
+fun CharmanderListData(): PokemonListaItem {
+    return PokemonListaItem(
+        imagemPokemon = charmander.imagemPokemon,
+        nome = charmander.nome,
+        numero = charmander.numero,
+        element = charmander.element,
+        background = BackgroundFire()
+    )
+}
+
+@Composable
+fun CharmeleonListData(): PokemonListaItem {
+    return PokemonListaItem(
+        imagemPokemon = charmeleon.imagemPokemon,
+        nome = charmeleon.nome,
+        numero = charmeleon.numero,
+        element = charmeleon.element,
+        background = BackgroundFire()
+    )
+}
+
+@Composable
+fun CharizardListData(): PokemonListaItem {
+    return PokemonListaItem(
+        imagemPokemon = charizard.imagemPokemon,
+        nome = charizard.nome,
+        numero = charizard.numero,
+        element = charizard.element,
+        background = BackgroundFire()
     )
 }

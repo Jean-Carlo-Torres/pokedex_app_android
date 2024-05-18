@@ -79,10 +79,11 @@ fun ListaCardPokemon(pokemon: PokemonListaItem) {
                     .align(Alignment.Center)
             )
             Image(
-                painter = pokemon.imagemPokemon,
+                painter = painterResource(pokemon.imagemPokemon),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(8.dp)
                     .align(Alignment.Center)
             )
         }
@@ -96,7 +97,7 @@ private fun ListaCardPokemonPreview() {
         PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
-            imagemPokemon = painterResource(R.drawable.bulbasaur),
+            imagemPokemon = R.drawable.bulbasaur,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButton() },

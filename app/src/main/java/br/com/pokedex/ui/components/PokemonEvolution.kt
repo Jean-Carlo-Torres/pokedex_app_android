@@ -76,7 +76,7 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonListaItem>) {
                                 .padding(8.dp)
                         )
                         Image(
-                            painter = evolution.imagemPokemon,
+                            painter = painterResource(evolution.imagemPokemon),
                             contentDescription = null,
                             modifier = Modifier.align(Alignment.Center)
                         )
@@ -106,13 +106,13 @@ fun PokemonEvolution(pokemonEvolution: List<PokemonListaItem>) {
                         }
                     }
                 }
-                if (index < pokemonEvolution.lastIndex) { // Add arrow below Row
+                if (index < pokemonEvolution.lastIndex) {
                     Row(
                         modifier = Modifier
-                            .width(120.dp) // Stretch to full width
-                            .padding(top = 8.dp) // Add some spacing
+                            .width(120.dp)
+                            .padding(top = 8.dp)
                     ) {
-                        Spacer(modifier = Modifier.weight(1f)) // Push arrow to the right
+                        Spacer(modifier = Modifier.weight(1f))
                         Image(
                             painter = painterResource(id = R.drawable.arrow_down),
                             contentDescription = null,
@@ -135,7 +135,7 @@ fun PokemonEvolutionPreview() {
         PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
-            imagemPokemon = painterResource(R.drawable.bulbasaur),
+            imagemPokemon = R.drawable.bulbasaur,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
@@ -145,7 +145,7 @@ fun PokemonEvolutionPreview() {
         PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
-            imagemPokemon = painterResource(R.drawable.bulbasaur),
+            imagemPokemon = R.drawable.bulbasaur,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },
@@ -155,7 +155,7 @@ fun PokemonEvolutionPreview() {
         PokemonListaItem(
             nome = "Bulbasaur",
             numero = "001",
-            imagemPokemon = painterResource(R.drawable.bulbasaur),
+            imagemPokemon = R.drawable.bulbasaur,
             background = BackgroundGrass(),
             element = listOf(
                 { ElementGrassButtonSmall() },

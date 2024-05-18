@@ -170,8 +170,8 @@ private fun PokemonDetailsPreview() {
         Surface {
             PokemonDetails(
                 Pokemon(
-                    imagemPokemon = painterResource(R.drawable.bulbasaur),
-                    background = painterResource(id = R.drawable.header_grass),
+                    imagemPokemon = R.drawable.bulbasaur,
+                    background = R.drawable.header_grass,
                     nome = "Bulbasaur",
                     numero = "001",
                     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
@@ -188,7 +188,7 @@ private fun PokemonDetailsPreview() {
                     evolucao = listOf(PokemonListaItem(
                         nome = "Bulbasaur",
                         numero = "001",
-                        imagemPokemon = painterResource(R.drawable.bulbasaur),
+                        imagemPokemon = R.drawable.bulbasaur,
                         background = BackgroundGrass(),
                         element = listOf(
                             { ElementGrassButtonSmall() },
