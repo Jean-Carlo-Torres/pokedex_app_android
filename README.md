@@ -10,6 +10,18 @@ App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém info
 * ``Lista de Pokémon``: exibe uma lista de Pokémon com suas imagens e nomes.
 * ``Detalhes do Pokémon``: ao selecionar um Pokémon na lista, exibe informações detalhadas sobre ele, como tipo, altura, peso e habilidades.
 
+<hr>
+
+* ### Criando a conta de usuário
+
+<img src = "github/criando_conta.gif">
+
+* ### Lista de Pokémons
+
+<img src = "github/lista_pokemon.gif">
+
+* ### Tela do Pokemon
+
 <img src = "github/pokemons_screens.gif">
 
 ## ✔️ Técnicas e tecnologias utilizadas
