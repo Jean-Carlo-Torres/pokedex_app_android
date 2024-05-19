@@ -3,6 +3,7 @@ package br.com.pokedex.ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,16 +25,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import br.com.pokedex.R
 import br.com.pokedex.model.PokemonListaItem
 
 @Composable
-fun ListaCardPokemon(pokemon: PokemonListaItem) {
+fun ListaCardPokemon(pokemon: PokemonListaItem, onClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(102.dp)
             .border(0.5.dp, Color.Gray, RoundedCornerShape(15.dp))
+            .clickable { onClick() }
     ) {
         Column(
             modifier = Modifier

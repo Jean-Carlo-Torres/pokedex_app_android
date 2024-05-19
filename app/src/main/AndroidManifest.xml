@@ -15,15 +15,15 @@
         android:theme="@style/Theme.Pokedex"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.CardPokemonActivity"
+            android:exported="false"
+            android:label="@string/title_activity_card_pokemon"
+            android:theme="@style/Theme.Pokedex" />
+        <activity
             android:name=".ui.activity.ListaPokemonActivity"
             android:exported="true"
             android:label="@string/title_activity_lista_pokemon"
             android:theme="@style/Theme.Pokedex">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.FormularioCadastroUsuarioActivity"
@@ -39,12 +39,17 @@
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Pokedex">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Pokedex">
+
         </activity>
         <activity android:name=".ui.activity.OnboardingActivity" />
     </application>

@@ -1,6 +1,5 @@
 package br.com.pokedex.ui.screens
 
-import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,12 +19,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import br.com.pokedex.R
-import br.com.pokedex.ui.activity.ListaPokemonActivity
 import br.com.pokedex.ui.components.GenericButton
 
 @Composable
-fun CadastroRealizadoScreen() {
+fun CadastroRealizadoScreen(navController: NavController?) {
     val context = LocalContext.current
     Box(
         modifier = Modifier
@@ -62,12 +61,7 @@ fun CadastroRealizadoScreen() {
             horizontalArrangement = Arrangement.Center
         ) {
             GenericButton(text = "Continuar", onClick = {
-                context.startActivity(
-                    Intent(
-                        context,
-                        ListaPokemonActivity::class.java
-                    )
-                )
+                    navController?.navigate("listaPokemonScreen")
             })
         }
     }
@@ -77,5 +71,5 @@ fun CadastroRealizadoScreen() {
 @Preview(showBackground = true)
 @Composable
 private fun CadastroRealizadoScreenPreview() {
-    CadastroRealizadoScreen()
+    CadastroRealizadoScreen(navController = null)
 }

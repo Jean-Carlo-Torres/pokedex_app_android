@@ -5,4 +5,5 @@
     <string name="title_activity_formulario_cadastro_usuario">FormularioCadastroUsuarioActivity
     </string>
     <string name="title_activity_lista_pokemon">ListaPokemonActivity</string>
+    <string name="title_activity_card_pokemon">CardPokemonActivity</string>
 </resources>

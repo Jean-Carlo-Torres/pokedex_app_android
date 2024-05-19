@@ -39,7 +39,7 @@ fun CardPokemon(pokemon: Pokemon) {
                     color = Color.Transparent
                 )
                 .paint(
-                    painter = painterResource(id = pokemon.background) ,
+                    painter = painterResource(id = pokemon.background),
                     contentScale = ContentScale.Crop,
                     alignment = Alignment.TopStart
                 )

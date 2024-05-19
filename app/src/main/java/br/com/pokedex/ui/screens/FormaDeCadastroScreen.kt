@@ -1,6 +1,5 @@
 package br.com.pokedex.ui.screens
 
-import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -27,14 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.com.pokedex.R
-import br.com.pokedex.ui.activity.FormularioCadastroUsuarioActivity
-import br.com.pokedex.ui.activity.OnboardingActivity
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
 
 @Composable
-fun FormaDeCadastroScreen() {
+fun FormaDeCadastroScreen(navController: NavHostController?) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -47,12 +45,7 @@ fun FormaDeCadastroScreen() {
             ),
     ) {
         PageHeader(onClick = {
-            context.startActivity(
-                Intent(
-                    context,
-                    OnboardingActivity::class.java
-                )
-            )
+            navController?.popBackStack()
         }, title = "Forma de cadastro")
         Image(
             painter = painterResource(id = R.drawable.image145),
@@ -93,12 +86,7 @@ fun FormaDeCadastroScreen() {
             GenericButton(
                 text = "Continuar com um e-mail",
                 onClick = {
-                    context.startActivity(
-                        Intent(
-                            context,
-                            FormularioCadastroUsuarioActivity::class.java
-                        )
-                    )
+                    navController?.navigate("formularioCadastroScreen")
                 }
             )
         }
@@ -140,5 +128,5 @@ private fun GenericNoFillButton(imagem: Painter, text: String) {
 @Preview(showBackground = true)
 @Composable
 private fun CadastroUsuarioScreenPreview() {
-    FormaDeCadastroScreen()
+    FormaDeCadastroScreen(navController = null)
 }

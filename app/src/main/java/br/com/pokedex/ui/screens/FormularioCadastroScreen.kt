@@ -1,6 +1,5 @@
 package br.com.pokedex.ui.screens
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -11,9 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,41 +19,46 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.pokedex.R
-import br.com.pokedex.ui.activity.FormaDeCadastroUsuarioActivity
+import androidx.navigation.NavController
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
 
 @Composable
-fun FormularioCadastroScreen() {
+fun FormularioCadastroScreen(navController: NavController?) {
     var currentPage by remember { mutableStateOf(0) }
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
-        0 -> CadastroEmailTemplate(onNext)
-        1 -> CadastroSenhaTemplate(onNext)
-        2 -> CadastroNomeTemplate(onNext)
-        3 -> CadastroRealizadoScreen()
+        0 -> navController?.let {
+            CadastroEmailTemplate(navController = it, onNext = onNext)
+        }
+
+        1 -> navController?.let {
+            CadastroSenhaTemplate(navController = it, onNext = onNext)
+        }
+
+        2 -> navController?.let {
+            CadastroNomeTemplate(navController = it, onNext = {
+                navController.navigate("cadastroRealizadoScreen")
+            })
+        }
     }
 }
 
 @Composable
-private fun CadastroEmailTemplate(onNext: () -> Unit) {
+fun CadastroEmailTemplate(navController: NavController, onNext: () -> Unit) {
     var email by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isEmailValid = email.isNotBlank() && email.contains("@")
 
     CadastroTemplate(
+        navController = navController,
         headerText = "Vamos começar!",
         subHeaderText = "Qual é o seu e-mail?",
         onNext = {
@@ -105,20 +106,20 @@ private fun CadastroEmailTemplate(onNext: () -> Unit) {
         ) {
             GenericButton(text = "Continuar", onClick = {
                 if (isEmailValid) onNext() else showError = true
-            }
-            )
+            })
         }
     }
 }
 
 @Composable
-private fun CadastroSenhaTemplate(onNext: () -> Unit) {
+fun CadastroSenhaTemplate(navController: NavController?, onNext: () -> Unit) {
     var showPassword by remember { mutableStateOf(false) }
     var password by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isPasswordValid = password.isNotBlank() && password.length >= 8
 
     CadastroTemplate(
+        navController = navController,
         headerText = "Agora...",
         subHeaderText = "Crie uma senha",
         onNext = {
@@ -167,19 +168,21 @@ private fun CadastroSenhaTemplate(onNext: () -> Unit) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            GenericButton(text = "Continuar", onClick = { if (isPasswordValid) onNext() else showError = true })
+            GenericButton(
+                text = "Continuar",
+                onClick = { if (isPasswordValid) onNext() else showError = true })
         }
     }
 }
 
-
 @Composable
-private fun CadastroNomeTemplate(onNext: () -> Unit) {
+fun CadastroNomeTemplate(navController: NavController, onNext: () -> Unit) {
     var name by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isNameValid = name.isNotBlank()
 
     CadastroTemplate(
+        navController = navController,
         headerText = "Para finalizar",
         subHeaderText = "Qual é o seu nome?",
         onNext = {
@@ -188,7 +191,7 @@ private fun CadastroNomeTemplate(onNext: () -> Unit) {
             } else {
                 showError = true
             }
-        }
+        },
     ) {
         CustomTextField(
             value = name,
@@ -225,7 +228,9 @@ private fun CadastroNomeTemplate(onNext: () -> Unit) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            GenericButton(text = "Criar conta", onClick = { if (isNameValid) onNext() else showError = true })
+            GenericButton(
+                text = "Criar conta",
+                onClick = { if (isNameValid) onNext() else showError = true })
         }
     }
 }
@@ -233,13 +238,13 @@ private fun CadastroNomeTemplate(onNext: () -> Unit) {
 
 @Composable
 fun CadastroTemplate(
+    navController: NavController?,
     title: String = "Criar conta",
     headerText: String,
     subHeaderText: String,
     onNext: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
-    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -253,12 +258,7 @@ fun CadastroTemplate(
     ) {
         PageHeader(
             onClick = {
-                context.startActivity(
-                    Intent(
-                        context,
-                        FormaDeCadastroUsuarioActivity::class.java
-                    )
-                )
+                navController?.popBackStack()
             },
             title = title
         )
@@ -285,5 +285,5 @@ fun CadastroTemplate(
 @Preview(showBackground = true)
 @Composable
 private fun FormularioCadastroScreenPreview() {
-    CadastroSenhaTemplate(onNext = {})
+    CadastroSenhaTemplate(onNext = {}, navController = null)
 }
