@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import br.com.pokedex.R
 
 enum class FooterButton(val iconOn: Int, val iconOff: Int, val title: String) {
@@ -35,37 +36,60 @@ enum class FooterButton(val iconOn: Int, val iconOff: Int, val title: String) {
 
 @Composable
 fun FooterBar(navController: NavController?) {
-    var selectedButton by remember { mutableStateOf(FooterButton.POKEDEX) }
+    navController?.let {
+        val navBackStackEntry by it.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(4.dp),
-        verticalArrangement = Arrangement.Bottom
-    ) {
-        Box(
+        var selectedButton by remember { mutableStateOf(FooterButton.POKEDEX) }
+
+        selectedButton = when (currentRoute) {
+            "listaPokemonScreen" -> FooterButton.POKEDEX
+            "pokemonFavoritoScreen" -> FooterButton.FAVORITE
+            "perfilUsuarioScreen" -> FooterButton.USER
+            else -> selectedButton
+        }
+
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(72.dp)
-                .background(color = Color.White),
-            contentAlignment = Alignment.Center
+                .fillMaxSize()
+                .padding(4.dp),
+            verticalArrangement = Arrangement.Bottom
         ) {
-            Row(
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                    .fillMaxWidth()
+                    .height(72.dp)
+                    .background(color = Color.White),
+                contentAlignment = Alignment.Center
             ) {
-                FooterButton.values().forEach { button ->
-                    IconDefault(
-                        image = if (button == selectedButton) button.iconOn else button.iconOff,
-                        title = if (button == selectedButton) button.title else null,
-                        onClick = { selectedButton = button }
-                    )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    FooterButton.values().forEach { button ->
+                        IconDefault(
+                            image = if (button == selectedButton) button.iconOn else button.iconOff,
+                            title = if (button == selectedButton) button.title else null,
+                            onClick = {
+                                selectedButton = button
+                                // Navegar para a tela correspondente
+                                navController.navigate(
+                                    when (button) {
+                                        FooterButton.POKEDEX -> "listaPokemonScreen"
+                                        FooterButton.FAVORITE -> "pokemonFavoritoScreen"
+                                        FooterButton.USER -> "perfilUsuarioScreen"
+                                    }
+                                )
+                            }
+                        )
+                    }
                 }
             }
         }
     }
 }
+
 
 @Composable
 private fun IconDefault(image: Int, title: String?, onClick: () -> Unit) {

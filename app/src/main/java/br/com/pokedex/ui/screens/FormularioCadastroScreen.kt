@@ -27,26 +27,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import br.com.pokedex.model.UsuarioViewModel
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
 
 @Composable
-fun FormularioCadastroScreen(navController: NavController?) {
+fun FormularioCadastroScreen(navController: NavController?, usuarioViewModel: UsuarioViewModel) {
     var currentPage by remember { mutableStateOf(0) }
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
         0 -> navController?.let {
-            CadastroEmailTemplate(navController = it, onNext = onNext)
+            CadastroEmailTemplate(
+                navController = it,
+                usuarioViewModel = usuarioViewModel,
+                onNext = onNext
+            )
         }
 
         1 -> navController?.let {
-            CadastroSenhaTemplate(navController = it, onNext = onNext)
+            CadastroSenhaTemplate(
+                navController = it,
+                usuarioViewModel = usuarioViewModel,
+                onNext = onNext
+            )
         }
 
         2 -> navController?.let {
-            CadastroNomeTemplate(navController = it, onNext = {
+            CadastroNomeTemplate(navController = it, usuarioViewModel = usuarioViewModel, onNext = {
                 navController.navigate("cadastroRealizadoScreen")
             })
         }
@@ -54,7 +63,11 @@ fun FormularioCadastroScreen(navController: NavController?) {
 }
 
 @Composable
-fun CadastroEmailTemplate(navController: NavController, onNext: () -> Unit) {
+fun CadastroEmailTemplate(
+    navController: NavController,
+    usuarioViewModel: UsuarioViewModel,
+    onNext: () -> Unit
+) {
     var email by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isEmailValid = email.isNotBlank() && email.contains("@")
@@ -65,6 +78,11 @@ fun CadastroEmailTemplate(navController: NavController, onNext: () -> Unit) {
         subHeaderText = "Qual é o seu e-mail?",
         onNext = {
             if (isEmailValid) {
+                usuarioViewModel.updateUsuario(
+                    usuarioViewModel.usuario.nome,
+                    email,
+                    usuarioViewModel.usuario.senha
+                )
                 onNext()
             } else {
                 showError = true
@@ -114,7 +132,11 @@ fun CadastroEmailTemplate(navController: NavController, onNext: () -> Unit) {
 }
 
 @Composable
-fun CadastroSenhaTemplate(navController: NavController?, onNext: () -> Unit) {
+fun CadastroSenhaTemplate(
+    navController: NavController?,
+    usuarioViewModel: UsuarioViewModel?,
+    onNext: () -> Unit
+) {
     var showPassword by remember { mutableStateOf(false) }
     var password by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
@@ -126,6 +148,11 @@ fun CadastroSenhaTemplate(navController: NavController?, onNext: () -> Unit) {
         subHeaderText = "Crie uma senha",
         onNext = {
             if (isPasswordValid) {
+                usuarioViewModel?.updateUsuario(
+                    usuarioViewModel.usuario.nome,
+                    usuarioViewModel.usuario.email,
+                    password
+                )
                 onNext()
             } else {
                 showError = true
@@ -178,7 +205,11 @@ fun CadastroSenhaTemplate(navController: NavController?, onNext: () -> Unit) {
 }
 
 @Composable
-fun CadastroNomeTemplate(navController: NavController, onNext: () -> Unit) {
+fun CadastroNomeTemplate(
+    navController: NavController,
+    usuarioViewModel: UsuarioViewModel,
+    onNext: () -> Unit
+) {
     var name by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isNameValid = name.isNotBlank()
@@ -189,6 +220,11 @@ fun CadastroNomeTemplate(navController: NavController, onNext: () -> Unit) {
         subHeaderText = "Qual é o seu nome?",
         onNext = {
             if (isNameValid) {
+                usuarioViewModel.updateUsuario(
+                    name,
+                    usuarioViewModel.usuario.email,
+                    usuarioViewModel.usuario.senha
+                )
                 onNext()
             } else {
                 showError = true
@@ -237,7 +273,6 @@ fun CadastroNomeTemplate(navController: NavController, onNext: () -> Unit) {
     }
 }
 
-
 @Composable
 fun CadastroTemplate(
     navController: NavController?,
@@ -281,14 +316,12 @@ fun CadastroTemplate(
             fontWeight = FontWeight(500),
             modifier = Modifier.fillMaxWidth()
         )
-
         content()
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 private fun FormularioCadastroScreenPreview() {
-    CadastroSenhaTemplate(onNext = {}, navController = null)
+    CadastroSenhaTemplate(onNext = {}, navController = null, usuarioViewModel = null)
 }

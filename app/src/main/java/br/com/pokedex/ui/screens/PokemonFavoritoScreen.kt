@@ -32,7 +32,9 @@ fun PokemonFavoritoScreen(navController: NavController?) {
         padraoTextoPrimario(text = "Você não favoritou nenhum Pokémon :( ")
         padraoTextoSecundario(text = "Clique no ícone de coração dos seus pokémons favoritos e eles aparecerão aqui.")
     }
-    FooterBar(navController = navController)
+    if (navController != null) {
+        FooterBar(navController = navController)
+    }
 }
 
 @Preview(showBackground = true)
