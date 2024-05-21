@@ -12,13 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
 import br.com.pokedex.ui.components.cards.*
 
 @Composable
-fun ListaPokemonScreen(navController: NavController?) {
+fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewModel) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -54,7 +56,7 @@ fun ListaPokemonScreen(navController: NavController?) {
             pokemonList.forEachIndexed { index, pokemon ->
                 ListaCardPokemon(pokemon = pokemon, onClick = {
                     navController?.navigate("cardPokemonScreen/$index")
-                })
+                }, viewModel = viewModel)
             }
         }
         if (navController != null) {
@@ -65,5 +67,5 @@ fun ListaPokemonScreen(navController: NavController?) {
 @Preview(showBackground = true)
 @Composable
 private fun ListaPokemonScreenPreview() {
-    ListaPokemonScreen(navController = null)
+    ListaPokemonScreen(navController = null,  viewModel = viewModel())
 }

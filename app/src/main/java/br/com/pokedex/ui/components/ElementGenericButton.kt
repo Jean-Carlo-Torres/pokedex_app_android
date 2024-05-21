@@ -43,7 +43,7 @@ fun ElementGenericButton(properties: ElementGenericButtonProperties, onClick: ()
             ),
             modifier = Modifier
                 .heightIn(min = 36.dp)
-                .wrapContentWidth() // Ajusta a largura de acordo com o conteúdo
+                .wrapContentWidth()
         ) {
             Box(
                 modifier = Modifier

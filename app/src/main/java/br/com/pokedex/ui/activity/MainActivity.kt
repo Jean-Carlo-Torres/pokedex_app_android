@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.Usuario
 import br.com.pokedex.model.UsuarioViewModel
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
@@ -28,8 +29,9 @@ class MainActivity : ComponentActivity() {
             PokedexTheme {
                 val navController = rememberNavController()
                 val usuarioViewModel: UsuarioViewModel = viewModel()
+                val pokemonViewModel: PokemonViewModel = viewModel()
 
-                NavHost(navController = navController, startDestination = "onboardingScreen") {
+                NavHost(navController = navController, startDestination = "listaPokemonScreen") {
 
                     composable(
                         route = "onboardingScreen"
@@ -61,13 +63,13 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "listaPokemonScreen",
                     ) {
-                        ListaPokemonScreen(navController)
+                        ListaPokemonScreen(navController, pokemonViewModel)
                     }
 
                     composable(
                         route = "pokemonFavoritoScreen"
                     ) {
-                        PokemonFavoritoScreen(navController = navController)
+                        PokemonFavoritoScreen(viewModel = pokemonViewModel, navController = navController)
                     }
 
                     composable(
