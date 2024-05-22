@@ -32,7 +32,6 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                 .padding(bottom = 72.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
             val pokemonList = listOf(
                 BulbasaurListData(),
                 IvysaurListData(),
@@ -54,9 +53,13 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
             )
 
             pokemonList.forEachIndexed { index, pokemon ->
-                ListaCardPokemon(pokemon = pokemon, onClick = {
-                    navController?.navigate("cardPokemonScreen/$index")
-                }, viewModel = viewModel)
+                ListaCardPokemon(
+                    pokemon = pokemon,
+                    onClick = {
+                        navController?.navigate("cardPokemonScreen/$index")
+                    },
+                    viewModel = viewModel
+                )
             }
         }
         if (navController != null) {
@@ -64,6 +67,7 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 private fun ListaPokemonScreenPreview() {

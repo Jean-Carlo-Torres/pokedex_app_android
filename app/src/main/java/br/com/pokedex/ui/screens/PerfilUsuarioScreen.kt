@@ -12,12 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import br.com.pokedex.model.UsuarioViewModel
 import br.com.pokedex.ui.components.FooterBar
 
 @Composable
-fun PerfilUsuarioScreen(navController: NavController?, usuarioViewModel: UsuarioViewModel) {
-    val usuario = usuarioViewModel.usuario
+fun PerfilUsuarioScreen(navController: NavController?) {
 
     Column(
         modifier = Modifier
@@ -27,15 +25,15 @@ fun PerfilUsuarioScreen(navController: NavController?, usuarioViewModel: Usuario
         TituloPrincipal("Informações da conta")
         TextoESubtexto(
             texto = "Nome",
-            subtexto = usuario.nome
+            subtexto = ""
         )
         TextoESubtexto(
             texto = "Email",
-            subtexto = usuario.email
+            subtexto = ""
         )
         TextoESubtexto(
             texto = "Senha",
-            subtexto = usuario.senha
+            subtexto = ""
         )
 
         TituloPrincipal("Idioma")
@@ -75,7 +73,7 @@ fun PerfilUsuarioScreen(navController: NavController?, usuarioViewModel: Usuario
             modifier = Modifier.padding(top = 16.dp)
         )
         Text(
-            text = "Você entrou como ${usuario.nome}",
+            text = "Você entrou como ",
         )
     }
     if (navController != null) {
@@ -115,11 +113,5 @@ private fun TextoESubtexto(texto: String, subtexto: String) {
 @Preview(showBackground = true)
 @Composable
 private fun PerfilUsuarioScreenPreview() {
-    val usuarioViewModel = UsuarioViewModel().apply {
-        updateUsuario("Jean Carlo", "jean.carlo@gmail.com", "12345678")
-    }
-    PerfilUsuarioScreen(
-        navController = null,
-        usuarioViewModel = usuarioViewModel
-    )
+
 }
