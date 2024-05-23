@@ -27,34 +27,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import br.com.pokedex.model.UserViewModel
+import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
 
 @Composable
-fun FormularioCadastroScreen(navController: NavController?) {
+fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserViewModel) {
     var currentPage by remember { mutableStateOf(0) }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf("") }
+
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
-        0 -> navController?.let {
-            CadastroEmailTemplate(
-                navController = it,
-                onNext = onNext
-            )
-        }
-
-        1 -> navController?.let {
-            CadastroSenhaTemplate(
-                navController = it,
-                onNext = onNext
-            )
-        }
-
+        0 -> navController?.let { CadastroEmailTemplate(it, email, { email = it }, onNext) }
+        1 -> CadastroSenhaTemplate(navController, password, { password = it }, onNext)
         2 -> navController?.let {
-            CadastroNomeTemplate(navController = it, onNext = {
-                navController.navigate("cadastroRealizadoScreen")
-            })
+            CadastroNomeTemplate(it, name, { name = it }) {
+                userViewModel.insertUser(Usuario(nome = name, email = email, senha = password))
+                navController?.navigate("cadastroRealizadoScreen")
+            }
         }
     }
 }
@@ -62,9 +57,10 @@ fun FormularioCadastroScreen(navController: NavController?) {
 @Composable
 fun CadastroEmailTemplate(
     navController: NavController,
+    email: String,
+    onEmailChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    var email by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isEmailValid = email.isNotBlank() && email.contains("@")
 
@@ -83,7 +79,7 @@ fun CadastroEmailTemplate(
         CustomTextField(
             value = email,
             onValueChange = {
-                email = it
+                onEmailChange(it)
                 showError = false
             },
             label = "Email",
@@ -125,10 +121,11 @@ fun CadastroEmailTemplate(
 @Composable
 fun CadastroSenhaTemplate(
     navController: NavController?,
+    password: String,
+    onPasswordChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
     var showPassword by remember { mutableStateOf(false) }
-    var password by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isPasswordValid = password.isNotBlank() && password.length >= 8
 
@@ -147,7 +144,7 @@ fun CadastroSenhaTemplate(
         CustomTextField(
             value = password,
             onValueChange = {
-                password = it
+                onPasswordChange(it)
                 showError = false
             },
             label = "Senha",
@@ -192,9 +189,10 @@ fun CadastroSenhaTemplate(
 @Composable
 fun CadastroNomeTemplate(
     navController: NavController,
+    name: String,
+    onNameChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    var name by rememberSaveable { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
     val isNameValid = name.isNotBlank()
 
@@ -213,7 +211,7 @@ fun CadastroNomeTemplate(
         CustomTextField(
             value = name,
             onValueChange = {
-                name = it
+                onNameChange(it)
                 showError = false
             },
             label = "Nome",
@@ -302,5 +300,5 @@ fun CadastroTemplate(
 @Preview(showBackground = true)
 @Composable
 private fun FormularioCadastroScreenPreview() {
-    CadastroSenhaTemplate(onNext = {}, navController = null)
+    CadastroSenhaTemplate(onNext = {}, navController = null, password = "", onPasswordChange = {})
 }

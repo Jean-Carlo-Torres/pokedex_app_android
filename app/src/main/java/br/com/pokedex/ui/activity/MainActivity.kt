@@ -9,7 +9,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.room.Room
+import br.com.pokedex.database.AppDatabase
 import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.UserViewModel
+import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
 import br.com.pokedex.ui.screens.CardPokemonScreen
 import br.com.pokedex.ui.screens.FormaDeCadastroScreen
@@ -27,8 +31,9 @@ class MainActivity : ComponentActivity() {
             PokedexTheme {
                 val navController = rememberNavController()
                 val pokemonViewModel: PokemonViewModel = viewModel()
+                val userViewModel: UserViewModel = viewModel()
 
-                NavHost(navController = navController, startDestination = "listaPokemonScreen") {
+                NavHost(navController = navController, startDestination = "onboardingScreen") {
 
                     composable(
                         route = "onboardingScreen"
@@ -45,9 +50,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "formularioCadastroScreen"
                     ) {
-                        FormularioCadastroScreen(
-                            navController = navController
-                        )
+                        FormularioCadastroScreen(navController = navController, userViewModel = userViewModel)
                     }
 
                     composable(
@@ -65,7 +68,10 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "pokemonFavoritoScreen"
                     ) {
-                        PokemonFavoritoScreen(viewModel = pokemonViewModel, navController = navController)
+                        PokemonFavoritoScreen(
+                            viewModel = pokemonViewModel,
+                            navController = navController
+                        )
                     }
 
                     composable(
@@ -88,3 +94,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
