@@ -73,7 +73,6 @@ fun FooterBar(navController: NavController?) {
                             title = if (button == selectedButton) button.title else null,
                             onClick = {
                                 selectedButton = button
-                                // Navegar para a tela correspondente
                                 navController.navigate(
                                     when (button) {
                                         FooterButton.POKEDEX -> "listaPokemonScreen"
