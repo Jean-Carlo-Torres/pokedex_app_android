@@ -9,11 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.room.Room
-import br.com.pokedex.database.AppDatabase
 import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.UserViewModel
-import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
 import br.com.pokedex.ui.screens.CardPokemonScreen
 import br.com.pokedex.ui.screens.FormaDeCadastroScreen
@@ -21,6 +18,7 @@ import br.com.pokedex.ui.screens.FormaDeLoginScreen
 import br.com.pokedex.ui.screens.FormularioCadastroScreen
 import br.com.pokedex.ui.screens.FormularioDeLoginScreen
 import br.com.pokedex.ui.screens.ListaPokemonScreen
+import br.com.pokedex.ui.screens.LoginSucessoScreen
 import br.com.pokedex.ui.screens.OnboardingScreen
 import br.com.pokedex.ui.screens.PerfilUsuarioScreen
 import br.com.pokedex.ui.screens.PokemonFavoritoScreen
@@ -71,6 +69,12 @@ class MainActivity : ComponentActivity() {
                         route = "formularioDeLoginScreen"
                     ) {
                         FormularioDeLoginScreen(navController, userViewModel)
+                    }
+
+                    composable (
+                        route = "loginSucessoScreen"
+                    ) {
+                        LoginSucessoScreen(navController)
                     }
 
                     composable(

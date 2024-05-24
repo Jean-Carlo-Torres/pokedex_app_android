@@ -35,7 +35,7 @@ import br.com.pokedex.ui.components.PageHeader
 import kotlinx.coroutines.launch
 
 @Composable
-fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserViewModel) {
+fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserViewModel?) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var showEmailError by remember { mutableStateOf(false) }
@@ -80,8 +80,13 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
+        Text(
+            text = "Email",
+            fontSize = 14.sp,
+            fontWeight = FontWeight(500)
+        )
         CustomTextField(
             value = email,
             onValueChange = {
@@ -105,8 +110,13 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
+        Text(
+            text = "Senha",
+            fontSize = 14.sp,
+            fontWeight = FontWeight(500)
+        )
         CustomTextField(
             value = password,
             onValueChange = {
@@ -155,9 +165,9 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
             GenericButton(text = "Entrar", onClick = {
                 if (isEmailValid && isPasswordValid) {
                     coroutineScope.launch {
-                        val user = userViewModel.validateUser(email, password)
+                        val user = userViewModel?.validateUser(email, password)
                         if (user != null) {
-                            navController?.navigate("listaPokemonScreen")
+                            navController?.navigate("loginSucessoScreen")
                         } else {
                             loginError = true
                         }
@@ -174,5 +184,5 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
 @Preview
 @Composable
 private fun FormularioDeLoginScreenPreview() {
-//    FormularioDeLoginScreen(navController = null)
+    FormularioDeLoginScreen(navController = null, userViewModel = null)
 }

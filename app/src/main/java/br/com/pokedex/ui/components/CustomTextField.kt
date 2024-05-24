@@ -35,8 +35,7 @@ fun CustomTextField(
         label = { Text(label, color = if (isError) Color.Red else Color.Black) },
         placeholder = { Text(placeholder) },
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+            .fillMaxWidth(),
         visualTransformation = if (isPassword && !showPassword) {
             PasswordVisualTransformation()
         } else {
