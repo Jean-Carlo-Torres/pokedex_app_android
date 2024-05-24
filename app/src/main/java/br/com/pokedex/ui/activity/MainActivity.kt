@@ -17,7 +17,9 @@ import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
 import br.com.pokedex.ui.screens.CardPokemonScreen
 import br.com.pokedex.ui.screens.FormaDeCadastroScreen
+import br.com.pokedex.ui.screens.FormaDeLoginScreen
 import br.com.pokedex.ui.screens.FormularioCadastroScreen
+import br.com.pokedex.ui.screens.FormularioDeLoginScreen
 import br.com.pokedex.ui.screens.ListaPokemonScreen
 import br.com.pokedex.ui.screens.OnboardingScreen
 import br.com.pokedex.ui.screens.PerfilUsuarioScreen
@@ -57,6 +59,18 @@ class MainActivity : ComponentActivity() {
                         route = "cadastroRealizadoScreen"
                     ) {
                         CadastroRealizadoScreen(navController)
+                    }
+
+                    composable(
+                        route = "formaDeLoginScreen"
+                    ) {
+                        FormaDeLoginScreen(navController)
+                    }
+
+                    composable(
+                        route = "formularioDeLoginScreen"
+                    ) {
+                        FormularioDeLoginScreen(navController, userViewModel)
                     }
 
                     composable(
