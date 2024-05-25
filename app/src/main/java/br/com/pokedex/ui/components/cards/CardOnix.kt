@@ -10,15 +10,15 @@ import br.com.pokedex.ui.components.ElementFighterButton
 import br.com.pokedex.ui.components.ElementGrassButton
 import br.com.pokedex.ui.components.ElementIceButton
 import br.com.pokedex.ui.components.ElementMetalButton
-import br.com.pokedex.ui.components.ElementStoneButton
-import br.com.pokedex.ui.components.ElementStoneButtonSmall
-import br.com.pokedex.ui.components.ElementTerrestrialButton
-import br.com.pokedex.ui.components.ElementTerrestrialButtonSmall
+import br.com.pokedex.ui.components.ElementRockButton
+import br.com.pokedex.ui.components.ElementRockButtonSmall
+import br.com.pokedex.ui.components.ElementGroundButton
+import br.com.pokedex.ui.components.ElementGroundButtonSmall
 import br.com.pokedex.ui.components.ElementWaterButton
 
 val onix = Pokemon(
     imagemPokemon = R.drawable.onix,
-    background = R.drawable.header_stone,
+    background = R.drawable.header_rock,
     nome = "Onix",
     numero = "095",
     descricao = "À medida que escava o solo, absorve muitos objetos duros. Isso é o que torna seu corpo tão sólido.",
@@ -27,8 +27,8 @@ val onix = Pokemon(
     categoria = Categoria.ROCK,
     habilidades = listOf("Rock Head", "Sturdy").toTypedArray(),
     element = listOf(
-        { ElementStoneButton() },
-        { ElementTerrestrialButton() }
+        { ElementRockButton() },
+        { ElementGroundButton() }
     ),
     fraquezas = listOf(
         { ElementMetalButton() },
@@ -36,7 +36,7 @@ val onix = Pokemon(
         { ElementWaterButton() },
         { ElementIceButton() },
         { ElementGrassButton() },
-        { ElementTerrestrialButton() }
+        { ElementGroundButton() }
     ),
     evolucao = emptyList()
 )
@@ -67,8 +67,8 @@ fun OnixEvolution(): List<PokemonListaItem> {
             nome = onix.nome,
             numero = onix.numero,
             element = listOf(
-                { ElementStoneButtonSmall() },
-                { ElementTerrestrialButtonSmall() },
+                { ElementRockButtonSmall() },
+                { ElementGroundButtonSmall() },
             ),
             background = BackgroundStone(),
         )

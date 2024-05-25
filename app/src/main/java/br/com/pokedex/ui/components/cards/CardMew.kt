@@ -7,8 +7,8 @@ import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.BackgroundPsychic
 import br.com.pokedex.ui.components.ElementGhostButton
-import br.com.pokedex.ui.components.ElementInsectButton
-import br.com.pokedex.ui.components.ElementNocturnalButton
+import br.com.pokedex.ui.components.ElementBugButton
+import br.com.pokedex.ui.components.ElementDarkButton
 import br.com.pokedex.ui.components.ElementPsychicButton
 import br.com.pokedex.ui.components.ElementPsychicButtonSmall
 
@@ -25,8 +25,8 @@ val mew = Pokemon(
     element = listOf { ElementPsychicButton() },
     fraquezas = listOf(
         { ElementGhostButton() },
-        { ElementNocturnalButton() },
-        { ElementInsectButton() }
+        { ElementDarkButton() },
+        { ElementBugButton() }
     ),
     evolucao = emptyList()
 )

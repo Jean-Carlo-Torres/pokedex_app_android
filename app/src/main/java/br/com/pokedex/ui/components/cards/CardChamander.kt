@@ -11,8 +11,8 @@ import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFireButtonSmall
 import br.com.pokedex.ui.components.ElementFlyingButton
 import br.com.pokedex.ui.components.ElementFlyingButtonSmall
-import br.com.pokedex.ui.components.ElementStoneButton
-import br.com.pokedex.ui.components.ElementTerrestrialButton
+import br.com.pokedex.ui.components.ElementRockButton
+import br.com.pokedex.ui.components.ElementGroundButton
 import br.com.pokedex.ui.components.ElementWaterButton
 
 val charmander = Pokemon(
@@ -28,8 +28,8 @@ val charmander = Pokemon(
     element = listOf { ElementFireButton() },
     fraquezas = listOf(
         { ElementWaterButton() },
-        { ElementTerrestrialButton() },
-        { ElementStoneButton() }),
+        { ElementGroundButton() },
+        { ElementRockButton() }),
     evolucao = emptyList()
 )
 
@@ -46,8 +46,8 @@ val charmeleon = Pokemon(
     element = listOf { ElementFireButton() },
     fraquezas = listOf(
         { ElementWaterButton() },
-        { ElementTerrestrialButton() },
-        { ElementStoneButton() }),
+        { ElementGroundButton() },
+        { ElementRockButton() }),
     evolucao = emptyList()
 )
 
@@ -68,7 +68,7 @@ val charizard = Pokemon(
     fraquezas = listOf(
         { ElementWaterButton() },
         { ElementElectricButton() },
-        { ElementStoneButton() }),
+        { ElementRockButton() }),
     evolucao = emptyList()
 )
 

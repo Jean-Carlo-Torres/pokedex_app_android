@@ -8,13 +8,13 @@ import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.BackgroundTerrestrial
 import br.com.pokedex.ui.components.ElementGrassButton
 import br.com.pokedex.ui.components.ElementIceButton
-import br.com.pokedex.ui.components.ElementTerrestrialButton
-import br.com.pokedex.ui.components.ElementTerrestrialButtonSmall
+import br.com.pokedex.ui.components.ElementGroundButton
+import br.com.pokedex.ui.components.ElementGroundButtonSmall
 import br.com.pokedex.ui.components.ElementWaterButton
 
 val dugtrio = Pokemon(
     imagemPokemon = R.drawable.dugtrio,
-    background = R.drawable.header_terrestrial,
+    background = R.drawable.header_ground,
     nome = "Dugtrio",
     numero = "051",
     descricao = "Uma equipe de trigêmeos Diglett. Ele desencadeia enormes terremotos cavando 60 milhas no subsolo.",
@@ -22,7 +22,7 @@ val dugtrio = Pokemon(
     altura = 0.7,
     categoria = Categoria.DIGGER,
     habilidades = listOf("Sand Veil", "Arena Trap").toTypedArray(),
-    element = listOf { ElementTerrestrialButton() },
+    element = listOf { ElementGroundButton() },
     fraquezas = listOf(
         { ElementWaterButton() },
         { ElementGrassButton() },
@@ -56,7 +56,7 @@ fun DugtrioEvolution(): List<PokemonListaItem> {
             imagemPokemon = dugtrio.imagemPokemon,
             nome = dugtrio.nome,
             numero = dugtrio.numero,
-            element = listOf { ElementTerrestrialButtonSmall() },
+            element = listOf { ElementGroundButtonSmall() },
             background = BackgroundTerrestrial(),
         )
     )

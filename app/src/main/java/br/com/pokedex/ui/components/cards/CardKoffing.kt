@@ -9,7 +9,7 @@ import br.com.pokedex.ui.components.BackgroundPoison
 import br.com.pokedex.ui.components.ElementPoisonButton
 import br.com.pokedex.ui.components.ElementPoisonButtonSmall
 import br.com.pokedex.ui.components.ElementPsychicButton
-import br.com.pokedex.ui.components.ElementTerrestrialButton
+import br.com.pokedex.ui.components.ElementGroundButton
 
 val koffing = Pokemon(
     imagemPokemon = R.drawable.koffing,
@@ -24,7 +24,7 @@ val koffing = Pokemon(
     element = listOf { ElementPoisonButton() },
     fraquezas = listOf(
         { ElementPsychicButton() },
-        { ElementTerrestrialButton() }
+        { ElementGroundButton() }
     ),
     evolucao = emptyList()
 )

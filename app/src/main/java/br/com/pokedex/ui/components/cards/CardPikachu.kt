@@ -8,7 +8,7 @@ import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.BackgroundElectric
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementElectricButtonSmall
-import br.com.pokedex.ui.components.ElementTerrestrialButton
+import br.com.pokedex.ui.components.ElementGroundButton
 
 val pikachu = Pokemon(
     imagemPokemon = R.drawable.pikachu,
@@ -21,7 +21,7 @@ val pikachu = Pokemon(
     categoria = Categoria.MOUSE,
     habilidades = listOf("Static").toTypedArray(),
     element = listOf { ElementElectricButton() },
-    fraquezas = listOf { ElementTerrestrialButton() },
+    fraquezas = listOf { ElementGroundButton() },
     evolucao = emptyList()
 )
 

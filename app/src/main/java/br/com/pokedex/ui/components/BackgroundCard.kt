@@ -5,6 +5,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.ui.theme.ElementBugColor
+import br.com.pokedex.ui.activity.ui.theme.ElementElectricColor
+import br.com.pokedex.ui.activity.ui.theme.ElementFairyColor
+import br.com.pokedex.ui.activity.ui.theme.ElementFireColor
+import br.com.pokedex.ui.activity.ui.theme.ElementGrassColor
+import br.com.pokedex.ui.activity.ui.theme.ElementGroundColor
+import br.com.pokedex.ui.activity.ui.theme.ElementNormalColor
+import br.com.pokedex.ui.activity.ui.theme.ElementPoisonColor
+import br.com.pokedex.ui.activity.ui.theme.ElementPsychicColor
+import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
+import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 
 data class BackgroundCard(
     val backgroundColor: Color,
@@ -14,7 +25,7 @@ data class BackgroundCard(
 @Composable
 fun BackgroundGrass(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFF63BC5A),
+        backgroundColor = ElementGrassColor,
         icone = painterResource(R.drawable.element_grass_outline)
     )
 }
@@ -22,7 +33,7 @@ fun BackgroundGrass(): BackgroundCard {
 @Composable
 fun BackgroundWater(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFF5090D6),
+        backgroundColor = ElementWaterColor,
         icone = painterResource(R.drawable.element_water_outline)
     )
 }
@@ -30,7 +41,7 @@ fun BackgroundWater(): BackgroundCard {
 @Composable
 fun BackgroundFire(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFFF9D55),
+        backgroundColor = ElementFireColor,
         icone = painterResource(R.drawable.element_fire_outline)
     )
 }
@@ -38,7 +49,7 @@ fun BackgroundFire(): BackgroundCard {
 @Composable
 fun BackgroundElectric(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFFFD740),
+        backgroundColor = ElementElectricColor,
         icone = painterResource(R.drawable.element_electric_outline)
     )
 }
@@ -46,7 +57,7 @@ fun BackgroundElectric(): BackgroundCard {
 @Composable
 fun BackgroundFairy(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFEC8FE6),
+        backgroundColor = ElementFairyColor,
         icone = painterResource(R.drawable.element_fairy_outline)
     )
 }
@@ -54,15 +65,15 @@ fun BackgroundFairy(): BackgroundCard {
 @Composable
 fun BackgroundInsect(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFF91C12F),
-        icone = painterResource(R.drawable.element_insect_outline)
+        backgroundColor = ElementBugColor,
+        icone = painterResource(R.drawable.element_bug_outline)
     )
 }
 
 @Composable
 fun BackgroundNormal(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFF939393),
+        backgroundColor = ElementNormalColor,
         icone = painterResource(R.drawable.element_normal_outline)
     )
 }
@@ -70,7 +81,7 @@ fun BackgroundNormal(): BackgroundCard {
 @Composable
 fun BackgroundPoison(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFB567CE),
+        backgroundColor = ElementPoisonColor,
         icone = painterResource(R.drawable.element_poison_outline)
     )
 }
@@ -78,15 +89,15 @@ fun BackgroundPoison(): BackgroundCard {
 @Composable
 fun BackgroundStone(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFC5B78C),
-        icone = painterResource(R.drawable.element_stone_outline)
+        backgroundColor = ElementRockColor,
+        icone = painterResource(R.drawable.element_rock_outline)
     )
 }
 
 @Composable
 fun BackgroundPsychic(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFF96464),
+        backgroundColor = ElementPsychicColor,
         icone = painterResource(R.drawable.element_psychic_outline)
     )
 }
@@ -94,7 +105,7 @@ fun BackgroundPsychic(): BackgroundCard {
 @Composable
 fun BackgroundTerrestrial(): BackgroundCard {
     return BackgroundCard(
-        backgroundColor = Color(0xFFD97845),
-        icone = painterResource(R.drawable.element_terrestrial_outline)
+        backgroundColor = ElementGroundColor,
+        icone = painterResource(R.drawable.element_ground_outline)
     )
 }

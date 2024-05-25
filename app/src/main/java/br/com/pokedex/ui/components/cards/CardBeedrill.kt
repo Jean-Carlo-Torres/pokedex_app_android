@@ -8,16 +8,16 @@ import br.com.pokedex.model.enums.Categoria
 import br.com.pokedex.ui.components.BackgroundInsect
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFlyingButton
-import br.com.pokedex.ui.components.ElementInsectButton
-import br.com.pokedex.ui.components.ElementInsectButtonSmall
+import br.com.pokedex.ui.components.ElementBugButton
+import br.com.pokedex.ui.components.ElementBugButtonSmall
 import br.com.pokedex.ui.components.ElementPoisonButton
 import br.com.pokedex.ui.components.ElementPoisonButtonSmall
 import br.com.pokedex.ui.components.ElementPsychicButton
-import br.com.pokedex.ui.components.ElementStoneButton
+import br.com.pokedex.ui.components.ElementRockButton
 
 val beedrill = Pokemon(
     imagemPokemon = R.drawable.beedrill,
-    background = R.drawable.header_insect,
+    background = R.drawable.header_bug,
     nome = "Beedrill",
     numero = "015",
     descricao = "Tem três ferrões venenosos nas patas dianteiras e na cauda. Eles são usados para espetar seu inimigo repetidamente.",
@@ -26,14 +26,14 @@ val beedrill = Pokemon(
     categoria = Categoria.POISON,
     habilidades = listOf("Swarm").toTypedArray(),
     element = listOf(
-        { ElementInsectButton() },
+        { ElementBugButton() },
         { ElementPoisonButton() }
     ),
     fraquezas = listOf(
         { ElementFireButton() },
         { ElementPsychicButton() },
         { ElementFlyingButton() },
-        { ElementStoneButton() },
+        { ElementRockButton() },
     ),
     evolucao = emptyList()
 )
@@ -64,7 +64,7 @@ fun BeedrillEvolution(): List<PokemonListaItem> {
             nome = beedrill.nome,
             numero = beedrill.numero,
             element = listOf(
-                { ElementInsectButtonSmall() },
+                { ElementBugButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
             background = BackgroundInsect(),
