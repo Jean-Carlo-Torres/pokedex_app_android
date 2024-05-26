@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundPsychic
 import br.com.pokedex.ui.components.ElementGhostButton
 import br.com.pokedex.ui.components.ElementBugButton
@@ -57,7 +58,8 @@ fun MewEvolution(): List<PokemonListaItem> {
             nome = mew.nome,
             numero = mew.numero,
             background = BackgroundPsychic(),
-            element = listOf { ElementPsychicButtonSmall() }
+            element = listOf { ElementPsychicButtonSmall() },
+            elementTag = listOf(ElementTag.PSYCHIC)
         )
     )
 }
@@ -69,6 +71,7 @@ fun MewListData(): PokemonListaItem {
         nome = mew.nome,
         numero = mew.numero,
         element = mew.element,
-        background = BackgroundPsychic()
+        background = BackgroundPsychic(),
+        elementTag = listOf(ElementTag.PSYCHIC)
     )
 }

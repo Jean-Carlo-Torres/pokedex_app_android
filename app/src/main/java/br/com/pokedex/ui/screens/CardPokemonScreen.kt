@@ -14,23 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import br.com.pokedex.ui.components.CardPokemon
-import br.com.pokedex.ui.components.cards.BeedrillData
-import br.com.pokedex.ui.components.cards.BlastoiseData
-import br.com.pokedex.ui.components.cards.BulbasaurData
-import br.com.pokedex.ui.components.cards.CharizardData
-import br.com.pokedex.ui.components.cards.CharmanderData
-import br.com.pokedex.ui.components.cards.CharmeleonData
-import br.com.pokedex.ui.components.cards.CleifairyData
-import br.com.pokedex.ui.components.cards.DugtrioData
-import br.com.pokedex.ui.components.cards.IvysaurData
-import br.com.pokedex.ui.components.cards.KoffingData
-import br.com.pokedex.ui.components.cards.LickitungData
-import br.com.pokedex.ui.components.cards.MewData
-import br.com.pokedex.ui.components.cards.OnixData
-import br.com.pokedex.ui.components.cards.PikachuData
-import br.com.pokedex.ui.components.cards.SquirtleData
-import br.com.pokedex.ui.components.cards.VenusaurData
-import br.com.pokedex.ui.components.cards.WartortleData
+import br.com.pokedex.ui.components.cards.*
 import br.com.pokedex.ui.theme.PokedexTheme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,7 +40,6 @@ fun CardPokemonScreen(navController: NavController?, initialPage: Int) {
         MewData()
     )
 
-//    val pagerState = rememberPagerState(pageCount = { pokemonList.size })
     val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { pokemonList.size })
 
     PokedexTheme {
@@ -83,6 +66,6 @@ fun CardPokemonScreen(navController: NavController?, initialPage: Int) {
 @Preview
 @Composable
 private fun CardPokemonScreenPreview() {
-//    CardPokemonScreen(navController = null)
+    CardPokemonScreen(navController = null, initialPage = 0)
 }
 

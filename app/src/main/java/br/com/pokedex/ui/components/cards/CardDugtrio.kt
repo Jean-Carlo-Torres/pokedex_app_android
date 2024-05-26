@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundTerrestrial
 import br.com.pokedex.ui.components.ElementGrassButton
 import br.com.pokedex.ui.components.ElementIceButton
@@ -58,6 +59,7 @@ fun DugtrioEvolution(): List<PokemonListaItem> {
             numero = dugtrio.numero,
             element = listOf { ElementGroundButtonSmall() },
             background = BackgroundTerrestrial(),
+            elementTag = listOf(ElementTag.GROUND)
         )
     )
 }
@@ -69,6 +71,7 @@ fun DugtrioListData(): PokemonListaItem {
         nome = dugtrio.nome,
         numero = dugtrio.numero,
         element = dugtrio.element,
-        background = BackgroundTerrestrial()
+        background = BackgroundTerrestrial(),
+        elementTag = listOf(ElementTag.GROUND)
     )
 }

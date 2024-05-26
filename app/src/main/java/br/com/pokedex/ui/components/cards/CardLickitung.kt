@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundNormal
 import br.com.pokedex.ui.components.ElementFighterButton
 import br.com.pokedex.ui.components.ElementNormalButton
@@ -52,6 +53,7 @@ fun LickitungEvolution(): List<PokemonListaItem> {
             numero = lickitung.numero,
             element = listOf { ElementNormalButtonSmall() },
             background = BackgroundNormal(),
+            elementTag = listOf(ElementTag.NORMAL)
         )
     )
 }
@@ -63,6 +65,7 @@ fun LickitungListData(): PokemonListaItem {
         nome = lickitung.nome,
         numero = lickitung.numero,
         element = lickitung.element,
-        background = BackgroundNormal()
+        background = BackgroundNormal(),
+        elementTag = listOf(ElementTag.NORMAL)
     )
 }

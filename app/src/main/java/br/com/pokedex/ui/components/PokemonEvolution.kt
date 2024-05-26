@@ -141,6 +141,7 @@ fun PokemonEvolutionPreview() {
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
+            elementTag = null
         ),
         PokemonListaItem(
             nome = "Bulbasaur",
@@ -151,6 +152,7 @@ fun PokemonEvolutionPreview() {
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
+            elementTag = null
         ),
         PokemonListaItem(
             nome = "Bulbasaur",
@@ -161,6 +163,7 @@ fun PokemonEvolutionPreview() {
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
+            elementTag = null
         )
     )
     PokemonEvolution(pokemonEvolution = evolutionList)

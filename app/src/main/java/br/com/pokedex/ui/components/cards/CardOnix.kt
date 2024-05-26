@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundStone
 import br.com.pokedex.ui.components.ElementFighterButton
 import br.com.pokedex.ui.components.ElementGrassButton
@@ -71,6 +72,7 @@ fun OnixEvolution(): List<PokemonListaItem> {
                 { ElementGroundButtonSmall() },
             ),
             background = BackgroundStone(),
+            elementTag = listOf(ElementTag.ROCK)
         )
     )
 }
@@ -83,5 +85,6 @@ fun OnixListData(): PokemonListaItem {
         numero = onix.numero,
         element = onix.element,
         background = BackgroundStone(),
+        elementTag = listOf(ElementTag.ROCK)
     )
 }

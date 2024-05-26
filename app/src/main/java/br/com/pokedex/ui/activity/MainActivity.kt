@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 val pokemonViewModel: PokemonViewModel = viewModel()
                 val userViewModel: UserViewModel = viewModel()
 
-                NavHost(navController = navController, startDestination = "onboardingScreen") {
+                NavHost(navController = navController, startDestination = "listaPokemonScreen") {
 
                     composable(
                         route = "onboardingScreen"
@@ -87,7 +87,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "pokemonType"
                     ) {
-                        PokemonType(navController)
+                        PokemonType(navController, pokemonViewModel)
                     }
 
                     composable(

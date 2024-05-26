@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundInsect
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFlyingButton
@@ -68,6 +69,7 @@ fun BeedrillEvolution(): List<PokemonListaItem> {
                 { ElementPoisonButtonSmall() }
             ),
             background = BackgroundInsect(),
+            elementTag = listOf(ElementTag.BUG, ElementTag.POISON)
         )
     )
 }
@@ -80,5 +82,6 @@ fun BeedrillListData(): PokemonListaItem {
         numero = beedrill.numero,
         element = beedrill.element,
         background = BackgroundInsect(),
+        elementTag = listOf(ElementTag.BUG, ElementTag.POISON)
     )
 }

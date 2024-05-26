@@ -7,6 +7,7 @@ import br.com.pokedex.ui.components.BackgroundWater
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementGrassButton
 import br.com.pokedex.ui.components.ElementWaterButton
@@ -128,14 +129,16 @@ fun squirtleEvolution(): List<PokemonListaItem> {
             nome = squirtle.nome,
             numero = squirtle.numero,
             element = listOf { ElementWaterButtonSmall() },
-            background = BackgroundWater()
+            background = BackgroundWater(),
+            elementTag = listOf(ElementTag.WATER)
         ),
         PokemonListaItem(
             imagemPokemon = wartortle.imagemPokemon,
             nome = wartortle.nome,
             numero = wartortle.numero,
             element = listOf { ElementWaterButtonSmall() },
-            background = BackgroundWater()
+            background = BackgroundWater(),
+            elementTag = listOf(ElementTag.WATER)
         ),
         PokemonListaItem(
             imagemPokemon = blastoise.imagemPokemon,
@@ -143,6 +146,7 @@ fun squirtleEvolution(): List<PokemonListaItem> {
             numero = blastoise.numero,
             element = listOf { ElementWaterButtonSmall() },
             background = BackgroundWater(),
+            elementTag = listOf(ElementTag.WATER)
         )
     )
 }
@@ -154,7 +158,8 @@ fun SquirtleListData(): PokemonListaItem {
         nome = squirtle.nome,
         numero = squirtle.numero,
         element = squirtle.element,
-        background = BackgroundWater()
+        background = BackgroundWater(),
+        elementTag = listOf(ElementTag.WATER)
     )
 }
 
@@ -165,7 +170,8 @@ fun WartortleListData(): PokemonListaItem {
         nome = wartortle.nome,
         numero = wartortle.numero,
         element = wartortle.element,
-        background = BackgroundWater()
+        background = BackgroundWater(),
+        elementTag = listOf(ElementTag.WATER)
     )
 }
 
@@ -176,6 +182,7 @@ fun BlastoiseListData(): PokemonListaItem {
         nome = blastoise.nome,
         numero = blastoise.numero,
         element = blastoise.element,
-        background = BackgroundWater()
+        background = BackgroundWater(),
+        elementTag = listOf(ElementTag.WATER)
     )
 }

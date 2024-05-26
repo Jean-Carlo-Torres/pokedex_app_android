@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundFairy
 import br.com.pokedex.ui.components.ElementFairyButtom
 import br.com.pokedex.ui.components.ElementFairyButtonSmall
@@ -56,6 +57,7 @@ fun CleifairyEvolution(): List<PokemonListaItem> {
             numero = cleifairy.numero,
             element = listOf { ElementFairyButtonSmall() },
             background = BackgroundFairy(),
+            elementTag = listOf(ElementTag.FAIRY)
         )
     )
 }
@@ -67,6 +69,7 @@ fun CleifairyListData(): PokemonListaItem {
         nome = cleifairy.nome,
         numero = cleifairy.numero,
         element = cleifairy.element,
-        background = BackgroundFairy()
+        background = BackgroundFairy(),
+        elementTag = listOf(ElementTag.FAIRY)
     )
 }

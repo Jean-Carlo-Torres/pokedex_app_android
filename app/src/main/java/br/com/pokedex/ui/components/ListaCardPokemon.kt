@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.enums.ElementTag
 
 @Composable
 fun ListaCardPokemon(
@@ -147,6 +148,7 @@ private fun ListaCardPokemonPreview() {
                 { ElementGrassButton() },
                 { ElementPoisonButton() }
             ),
+            elementTag = listOf(ElementTag.BUG, ElementTag.POISON)
         ),
         PokemonViewModel()
     )

@@ -6,6 +6,7 @@ import br.com.pokedex.ui.components.BackgroundFire
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFireButtonSmall
@@ -134,14 +135,16 @@ fun chamanderEvolution(): List<PokemonListaItem> {
             numero = charmander.numero,
             imagemPokemon = charmander.imagemPokemon,
             background = BackgroundFire(),
-            element = listOf { ElementFireButtonSmall() }
+            element = listOf { ElementFireButtonSmall() },
+            elementTag = listOf(ElementTag.FIRE)
         ),
         PokemonListaItem(
             nome = charmeleon.nome,
             numero = charmeleon.numero,
             imagemPokemon = charmeleon.imagemPokemon,
             background = BackgroundFire(),
-            element = listOf { ElementFireButtonSmall() }
+            element = listOf { ElementFireButtonSmall() },
+            elementTag = listOf(ElementTag.FIRE)
         ),
         PokemonListaItem(
             nome = charizard.nome,
@@ -151,7 +154,8 @@ fun chamanderEvolution(): List<PokemonListaItem> {
             element = listOf(
                 { ElementFireButtonSmall() },
                 { ElementFlyingButtonSmall() }
-            )
+            ),
+            elementTag = listOf(ElementTag.FIRE, ElementTag.FLYING)
         )
     )
 }
@@ -163,7 +167,8 @@ fun CharmanderListData(): PokemonListaItem {
         nome = charmander.nome,
         numero = charmander.numero,
         element = charmander.element,
-        background = BackgroundFire()
+        background = BackgroundFire(),
+        elementTag = listOf(ElementTag.FIRE)
     )
 }
 
@@ -174,7 +179,8 @@ fun CharmeleonListData(): PokemonListaItem {
         nome = charmeleon.nome,
         numero = charmeleon.numero,
         element = charmeleon.element,
-        background = BackgroundFire()
+        background = BackgroundFire(),
+        elementTag = listOf(ElementTag.FIRE)
     )
 }
 
@@ -185,6 +191,7 @@ fun CharizardListData(): PokemonListaItem {
         nome = charizard.nome,
         numero = charizard.numero,
         element = charizard.element,
-        background = BackgroundFire()
+        background = BackgroundFire(),
+        elementTag = listOf(ElementTag.FIRE,  ElementTag.FLYING)
     )
 }

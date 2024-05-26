@@ -98,103 +98,103 @@ fun CardPokemon(pokemon: Pokemon) {
     }
 }
 
-@Preview
-@Composable
-private fun CardPokemonPreview() {
-    PokedexTheme {
-        Surface {
-            CardPokemon(
-                Pokemon(
-                    imagemPokemon = R.drawable.bulbasaur,
-                    background = R.drawable.header_grass,
-                    nome = "Bulbasaur",
-                    numero = "001",
-                    descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
-                    peso = 6.9,
-                    altura = 0.7,
-                    categoria = Categoria.SEED,
-                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
-                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
-                    fraquezas = listOf(
-                        { ElementFireButton() },
-                        { ElementPsychicButton() },
-                        { ElementFlyingButton() },
-                        { ElementIceButton() }
-                    ),
-                    evolucao = listOf(
-                        PokemonListaItem(
-                            nome = "Bulbasaur",
-                            numero = "001",
-                            imagemPokemon = R.drawable.bulbasaur,
-                            background = BackgroundGrass(),
-                            element = listOf(
-                                { ElementGrassButtonSmall() },
-                                { ElementPoisonButtonSmall() }
-                            ),
-                        ),
-                        PokemonListaItem(
-                            nome = "Bulbasaur",
-                            numero = "001",
-                            imagemPokemon = R.drawable.bulbasaur,
-                            background = BackgroundGrass(),
-                            element = listOf(
-                                { ElementGrassButtonSmall() },
-                                { ElementPoisonButtonSmall() }
-                            ),
-                        ),
-                        PokemonListaItem(
-                            nome = "Bulbasaur",
-                            numero = "001",
-                            imagemPokemon = R.drawable.bulbasaur,
-                            background = BackgroundGrass(),
-                            element = listOf(
-                                { ElementGrassButtonSmall() },
-                                { ElementPoisonButtonSmall() }
-                            ),
-                        )
-                    )
-                )
-            )
-        }
-    }
-}
+//@Preview
+//@Composable
+//private fun CardPokemonPreview() {
+//    PokedexTheme {
+//        Surface {
+//            CardPokemon(
+//                Pokemon(
+//                    imagemPokemon = R.drawable.bulbasaur,
+//                    background = R.drawable.header_grass,
+//                    nome = "Bulbasaur",
+//                    numero = "001",
+//                    descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
+//                    peso = 6.9,
+//                    altura = 0.7,
+//                    categoria = Categoria.SEED,
+//                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
+//                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
+//                    fraquezas = listOf(
+//                        { ElementFireButton() },
+//                        { ElementPsychicButton() },
+//                        { ElementFlyingButton() },
+//                        { ElementIceButton() }
+//                    ),
+//                    evolucao = listOf(
+//                        PokemonListaItem(
+//                            nome = "Bulbasaur",
+//                            numero = "001",
+//                            imagemPokemon = R.drawable.bulbasaur,
+//                            background = BackgroundGrass(),
+//                            element = listOf(
+//                                { ElementGrassButtonSmall() },
+//                                { ElementPoisonButtonSmall() }
+//                            ),
+//                        ),
+//                        PokemonListaItem(
+//                            nome = "Bulbasaur",
+//                            numero = "001",
+//                            imagemPokemon = R.drawable.bulbasaur,
+//                            background = BackgroundGrass(),
+//                            element = listOf(
+//                                { ElementGrassButtonSmall() },
+//                                { ElementPoisonButtonSmall() }
+//                            ),
+//                        ),
+//                        PokemonListaItem(
+//                            nome = "Bulbasaur",
+//                            numero = "001",
+//                            imagemPokemon = R.drawable.bulbasaur,
+//                            background = BackgroundGrass(),
+//                            element = listOf(
+//                                { ElementGrassButtonSmall() },
+//                                { ElementPoisonButtonSmall() }
+//                            ),
+//                        )
+//                    )
+//                )
+//            )
+//        }
+//    }
+//}
 
-@Preview
-@Composable
-private fun CardPokemonPreview2() {
-    PokedexTheme {
-        Surface {
-            CardPokemon(
-                Pokemon(
-                    imagemPokemon = R.drawable.charizard,
-                    background = R.drawable.header_grass,
-                    nome = "Bulbasaur",
-                    numero = "001",
-                    descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
-                    peso = 6.9,
-                    altura = 0.7,
-                    categoria = Categoria.SEED,
-                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
-                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
-                    fraquezas = listOf(
-                        { ElementFireButton() },
-                        { ElementPsychicButton() },
-                        { ElementFlyingButton() },
-                        { ElementIceButton() }),
-                    evolucao = listOf(
-                        PokemonListaItem(
-                            nome = "Bulbasaur",
-                            numero = "001",
-                            imagemPokemon = R.drawable.bulbasaur,
-                            background = BackgroundGrass(),
-                            element = listOf(
-                                { ElementGrassButtonSmall() },
-                                { ElementPoisonButtonSmall() }
-                            ),
-                        )
-                    )
-                )
-            )
-        }
-    }
-}
+//@Preview
+//@Composable
+//private fun CardPokemonPreview2() {
+//    PokedexTheme {
+//        Surface {
+//            CardPokemon(
+//                Pokemon(
+//                    imagemPokemon = R.drawable.charizard,
+//                    background = R.drawable.header_grass,
+//                    nome = "Bulbasaur",
+//                    numero = "001",
+//                    descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
+//                    peso = 6.9,
+//                    altura = 0.7,
+//                    categoria = Categoria.SEED,
+//                    habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
+//                    element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
+//                    fraquezas = listOf(
+//                        { ElementFireButton() },
+//                        { ElementPsychicButton() },
+//                        { ElementFlyingButton() },
+//                        { ElementIceButton() }),
+//                    evolucao = listOf(
+//                        PokemonListaItem(
+//                            nome = "Bulbasaur",
+//                            numero = "001",
+//                            imagemPokemon = R.drawable.bulbasaur,
+//                            background = BackgroundGrass(),
+//                            element = listOf(
+//                                { ElementGrassButtonSmall() },
+//                                { ElementPoisonButtonSmall() }
+//                            ),
+//                        )
+//                    )
+//                )
+//            )
+//        }
+//    }
+//}

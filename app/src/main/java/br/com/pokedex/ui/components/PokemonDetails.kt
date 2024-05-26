@@ -194,6 +194,7 @@ private fun PokemonDetailsPreview() {
                             { ElementGrassButtonSmall() },
                             { ElementPoisonButtonSmall() }
                         ),
+                        elementTag = null
                     ))
                 )
             )

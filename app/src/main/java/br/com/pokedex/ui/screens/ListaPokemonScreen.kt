@@ -33,38 +33,23 @@ import br.com.pokedex.ui.activity.ui.theme.Gray800
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
 import br.com.pokedex.ui.components.SearchTextField
-import br.com.pokedex.ui.components.cards.BeedrillListData
-import br.com.pokedex.ui.components.cards.BlastoiseListData
-import br.com.pokedex.ui.components.cards.BulbasaurListData
-import br.com.pokedex.ui.components.cards.CharizardListData
-import br.com.pokedex.ui.components.cards.CharmanderListData
-import br.com.pokedex.ui.components.cards.CharmeleonListData
-import br.com.pokedex.ui.components.cards.CleifairyListData
-import br.com.pokedex.ui.components.cards.DugtrioListData
-import br.com.pokedex.ui.components.cards.IvysaurListData
-import br.com.pokedex.ui.components.cards.KoffingListData
-import br.com.pokedex.ui.components.cards.LickitungListData
-import br.com.pokedex.ui.components.cards.MewListData
-import br.com.pokedex.ui.components.cards.OnixListData
-import br.com.pokedex.ui.components.cards.PikachuListData
-import br.com.pokedex.ui.components.cards.SquirtleListData
-import br.com.pokedex.ui.components.cards.VenusaurListData
-import br.com.pokedex.ui.components.cards.WartortleListData
+import br.com.pokedex.ui.components.cards.*
 
 @Composable
 fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewModel) {
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         Column(
             modifier = Modifier
-                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                .padding(start = 8.dp, end = 8.dp, bottom = 84.dp)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            val pokemonList = listOf(
+            var pokemonList = listOf(
                 BulbasaurListData(),
                 IvysaurListData(),
                 VenusaurListData(),
@@ -94,10 +79,22 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                     text = it
                 }
             )
+
             val searchedPokemons = remember(text) {
                 if (text.isNotBlank()) {
                     pokemonList.filter { pokemon ->
                         pokemon.nome.contains(text, ignoreCase = true)
+                    }
+                } else {
+                    pokemonList
+                }
+            }
+
+            val selectedElementType = viewModel.selectedElementType
+            val filteredPokemonList = remember(selectedElementType) {
+                if (selectedElementType != null) {
+                    pokemonList.filter { pokemon ->
+                        pokemon.elementTag?.contains(selectedElementType) == true
                     }
                 } else {
                     pokemonList
@@ -124,7 +121,7 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
             }
 
             pokemonList.forEachIndexed { index, pokemon ->
-                if (text.isBlank()) {
+                if (text.isBlank() && selectedElementType == null) {
                     ListaCardPokemon(
                         pokemon = pokemon,
                         onClick = {
@@ -133,7 +130,11 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                         viewModel = viewModel
                     )
                 } else {
-                    if (searchedPokemons.contains(pokemon)) {
+                    if (searchedPokemons.contains(pokemon) || selectedElementType?.let {
+                            pokemon.elementTag?.contains(
+                                it
+                            )
+                        } == true) {
                         ListaCardPokemon(
                             pokemon = pokemon,
                             onClick = {

@@ -8,6 +8,7 @@ import br.com.pokedex.ui.components.BackgroundGrass
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.ElementFireButton
 import br.com.pokedex.ui.components.ElementFlyingButton
 import br.com.pokedex.ui.components.ElementGrassButton
@@ -152,6 +153,7 @@ fun bulbasaurEvolution(): List<PokemonListaItem> {
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
             ),
+            elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
         ),
         PokemonListaItem(
             nome = ivysaur.nome,
@@ -161,7 +163,8 @@ fun bulbasaurEvolution(): List<PokemonListaItem> {
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
-            )
+            ),
+            elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
         ),
         PokemonListaItem(
             nome = venusaur.nome,
@@ -171,7 +174,8 @@ fun bulbasaurEvolution(): List<PokemonListaItem> {
             element = listOf(
                 { ElementGrassButtonSmall() },
                 { ElementPoisonButtonSmall() }
-            )
+            ),
+            elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
         )
     )
 }
@@ -184,6 +188,7 @@ fun BulbasaurListData(): PokemonListaItem {
         numero = bulbasaur.numero,
         element = bulbasaur.element,
         background = BackgroundGrass(),
+        elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
     )
 }
 
@@ -194,7 +199,8 @@ fun IvysaurListData(): PokemonListaItem {
         nome = ivysaur.nome,
         numero = ivysaur.numero,
         element = ivysaur.element,
-        background = BackgroundGrass()
+        background = BackgroundGrass(),
+        elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
     )
 }
 
@@ -205,6 +211,7 @@ fun VenusaurListData(): PokemonListaItem {
         nome = venusaur.nome,
         numero = venusaur.numero,
         element = venusaur.element,
-        background = BackgroundGrass()
+        background = BackgroundGrass(),
+        elementTag = listOf(ElementTag.GRASS, ElementTag.POISON)
     )
 }

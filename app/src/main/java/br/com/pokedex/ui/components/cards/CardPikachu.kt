@@ -5,6 +5,7 @@ import br.com.pokedex.R
 import br.com.pokedex.model.Pokemon
 import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.enums.Categoria
+import br.com.pokedex.model.enums.ElementTag
 import br.com.pokedex.ui.components.BackgroundElectric
 import br.com.pokedex.ui.components.ElementElectricButton
 import br.com.pokedex.ui.components.ElementElectricButtonSmall
@@ -52,6 +53,7 @@ fun PikachuEvolution(): List<PokemonListaItem> {
             numero = pikachu.numero,
             element = listOf { ElementElectricButtonSmall() },
             background = BackgroundElectric(),
+            elementTag = listOf(ElementTag.ELECTRIC)
         )
     )
 }
@@ -63,6 +65,7 @@ fun PikachuListData(): PokemonListaItem {
         nome = pikachu.nome,
         numero = pikachu.numero,
         element = pikachu.element,
-        background = BackgroundElectric()
+        background = BackgroundElectric(),
+        elementTag = listOf(ElementTag.ELECTRIC)
     )
 }
