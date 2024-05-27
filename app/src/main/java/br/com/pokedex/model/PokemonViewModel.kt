@@ -1,15 +1,15 @@
 package br.com.pokedex.model
 
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import br.com.pokedex.model.enums.ElementTag
 
 class PokemonViewModel : ViewModel() {
-    var selectedElementType: ElementTag?  = null
+    var selectedElementType: ElementTag? = null
+
+    var pokemonsList = mutableStateListOf<PokemonListaItem>()
+        private set
+
     var favoritePokemons = mutableStateListOf<PokemonListaItem>()
         private set
 
@@ -19,5 +19,21 @@ class PokemonViewModel : ViewModel() {
         } else {
             favoritePokemons.add(pokemon)
         }
+    }
+
+    fun sortPokemonListBySmallestNumber() {
+        pokemonsList.sortBy { it.numero }
+    }
+
+    fun sortPokemonListByBiggestNumber() {
+        pokemonsList.sortByDescending { it.numero }
+    }
+
+    fun sortPokemonListByAlphabet() {
+        pokemonsList.sortBy { it.nome }
+    }
+
+    fun sortPokemonListByAlphabetReverse() {
+        pokemonsList.sortByDescending { it.nome }
     }
 }

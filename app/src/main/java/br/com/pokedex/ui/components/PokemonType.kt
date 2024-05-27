@@ -141,7 +141,7 @@ fun PokemonType(navController: NavController?, viewModel: PokemonViewModel?) {
 }
 
 @Composable
-private fun ButtonTypeDefault(text: String, bgColor: Color, onClick: () -> Unit = {}) {
+fun ButtonTypeDefault(text: String, bgColor: Color = Gray800, onClick: () -> Unit = {}) {
     Button(
         onClick = onClick,
         modifier = Modifier

@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.PokemonType
+import br.com.pokedex.ui.components.SortListItems
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
 import br.com.pokedex.ui.screens.CardPokemonScreen
 import br.com.pokedex.ui.screens.FormaDeCadastroScreen
@@ -88,6 +89,12 @@ class MainActivity : ComponentActivity() {
                         route = "pokemonType"
                     ) {
                         PokemonType(navController, pokemonViewModel)
+                    }
+
+                    composable(
+                        route = "sortListItems"
+                    ) {
+                        SortListItems(navController = navController, viewModel = pokemonViewModel)
                     }
 
                     composable(

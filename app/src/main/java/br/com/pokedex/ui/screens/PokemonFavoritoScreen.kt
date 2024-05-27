@@ -24,7 +24,7 @@ import br.com.pokedex.ui.components.ListaCardPokemon
 
 @Composable
 fun PokemonFavoritoScreen(navController: NavController?, viewModel: PokemonViewModel) {
-    val favoritePokemons = viewModel.favoritePokemons
+    val favoritePokemons = viewModel.pokemonsList
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(

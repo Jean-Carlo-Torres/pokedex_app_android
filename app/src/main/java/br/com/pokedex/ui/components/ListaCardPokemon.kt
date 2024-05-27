@@ -43,7 +43,7 @@ fun ListaCardPokemon(
     viewModel: PokemonViewModel,
     onClick: () -> Unit = {}
 ) {
-    val isFavorite = viewModel.favoritePokemons.contains(pokemon)
+    val isFavorite = viewModel.pokemonsList.contains(pokemon)
 
     Row(
         modifier = Modifier
