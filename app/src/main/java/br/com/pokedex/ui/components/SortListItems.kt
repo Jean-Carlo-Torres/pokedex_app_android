@@ -9,10 +9,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.PokemonViewModel
 
+typealias SortFunction = (List<PokemonListaItem>) -> Unit
+
 @Composable
-fun SortListItems(navController: NavController?, viewModel: PokemonViewModel) {
+fun SortListItems(
+    navController: NavController?,
+    viewModel: PokemonViewModel
+) {
+    var pokemonsList = viewModel.pokemonsList
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -29,19 +37,20 @@ fun SortListItems(navController: NavController?, viewModel: PokemonViewModel) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             ButtonTypeDefault(text = "Menor número", onClick = {
-                viewModel.sortPokemonListBySmallestNumber()
+                viewModel.sortedListIndex = 1
+                pokemonsList.sortBy { it.numero }
                 navController?.popBackStack()
             })
             ButtonTypeDefault(text = "Maior número", onClick = {
-                viewModel.sortPokemonListByBiggestNumber()
+                viewModel.sortedListIndex = 2
                 navController?.popBackStack()
             })
             ButtonTypeDefault(text = "A - Z", onClick = {
-                viewModel.sortPokemonListByAlphabet()
+                viewModel.sortedListIndex = 3
                 navController?.popBackStack()
             })
             ButtonTypeDefault(text = "Z - A", onClick = {
-                viewModel.sortPokemonListByAlphabetReverse()
+                viewModel.sortedListIndex = 4
                 navController?.popBackStack()
             })
         }

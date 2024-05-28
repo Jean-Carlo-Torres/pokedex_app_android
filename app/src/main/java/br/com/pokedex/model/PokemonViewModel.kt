@@ -13,27 +13,13 @@ class PokemonViewModel : ViewModel() {
     var favoritePokemons = mutableStateListOf<PokemonListaItem>()
         private set
 
+    var sortedListIndex = 0
+
     fun toggleFavorite(pokemon: PokemonListaItem) {
         if (favoritePokemons.contains(pokemon)) {
             favoritePokemons.remove(pokemon)
         } else {
             favoritePokemons.add(pokemon)
         }
-    }
-
-    fun sortPokemonListBySmallestNumber() {
-        pokemonsList.sortBy { it.numero }
-    }
-
-    fun sortPokemonListByBiggestNumber() {
-        pokemonsList.sortByDescending { it.numero }
-    }
-
-    fun sortPokemonListByAlphabet() {
-        pokemonsList.sortBy { it.nome }
-    }
-
-    fun sortPokemonListByAlphabetReverse() {
-        pokemonsList.sortByDescending { it.nome }
     }
 }

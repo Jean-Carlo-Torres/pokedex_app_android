@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -51,9 +50,11 @@ import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
 import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
 import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 import br.com.pokedex.ui.activity.ui.theme.Gray800
+import br.com.pokedex.ui.components.FilterElementType
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
 import br.com.pokedex.ui.components.SearchTextField
+import br.com.pokedex.ui.components.SortListPokemon
 import br.com.pokedex.ui.components.cards.*
 
 @Composable
@@ -121,24 +122,23 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                     pokemonList
                 }
             }
+            val sortListIndex = viewModel.sortedListIndex
 
-            Button(
-                onClick = {
-                    navController?.navigate("pokemonType")
-                },
-                modifier = Modifier
-                    .width(156.dp)
-                    .height(42.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Gray800,
-                    contentColor = Color.White
-                )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Todos os tipos")
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowDown,
-                    contentDescription = null
-                )
+                FilterElementType(navController, viewModel)
+                SortListPokemon(navController, viewModel)
+            }
+
+            pokemonList = when (sortListIndex) {
+                1 -> pokemonList.sortedBy { it.numero }
+                2 -> pokemonList.sortedByDescending { it.numero }
+                3 -> pokemonList.sortedBy { it.nome }
+                4 -> pokemonList.sortedByDescending { it.nome }
+                else -> pokemonList
             }
 
             pokemonList.forEachIndexed { index, pokemon ->
@@ -170,83 +170,6 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
         if (navController != null) {
             FooterBar(navController = navController)
         }
-    }
-}
-
-@Composable
-private fun FilterElementType(navController: NavController?, viewModel: PokemonViewModel) {
-    val selectedElementType = viewModel.selectedElementType
-    val text = when (selectedElementType != null) {
-        true -> selectedElementType.name
-        false -> "Todos os tipos"
-    }
-    val containerColor = when (selectedElementType != null) {
-        (selectedElementType?.equals(null) == true) -> Gray800
-        (selectedElementType?.equals(ElementTag.BUG) == true) -> ElementBugColor
-        (selectedElementType?.equals(ElementTag.DARK) == true) -> ElementDarkColor
-        (selectedElementType?.equals(ElementTag.DRAGON) == true) -> ElementDragonColor
-        (selectedElementType?.equals(ElementTag.ELECTRIC) == true) -> ElementElectricColor
-        (selectedElementType?.equals(ElementTag.FAIRY) == true) -> ElementFairyColor
-        (selectedElementType?.equals(ElementTag.FIGHTING) == true) -> ElementFightColor
-        (selectedElementType?.equals(ElementTag.FIRE) == true) -> ElementFireColor
-        (selectedElementType?.equals(ElementTag.FLYING) == true) -> ElementFlyingColor
-        (selectedElementType?.equals(ElementTag.GHOST) == true) -> ElementGhostColor
-        (selectedElementType?.equals(ElementTag.GRASS) == true) -> ElementGrassColor
-        (selectedElementType?.equals(ElementTag.GROUND) == true) -> ElementGroundColor
-        (selectedElementType?.equals(ElementTag.ICE) == true) -> ElementIceColor
-        (selectedElementType?.equals(ElementTag.NORMAL) == true) -> ElementNormalColor
-        (selectedElementType?.equals(ElementTag.POISON) == true) -> ElementPoisonColor
-        (selectedElementType?.equals(ElementTag.PSYCHIC) == true) -> ElementPsychicColor
-        (selectedElementType?.equals(ElementTag.ROCK) == true) -> ElementRockColor
-        (selectedElementType?.equals(ElementTag.STEEL) == true) -> ElementSteelColor
-        (selectedElementType?.equals(ElementTag.WATER) == true) -> ElementWaterColor
-
-        else -> Gray800
-    }
-    FilterButtonDefault(
-        navController,
-        text,
-        containerColor,
-        onClick = {
-            navController?.navigate("pokemonType")
-        }
-    )
-}
-
-
-@Composable
-private fun SortListPokemon(navController: NavController?, viewModel: PokemonViewModel) {
-    FilterButtonDefault(
-        navController,
-        "Todos os tipos",
-        onClick = {
-            navController?.navigate("")
-        }
-    )
-}
-
-@Composable
-private fun FilterButtonDefault(
-    navController: NavController?,
-    text: String,
-    containerColor: Color = Gray800,
-    onClick: () -> Unit = {}
-) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .widthIn(min = 156.dp)
-            .height(42.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = containerColor,
-            contentColor = Color.White
-        )
-    ) {
-        Text(text = text)
-        Icon(
-            imageVector = Icons.Default.KeyboardArrowDown,
-            contentDescription = null
-        )
     }
 }
 
