@@ -141,31 +141,30 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                 else -> pokemonList
             }
 
-            pokemonList.forEachIndexed { index, pokemon ->
+            pokemonList.forEach { pokemon ->
                 if (text.isBlank() && selectedElementType == null) {
                     ListaCardPokemon(
                         pokemon = pokemon,
                         onClick = {
-                            navController?.navigate("cardPokemonScreen/$index")
+                            navController?.navigate("cardPokemonScreen/${pokemon.numero}")
                         },
                         viewModel = viewModel
                     )
                 } else {
                     if (searchedPokemons.contains(pokemon) || selectedElementType?.let {
-                            pokemon.elementTag?.contains(
-                                it
-                            )
+                            pokemon.elementTag?.contains(it)
                         } == true) {
                         ListaCardPokemon(
                             pokemon = pokemon,
                             onClick = {
-                                navController?.navigate("cardPokemonScreen/$index")
+                                navController?.navigate("cardPokemonScreen/${pokemon.numero}")
                             },
                             viewModel = viewModel
                         )
                     }
                 }
             }
+
         }
         if (navController != null) {
             FooterBar(navController = navController)

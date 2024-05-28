@@ -13,14 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.ui.components.CardPokemon
 import br.com.pokedex.ui.components.cards.*
 import br.com.pokedex.ui.theme.PokedexTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardPokemonScreen(navController: NavController?, initialPage: Int) {
-    val pokemonList = listOf(
+fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, viewModel: PokemonViewModel?) {
+    var pokemonList = listOf(
         BulbasaurData(),
         IvysaurData(),
         VenusaurData(),
@@ -40,14 +41,23 @@ fun CardPokemonScreen(navController: NavController?, initialPage: Int) {
         MewData()
     )
 
+    val sortListIndex = viewModel?.sortedListIndex
+    pokemonList = when (sortListIndex) {
+        1 -> pokemonList.sortedBy { it.numero }
+        2 -> pokemonList.sortedByDescending { it.numero }
+        3 -> pokemonList.sortedBy { it.nome }
+        4 -> pokemonList.sortedByDescending { it.nome }
+        else -> pokemonList
+    }
+
+    val initialPage = pokemonList.indexOfFirst { it.numero == pokemonNumber }
     val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { pokemonList.size })
 
     PokedexTheme {
         Surface {
             HorizontalPager(
                 state = pagerState,
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             ) { page ->
                 Box(
                     modifier = Modifier
@@ -66,6 +76,6 @@ fun CardPokemonScreen(navController: NavController?, initialPage: Int) {
 @Preview
 @Composable
 private fun CardPokemonScreenPreview() {
-    CardPokemonScreen(navController = null, initialPage = 0)
+    CardPokemonScreen(navController = null, pokemonNumber = "002", viewModel = null)
 }
 

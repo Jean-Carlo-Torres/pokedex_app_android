@@ -115,12 +115,13 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(
-                        route = "cardPokemonScreen/{pokemonIndex}",
-                        arguments = listOf(navArgument("pokemonIndex") { type = NavType.IntType })
+                        route = "cardPokemonScreen/{pokemonNumber}",
+                        arguments = listOf(navArgument("pokemonNumber") { type = NavType.StringType })
                     ) { backStackEntry ->
-                        val pokemonIndex = backStackEntry.arguments?.getInt("pokemonIndex") ?: 0
-                        CardPokemonScreen(navController, pokemonIndex)
+                        val pokemonNumber = backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
+                        CardPokemonScreen(navController, pokemonNumber, pokemonViewModel)
                     }
+
                 }
             }
         }
