@@ -19,12 +19,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import br.com.pokedex.R
 import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
 
 @Composable
-fun PokemonFavoritoScreen(navController: NavController?, viewModel: PokemonViewModel) {
-    val favoritePokemons = viewModel.pokemonsList
+fun PokemonFavoritoScreen(navController: NavController?, viewModel: UserViewModel) {
+    val favoritePokemons = viewModel.favoritePokemons
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(

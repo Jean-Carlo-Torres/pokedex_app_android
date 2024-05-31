@@ -10,16 +10,5 @@ class PokemonViewModel : ViewModel() {
     var pokemonsList = mutableStateListOf<PokemonListaItem>()
         private set
 
-    var favoritePokemons = mutableStateListOf<PokemonListaItem>()
-        private set
-
     var sortedListIndex = 0
-
-    fun toggleFavorite(pokemon: PokemonListaItem) {
-        if (favoritePokemons.contains(pokemon)) {
-            favoritePokemons.remove(pokemon)
-        } else {
-            favoritePokemons.add(pokemon)
-        }
-    }
 }

@@ -9,47 +9,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import br.com.pokedex.R
+import br.com.pokedex.model.PokemonListaItem
 import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.model.enums.ElementTag
-import br.com.pokedex.ui.activity.ui.theme.ElementBugColor
-import br.com.pokedex.ui.activity.ui.theme.ElementDarkColor
-import br.com.pokedex.ui.activity.ui.theme.ElementDragonColor
-import br.com.pokedex.ui.activity.ui.theme.ElementElectricColor
-import br.com.pokedex.ui.activity.ui.theme.ElementFairyColor
-import br.com.pokedex.ui.activity.ui.theme.ElementFightColor
-import br.com.pokedex.ui.activity.ui.theme.ElementFireColor
-import br.com.pokedex.ui.activity.ui.theme.ElementFlyingColor
-import br.com.pokedex.ui.activity.ui.theme.ElementGhostColor
-import br.com.pokedex.ui.activity.ui.theme.ElementGrassColor
-import br.com.pokedex.ui.activity.ui.theme.ElementGroundColor
-import br.com.pokedex.ui.activity.ui.theme.ElementIceColor
-import br.com.pokedex.ui.activity.ui.theme.ElementNormalColor
-import br.com.pokedex.ui.activity.ui.theme.ElementPoisonColor
-import br.com.pokedex.ui.activity.ui.theme.ElementPsychicColor
-import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
-import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
-import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
-import br.com.pokedex.ui.activity.ui.theme.Gray800
+import br.com.pokedex.ui.components.BackgroundGrass
+import br.com.pokedex.ui.components.ElementGrassButton
+import br.com.pokedex.ui.components.ElementPoisonButton
 import br.com.pokedex.ui.components.FilterElementType
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
@@ -58,7 +37,10 @@ import br.com.pokedex.ui.components.SortListPokemon
 import br.com.pokedex.ui.components.cards.*
 
 @Composable
-fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewModel) {
+fun ListaPokemonScreen(
+    navController: NavController?,
+    pokemonViewModel: PokemonViewModel,
+    userViewModel: UserViewModel) {
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -112,7 +94,7 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                 }
             }
 
-            val selectedElementType = viewModel.selectedElementType
+            val selectedElementType = pokemonViewModel.selectedElementType
             val filteredPokemonList = remember(selectedElementType) {
                 if (selectedElementType != null) {
                     pokemonList.filter { pokemon ->
@@ -122,15 +104,14 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                     pokemonList
                 }
             }
-            val sortListIndex = viewModel.sortedListIndex
-
+            val sortListIndex = pokemonViewModel.sortedListIndex
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                FilterElementType(navController, viewModel)
-                SortListPokemon(navController, viewModel)
+                FilterElementType(navController, pokemonViewModel)
+                SortListPokemon(navController, pokemonViewModel)
             }
 
             pokemonList = when (sortListIndex) {
@@ -148,7 +129,7 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                         onClick = {
                             navController?.navigate("cardPokemonScreen/${pokemon.numero}")
                         },
-                        viewModel = viewModel
+                        viewModel = userViewModel
                     )
                 } else {
                     if (searchedPokemons.contains(pokemon) || selectedElementType?.let {
@@ -159,7 +140,7 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
                             onClick = {
                                 navController?.navigate("cardPokemonScreen/${pokemon.numero}")
                             },
-                            viewModel = viewModel
+                            viewModel = userViewModel
                         )
                     }
                 }
@@ -175,5 +156,5 @@ fun ListaPokemonScreen(navController: NavController?, viewModel: PokemonViewMode
 @Preview(showBackground = true)
 @Composable
 private fun ListaPokemonScreenPreview() {
-    ListaPokemonScreen(navController = null, viewModel = viewModel())
+    ListaPokemonScreen(navController = null, pokemonViewModel = viewModel(), userViewModel = viewModel())
 }

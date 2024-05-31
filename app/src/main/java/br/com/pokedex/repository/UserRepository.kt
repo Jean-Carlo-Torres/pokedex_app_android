@@ -8,8 +8,20 @@ class UserRepository(private val userDao: UsuarioDao) {
         userDao.insert(usuario)
     }
 
+    suspend fun update(usuario: Usuario) {
+        userDao.update(usuario)
+    }
+
+     fun addPokemonFavorite(numberPokemon: String, usuario: Usuario) {
+        userDao.addPokemonFavorite(numberPokemon, usuario)
+    }
+
     suspend fun validateUser(email: String, senha: String): Usuario? {
         return userDao.getUserByEmailAndPassword(email, senha)
+    }
+
+    fun getUser():  Usuario? {
+        return userDao.getUser()
     }
 }
 

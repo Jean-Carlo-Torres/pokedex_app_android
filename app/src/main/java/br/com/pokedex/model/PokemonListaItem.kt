@@ -10,5 +10,6 @@ class PokemonListaItem(
     val imagemPokemon: Int,
     val background: BackgroundCard,
     val element: List<@Composable () -> Unit>,
-    val elementTag: List<ElementTag>?
+    val elementTag: List<ElementTag>?,
+    var isFavorite: Boolean = false
 )

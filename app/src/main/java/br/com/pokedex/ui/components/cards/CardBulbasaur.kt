@@ -1,8 +1,6 @@
 package br.com.pokedex.ui.components.cards
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import br.com.pokedex.R
 import br.com.pokedex.ui.components.BackgroundGrass
 import br.com.pokedex.model.Pokemon

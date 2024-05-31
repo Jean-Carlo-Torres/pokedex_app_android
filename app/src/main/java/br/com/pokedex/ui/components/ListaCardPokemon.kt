@@ -34,17 +34,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
 import br.com.pokedex.model.PokemonListaItem
-import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.model.enums.ElementTag
 
 @Composable
 fun ListaCardPokemon(
     pokemon: PokemonListaItem,
-    viewModel: PokemonViewModel,
+    viewModel: UserViewModel?,
     onClick: () -> Unit = {}
 ) {
-    val isFavorite = viewModel.pokemonsList.contains(pokemon)
-
+    val isFavorite = viewModel?.favoritePokemons?.contains(pokemon) == true
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -120,7 +119,12 @@ fun ListaCardPokemon(
                     }
                     .background(Color.Transparent, CircleShape)
                     .border(1.dp, Color.White, CircleShape)
-                    .clickable { viewModel.toggleFavorite(pokemon) }
+                    .clickable {
+                        viewModel?.toggleFavorite(pokemon)
+                        viewModel?.user?.let { usuario ->
+                            viewModel.addPokemon(pokemon.nome, usuario)
+                        }
+                    }
             ) {
                 Icon(
                     imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
@@ -150,6 +154,6 @@ private fun ListaCardPokemonPreview() {
             ),
             elementTag = listOf(ElementTag.BUG, ElementTag.POISON)
         ),
-        PokemonViewModel()
+        viewModel = null
     )
 }
