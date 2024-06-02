@@ -1,7 +1,10 @@
 package br.com.pokedex.model
 
 import android.app.Application
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.pokedex.database.AppDatabase
@@ -15,7 +18,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userRepository = UserRepository(userDao)
     }
 
-    val user = userRepository.getUser()
+    var user: Usuario? by mutableStateOf(null)
+        private set
 
     var favoritePokemons = mutableStateListOf<PokemonListaItem>()
         private set
@@ -37,15 +41,19 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     suspend fun validateUser(email: String, senha: String): Usuario? {
-        return userRepository.validateUser(email, senha)
+        val usuario = userRepository.validateUser(email, senha)
+        user = usuario
+        return usuario
     }
 
-    fun addPokemon(numberPokemon: String, usuario: Usuario) = viewModelScope.launch {
-        if (!usuario.pokemonsFavoritos.contains(numberPokemon)) {
-            val updatedFavorites = usuario.pokemonsFavoritos.toMutableList()
-            updatedFavorites.add(numberPokemon)
-            usuario.pokemonsFavoritos = updatedFavorites
-            updateUser(usuario)
+    fun addPokemon(namePokemon: String) = viewModelScope.launch {
+        user?.let { usuario ->
+            if (!usuario.pokemonsFavoritos.contains(namePokemon)) {
+                val updatedFavorites = usuario.pokemonsFavoritos.toMutableList()
+                updatedFavorites.add(namePokemon)
+                usuario.pokemonsFavoritos = updatedFavorites
+                updateUser(usuario)
+            }
         }
     }
 }

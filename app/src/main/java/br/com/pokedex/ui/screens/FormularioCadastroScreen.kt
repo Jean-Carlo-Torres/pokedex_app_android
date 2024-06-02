@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -33,6 +34,7 @@ import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
+import kotlinx.coroutines.launch
 
 @Composable
 fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserViewModel) {
@@ -41,6 +43,8 @@ fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserV
     var password by rememberSaveable { mutableStateOf("") }
     var name by rememberSaveable { mutableStateOf("") }
 
+    val coroutineScope = rememberCoroutineScope()
+
     val onNext: () -> Unit = { currentPage++ }
 
     when (currentPage) {
@@ -48,8 +52,11 @@ fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserV
         1 -> CadastroSenhaTemplate(navController, password, { password = it }, onNext)
         2 -> navController?.let {
             CadastroNomeTemplate(it, name, { name = it }) {
-                userViewModel.insertUser(Usuario(nome = name, email = email, senha = password))
-                navController?.navigate("cadastroRealizadoScreen")
+                coroutineScope.launch {
+                    val newUser = Usuario(nome = name, email = email, senha = password)
+                    userViewModel.insertUser(newUser)
+                    navController?.navigate("cadastroRealizadoScreen")
+                }
             }
         }
     }

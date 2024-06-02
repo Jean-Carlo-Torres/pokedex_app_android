@@ -122,7 +122,7 @@ fun ListaCardPokemon(
                     .clickable {
                         viewModel?.toggleFavorite(pokemon)
                         viewModel?.user?.let { usuario ->
-                            viewModel.addPokemon(pokemon.nome, usuario)
+                            viewModel.addPokemon(pokemon.nome)
                         }
                     }
             ) {
