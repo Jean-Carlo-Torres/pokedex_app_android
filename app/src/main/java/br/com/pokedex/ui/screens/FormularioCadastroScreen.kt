@@ -1,5 +1,6 @@
 package br.com.pokedex.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -55,7 +56,17 @@ fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserV
                 coroutineScope.launch {
                     val newUser = Usuario(nome = name, email = email, senha = password)
                     userViewModel.insertUser(newUser)
-                    navController?.navigate("cadastroRealizadoScreen")
+                    val validatedUser = userViewModel.validateUser(email, password)
+                    if (validatedUser != null) {
+                        userViewModel.user = validatedUser
+                        navController.navigate("cadastroRealizadoScreen")
+                    } else {
+                        Toast.makeText(
+                            navController.context,
+                            "Não foi possível realizar o cadastro!",
+                            Toast.LENGTH_SHORT
+                        )
+                    }
                 }
             }
         }

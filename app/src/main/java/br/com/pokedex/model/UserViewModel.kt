@@ -19,7 +19,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     var user: Usuario? by mutableStateOf(null)
-        private set
 
     var favoritePokemons = mutableStateListOf<PokemonListaItem>()
         private set
@@ -34,6 +33,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insertUser(usuario: Usuario) = viewModelScope.launch {
         userRepository.insert(usuario)
+        user = usuario
     }
 
     fun updateUser(usuario: Usuario) = viewModelScope.launch {
