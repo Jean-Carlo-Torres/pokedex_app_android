@@ -21,7 +21,7 @@ import br.com.pokedex.ui.theme.PokedexTheme
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, viewModel: PokemonViewModel?) {
-    var pokemonList = listOf(
+    var pokemonListCard = listOf(
         BulbasaurData(),
         IvysaurData(),
         VenusaurData(),
@@ -42,16 +42,16 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
     )
 
     val sortListIndex = viewModel?.sortedListIndex
-    pokemonList = when (sortListIndex) {
-        1 -> pokemonList.sortedBy { it.numero }
-        2 -> pokemonList.sortedByDescending { it.numero }
-        3 -> pokemonList.sortedBy { it.nome }
-        4 -> pokemonList.sortedByDescending { it.nome }
-        else -> pokemonList
+    pokemonListCard = when (sortListIndex) {
+        1 -> pokemonListCard.sortedBy { it.numero }
+        2 -> pokemonListCard.sortedByDescending { it.numero }
+        3 -> pokemonListCard.sortedBy { it.nome }
+        4 -> pokemonListCard.sortedByDescending { it.nome }
+        else -> pokemonListCard
     }
 
-    val initialPage = pokemonList.indexOfFirst { it.numero == pokemonNumber }
-    val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { pokemonList.size })
+    val initialPage = pokemonListCard.indexOfFirst { it.numero == pokemonNumber }
+    val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { pokemonListCard.size })
 
     PokedexTheme {
         Surface {
@@ -65,7 +65,7 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
                         .verticalScroll(rememberScrollState())
                 ) {
                     Column {
-                        CardPokemon(pokemonList[page])
+                        CardPokemon(pokemonListCard[page])
                     }
                 }
             }

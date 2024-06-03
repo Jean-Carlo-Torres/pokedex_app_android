@@ -22,6 +22,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -43,7 +45,22 @@ fun ListaCardPokemon(
     viewModel: UserViewModel?,
     onClick: () -> Unit = {}
 ) {
-    val isFavorite = viewModel?.favoritePokemons?.contains(pokemon) == true
+
+    val user = viewModel?.user
+    val isFavorite = remember { mutableStateOf(user?.pokemonsFavoritos?.contains(pokemon.nome) == true) }
+
+    val iconColorFavorite = if (isFavorite.value) {
+        Icons.Default.Favorite
+    } else {
+        Icons.Default.FavoriteBorder
+    }
+
+    val tintColorFavorite = if (isFavorite.value) {
+        Color.Red
+    } else {
+        Color.White
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -121,15 +138,13 @@ fun ListaCardPokemon(
                     .border(1.dp, Color.White, CircleShape)
                     .clickable {
                         viewModel?.toggleFavorite(pokemon)
-                        viewModel?.user?.let { usuario ->
-                            viewModel.addPokemon(pokemon.nome)
-                        }
+                        isFavorite.value = !isFavorite.value
                     }
             ) {
                 Icon(
-                    imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    imageVector = iconColorFavorite,
                     contentDescription = null,
-                    tint = if (isFavorite) Color.Red else Color.White,
+                    tint = tintColorFavorite,
                     modifier = Modifier
                         .width(24.dp)
                         .padding(4.5.dp)

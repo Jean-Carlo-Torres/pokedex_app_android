@@ -20,14 +20,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     var user: Usuario? by mutableStateOf(null)
 
-    var favoritePokemons = mutableStateListOf<PokemonListaItem>()
-        private set
+//    var favoritePokemons = mutableStateListOf<PokemonListaItem>()
+//        private set
 
     fun toggleFavorite(pokemon: PokemonListaItem) {
-        if (favoritePokemons.contains(pokemon)) {
-            favoritePokemons.remove(pokemon)
-        } else {
-            favoritePokemons.add(pokemon)
+        user?.let { usuario ->
+            if (usuario.pokemonsFavoritos.contains(pokemon.nome)) {
+                removePokemon(pokemon.nome)
+            } else {
+                addPokemon(pokemon.nome)
+            }
         }
     }
 
@@ -51,6 +53,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             if (!usuario.pokemonsFavoritos.contains(namePokemon)) {
                 val updatedFavorites = usuario.pokemonsFavoritos.toMutableList()
                 updatedFavorites.add(namePokemon)
+                usuario.pokemonsFavoritos = updatedFavorites
+                updateUser(usuario)
+            }
+        }
+    }
+
+    fun removePokemon(namePokemon: String) = viewModelScope.launch {
+        user?.let { usuario ->
+            if (usuario.pokemonsFavoritos.contains(namePokemon)) {
+                val updatedFavorites = usuario.pokemonsFavoritos.toMutableList()
+                updatedFavorites.remove(namePokemon)
                 usuario.pokemonsFavoritos = updatedFavorites
                 updateUser(usuario)
             }

@@ -52,7 +52,10 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "formularioCadastroScreen"
                     ) {
-                        FormularioCadastroScreen(navController = navController, userViewModel = userViewModel)
+                        FormularioCadastroScreen(
+                            navController = navController,
+                            userViewModel = userViewModel
+                        )
                     }
 
                     composable(
@@ -73,7 +76,7 @@ class MainActivity : ComponentActivity() {
                         FormularioDeLoginScreen(navController, userViewModel)
                     }
 
-                    composable (
+                    composable(
                         route = "loginSucessoScreen"
                     ) {
                         LoginSucessoScreen(navController)
@@ -82,7 +85,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "listaPokemonScreen",
                     ) {
-                        ListaPokemonScreen(navController, pokemonViewModel,  userViewModel)
+                        ListaPokemonScreen(navController, pokemonViewModel, userViewModel)
                     }
 
                     composable(
@@ -101,7 +104,7 @@ class MainActivity : ComponentActivity() {
                         route = "pokemonFavoritoScreen"
                     ) {
                         PokemonFavoritoScreen(
-                            viewModel = userViewModel,
+                            userViewModel = userViewModel,
                             navController = navController
                         )
                     }
@@ -116,9 +119,12 @@ class MainActivity : ComponentActivity() {
 
                     composable(
                         route = "cardPokemonScreen/{pokemonNumber}",
-                        arguments = listOf(navArgument("pokemonNumber") { type = NavType.StringType })
+                        arguments = listOf(navArgument("pokemonNumber") {
+                            type = NavType.StringType
+                        })
                     ) { backStackEntry ->
-                        val pokemonNumber = backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
+                        val pokemonNumber =
+                            backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
                         CardPokemonScreen(navController, pokemonNumber, pokemonViewModel)
                     }
 
