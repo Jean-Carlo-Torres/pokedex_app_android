@@ -14,6 +14,7 @@ import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.PokemonType
 import br.com.pokedex.ui.components.SortListItems
 import br.com.pokedex.ui.screens.CadastroRealizadoScreen
+import br.com.pokedex.ui.screens.CardPokemonFavoritoScreen
 import br.com.pokedex.ui.screens.CardPokemonScreen
 import br.com.pokedex.ui.screens.FormaDeCadastroScreen
 import br.com.pokedex.ui.screens.FormaDeLoginScreen
@@ -128,6 +129,18 @@ class MainActivity : ComponentActivity() {
                         CardPokemonScreen(navController, pokemonNumber, pokemonViewModel)
                     }
 
+                    composable(
+                        route = "cardPokemonFavoritoScreen/{pokemonNumber}",
+                        arguments = listOf(navArgument("pokemonNumber") {
+                            type = NavType.StringType
+                        })
+                    ) { backStackEntry ->
+                        val pokemonNumber =
+                            backStackEntry.arguments?.getString("pokemonNumber")
+                        if (pokemonNumber != null) {
+                            CardPokemonFavoritoScreen(navController, pokemonNumber, userViewModel)
+                        }
+                    }
                 }
             }
         }

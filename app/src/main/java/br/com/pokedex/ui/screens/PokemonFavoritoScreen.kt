@@ -95,7 +95,7 @@ fun PokemonFavoritoScreen(navController: NavController?, userViewModel: UserView
                     favoritePokemons?.contains(pokemon.nome) == true
                 }) { pokemon ->
                     ListaCardPokemon(pokemon = pokemon, viewModel = userViewModel, onClick = {
-                        navController?.navigate("cardPokemonScreen/${pokemon.numero}")
+                        navController?.navigate("cardPokemonFavoritoScreen/${pokemon.numero}")
                     })
                 }
             }
