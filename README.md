@@ -9,6 +9,8 @@ App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém info
 ### Recursos Principais
 * ``Lista de Pokémon``: exibe uma lista de Pokémon com suas imagens e nomes.
 * ``Detalhes do Pokémon``: ao selecionar um Pokémon na lista, exibe informações detalhadas sobre ele, como tipo, altura, peso e habilidades.
+* ``Login de usuário``: permite o usuário criar sua conta com seus dados pessoais, permitindo criar uma lista de pokémons favoritos.
+* ``listagem de Pokémons favoritos``: Após a criação da conta, permite que o usuário selecione seus pokémons favoritos, todos os pokémons selecionados serão filtrados para uma lista propria de cada usuário.
 
 <hr>
 
@@ -24,10 +26,15 @@ App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém info
 
 <img src = "github/pokemons_screens.gif">
 
+* ### Listando os Pokémons favoritos
+
+<img src = "github/listando_os_pokemons_favoritos.gif">
+
 ## ✔️ Técnicas e tecnologias utilizadas
 * Android
 * Kotlin
 * Jetpack Compose
+* Room Database
 
 ## 🤝 Contribuições
 
