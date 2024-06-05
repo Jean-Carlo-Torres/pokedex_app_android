@@ -20,9 +20,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     var user: Usuario? by mutableStateOf(null)
 
-//    var favoritePokemons = mutableStateListOf<PokemonListaItem>()
-//        private set
-
     fun toggleFavorite(pokemon: PokemonListaItem) {
         user?.let { usuario ->
             if (usuario.pokemonsFavoritos.contains(pokemon.nome)) {

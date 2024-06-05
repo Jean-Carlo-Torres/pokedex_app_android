@@ -11,30 +11,58 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import br.com.pokedex.model.UserViewModel
+import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.FooterBar
 
 @Composable
-fun PerfilUsuarioScreen(navController: NavController?) {
+fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewModel?) {
 
+    val user = userViewModel?.user
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         TituloPrincipal("Informações da conta")
-        TextoESubtexto(
-            texto = "Nome",
-            subtexto = ""
-        )
-        TextoESubtexto(
-            texto = "Email",
-            subtexto = ""
-        )
-        TextoESubtexto(
-            texto = "Senha",
-            subtexto = ""
-        )
+        var nome: String?
+        var email: String?
+        var senha: String?
+
+        if (user != null) {
+            nome = user?.nome
+            email = user?.email
+            senha = user?.senha
+        } else {
+            nome = "Não informado"
+            email = "Não informado"
+            senha = "Não informado"
+        }
+
+        if (nome != null) {
+            TextoESubtexto(
+                texto = "Nome",
+                subtexto = nome
+            )
+        }
+        if (email != null) {
+            TextoESubtexto(
+                texto = "Email",
+                subtexto = email
+            )
+        }
+        if (senha != null) {
+            TextoESubtexto(
+                texto = "Senha",
+                subtexto = if (senha.isNotBlank()) {
+                    "•".repeat(senha.length)
+                } else {
+                    "Senha"
+                }
+            )
+        }
 
         TituloPrincipal("Idioma")
         TextoESubtexto(
@@ -73,7 +101,7 @@ fun PerfilUsuarioScreen(navController: NavController?) {
             modifier = Modifier.padding(top = 16.dp)
         )
         Text(
-            text = "Você entrou como ",
+            text = "Você entrou como $nome",
         )
     }
     if (navController != null) {
@@ -113,5 +141,5 @@ private fun TextoESubtexto(texto: String, subtexto: String) {
 @Preview(showBackground = true)
 @Composable
 private fun PerfilUsuarioScreenPreview() {
-
+    PerfilUsuarioScreen(navController = null, userViewModel = null)
 }

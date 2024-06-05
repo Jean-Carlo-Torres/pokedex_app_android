@@ -114,7 +114,8 @@ class MainActivity : ComponentActivity() {
                         route = "perfilUsuarioScreen"
                     ) {
                         PerfilUsuarioScreen(
-                            navController = navController
+                            navController = navController,
+                            userViewModel = userViewModel
                         )
                     }
 
