@@ -20,8 +20,8 @@ class UserRepository(private val userDao: UsuarioDao) {
         return userDao.getUserByEmailAndPassword(email, senha)
     }
 
-    fun getUser():  Usuario? {
-        return userDao.getUser()
+    suspend fun getUser(userId: Long): Usuario? {
+        return userDao.getUser(userId)
     }
 }
 

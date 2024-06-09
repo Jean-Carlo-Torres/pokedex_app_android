@@ -1,26 +1,36 @@
 package br.com.pokedex.ui.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import br.com.pokedex.model.UserViewModel
-import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.FooterBar
 
 @Composable
 fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewModel?) {
 
     val user = userViewModel?.user
+    LaunchedEffect(userViewModel?.user?.id) {
+        user?.id?.let { userViewModel?.reloadUser(it) }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -42,24 +52,25 @@ fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewMo
         }
 
         if (nome != null) {
-            TextoESubtexto(
-                texto = "Nome",
-                subtexto = nome
-            )
+            ExibeDadosDoUsuario("Nome", nome, onClick = {
+                navController?.navigate("trocarNomePerfil")
+            })
         }
         if (email != null) {
-            TextoESubtexto(
-                texto = "Email",
-                subtexto = email
-            )
+            ExibeDadosDoUsuario("Email", email, onClick = {
+                navController?.navigate("trocarEmailPerfil")
+            })
         }
         if (senha != null) {
-            TextoESubtexto(
-                texto = "Senha",
-                subtexto = if (senha.isNotBlank()) {
+            ExibeDadosDoUsuario(
+                "Senha",
+                if (senha.isNotBlank()) {
                     "•".repeat(senha.length)
                 } else {
                     "Senha"
+                },
+                onClick = {
+                    navController?.navigate("trocarSenhaPerfil")
                 }
             )
         }
@@ -106,6 +117,25 @@ fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewMo
     }
     if (navController != null) {
         FooterBar(navController = navController)
+    }
+}
+
+@Composable
+fun ExibeDadosDoUsuario(texto: String, subtexto: String, onClick: () -> Unit) {
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        TextoESubtexto(
+            texto = texto,
+            subtexto = subtexto
+        )
+        IconButton(onClick = onClick) {
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = null
+            )
+        }
     }
 }
 

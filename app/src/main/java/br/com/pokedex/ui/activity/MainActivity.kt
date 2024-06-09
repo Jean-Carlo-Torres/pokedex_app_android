@@ -25,6 +25,9 @@ import br.com.pokedex.ui.screens.LoginSucessoScreen
 import br.com.pokedex.ui.screens.OnboardingScreen
 import br.com.pokedex.ui.screens.PerfilUsuarioScreen
 import br.com.pokedex.ui.screens.PokemonFavoritoScreen
+import br.com.pokedex.ui.screens.TrocarEmailPerfil
+import br.com.pokedex.ui.screens.TrocarNomePerfil
+import br.com.pokedex.ui.screens.TrocarSenhaPerfil
 import br.com.pokedex.ui.theme.PokedexTheme
 
 class MainActivity : ComponentActivity() {
@@ -114,6 +117,33 @@ class MainActivity : ComponentActivity() {
                         route = "perfilUsuarioScreen"
                     ) {
                         PerfilUsuarioScreen(
+                            navController = navController,
+                            userViewModel = userViewModel
+                        )
+                    }
+
+                    composable(
+                        route = "trocarNomePerfil"
+                    ) {
+                        TrocarNomePerfil(
+                            navController = navController,
+                            userViewModel = userViewModel
+                        )
+                    }
+
+                    composable(
+                        route = "trocarEmailPerfil"
+                    ) {
+                        TrocarEmailPerfil(
+                            navController = navController,
+                            userViewModel = userViewModel
+                        )
+                    }
+
+                    composable(
+                        route = "trocarSenhaPerfil"
+                    ) {
+                        TrocarSenhaPerfil(
                             navController = navController,
                             userViewModel = userViewModel
                         )

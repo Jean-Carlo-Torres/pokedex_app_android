@@ -66,4 +66,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun reloadUser(userId: Long) {
+        viewModelScope.launch {
+            user = userRepository.getUser(userId)
+        }
+    }
 }

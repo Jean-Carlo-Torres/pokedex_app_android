@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserViewModel?) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
     var showEmailError by remember { mutableStateOf(false) }
     var showPasswordError by remember { mutableStateOf(false) }
     var loginError by remember { mutableStateOf(false) }
@@ -127,8 +128,8 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
             label = "Senha",
             placeholder = "Senha",
             isPassword = true,
-            showPassword = true,
-            onShowPasswordChange = { showPasswordError = !showPasswordError },
+            showPassword = showPassword,
+            onShowPasswordChange = { showPassword = !showPassword },
             isError = showPasswordError
         )
         if (showPasswordError) {

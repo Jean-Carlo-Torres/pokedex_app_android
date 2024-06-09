@@ -27,6 +27,6 @@ interface UsuarioDao {
         update(usuario)
     }
 
-    @Query("SELECT * FROM Usuario")
-    abstract fun getUser(): Usuario
+    @Query("SELECT * FROM Usuario WHERE id = :userId")
+     fun getUser(userId: Long): Usuario?
 }
