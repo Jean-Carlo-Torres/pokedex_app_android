@@ -59,6 +59,7 @@ fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserV
                     val validatedUser = userViewModel.validateUser(email, password)
                     if (validatedUser != null) {
                         userViewModel.user = validatedUser
+                        userViewModel.userIsLogged(true)
                         navController.navigate("cadastroRealizadoScreen")
                     } else {
                         Toast.makeText(

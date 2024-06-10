@@ -168,6 +168,7 @@ fun FormularioDeLoginScreen(navController: NavController?, userViewModel: UserVi
                     coroutineScope.launch {
                         val user = userViewModel?.validateUser(email, password)
                         if (user != null) {
+                            userViewModel.userIsLogged(true)
                             navController?.navigate("loginSucessoScreen")
                         } else {
                             loginError = true

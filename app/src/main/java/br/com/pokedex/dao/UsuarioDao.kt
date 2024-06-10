@@ -29,4 +29,7 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM Usuario WHERE id = :userId")
      fun getUser(userId: Long): Usuario?
+
+    @Query("SELECT * FROM usuario WHERE isLogged = 1 LIMIT 1")
+    suspend fun getLoggedUser(): Usuario?
 }

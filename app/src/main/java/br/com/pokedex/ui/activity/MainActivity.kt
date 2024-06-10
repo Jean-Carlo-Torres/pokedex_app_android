@@ -3,6 +3,7 @@ package br.com.pokedex.ui.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -39,135 +40,86 @@ class MainActivity : ComponentActivity() {
                 val pokemonViewModel: PokemonViewModel = viewModel()
                 val userViewModel: UserViewModel = viewModel()
 
-                NavHost(navController = navController, startDestination = "onboardingScreen") {
+                val startDestination = if (userViewModel.user?.isLogged == true) {
+                    "listaPokemonScreen"
+                } else {
+                    "onboardingScreen"
+                }
 
-                    composable(
-                        route = "onboardingScreen"
-                    ) {
+                NavHost(navController = navController, startDestination = startDestination) {
+                    composable(route = "onboardingScreen") {
                         OnboardingScreen(navController = navController)
                     }
 
-                    composable(
-                        route = "formaDeCadastroScreen"
-                    ) {
+                    composable(route = "formaDeCadastroScreen") {
                         FormaDeCadastroScreen(navController)
                     }
 
-                    composable(
-                        route = "formularioCadastroScreen"
-                    ) {
-                        FormularioCadastroScreen(
-                            navController = navController,
-                            userViewModel = userViewModel
-                        )
+                    composable(route = "formularioCadastroScreen") {
+                        FormularioCadastroScreen(navController, userViewModel)
                     }
 
-                    composable(
-                        route = "cadastroRealizadoScreen"
-                    ) {
+                    composable(route = "cadastroRealizadoScreen") {
                         CadastroRealizadoScreen(navController)
                     }
 
-                    composable(
-                        route = "formaDeLoginScreen"
-                    ) {
+                    composable(route = "formaDeLoginScreen") {
                         FormaDeLoginScreen(navController)
                     }
 
-                    composable(
-                        route = "formularioDeLoginScreen"
-                    ) {
+                    composable(route = "formularioDeLoginScreen") {
                         FormularioDeLoginScreen(navController, userViewModel)
                     }
 
-                    composable(
-                        route = "loginSucessoScreen"
-                    ) {
+                    composable(route = "loginSucessoScreen") {
                         LoginSucessoScreen(navController)
                     }
 
-                    composable(
-                        route = "listaPokemonScreen",
-                    ) {
+                    composable(route = "listaPokemonScreen") {
                         ListaPokemonScreen(navController, pokemonViewModel, userViewModel)
                     }
 
-                    composable(
-                        route = "pokemonType"
-                    ) {
+                    composable(route = "pokemonType") {
                         PokemonType(navController, pokemonViewModel)
                     }
 
-                    composable(
-                        route = "sortListItems"
-                    ) {
+                    composable(route = "sortListItems") {
                         SortListItems(navController = navController, viewModel = pokemonViewModel)
                     }
 
-                    composable(
-                        route = "pokemonFavoritoScreen"
-                    ) {
-                        PokemonFavoritoScreen(
-                            userViewModel = userViewModel,
-                            navController = navController
-                        )
+                    composable(route = "pokemonFavoritoScreen") {
+                        PokemonFavoritoScreen(userViewModel = userViewModel, navController = navController)
                     }
 
-                    composable(
-                        route = "perfilUsuarioScreen"
-                    ) {
-                        PerfilUsuarioScreen(
-                            navController = navController,
-                            userViewModel = userViewModel
-                        )
+                    composable(route = "perfilUsuarioScreen") {
+                        PerfilUsuarioScreen(navController = navController, userViewModel = userViewModel)
                     }
 
-                    composable(
-                        route = "trocarNomePerfil"
-                    ) {
-                        TrocarNomePerfil(
-                            navController = navController,
-                            userViewModel = userViewModel
-                        )
+                    composable(route = "trocarNomePerfil") {
+                        TrocarNomePerfil(navController = navController, userViewModel = userViewModel)
                     }
 
-                    composable(
-                        route = "trocarEmailPerfil"
-                    ) {
-                        TrocarEmailPerfil(
-                            navController = navController,
-                            userViewModel = userViewModel
-                        )
+                    composable(route = "trocarEmailPerfil") {
+                        TrocarEmailPerfil(navController = navController, userViewModel = userViewModel)
                     }
 
-                    composable(
-                        route = "trocarSenhaPerfil"
-                    ) {
-                        TrocarSenhaPerfil(
-                            navController = navController,
-                            userViewModel = userViewModel
-                        )
+                    composable(route = "trocarSenhaPerfil") {
+                        TrocarSenhaPerfil(navController = navController, userViewModel = userViewModel)
                     }
 
                     composable(
                         route = "cardPokemonScreen/{pokemonNumber}",
-                        arguments = listOf(navArgument("pokemonNumber") {
-                            type = NavType.StringType
-                        })
+                        arguments = listOf(navArgument("pokemonNumber") { type = NavType.StringType })
                     ) { backStackEntry ->
-                        val pokemonNumber =
-                            backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
+                        val pokemonNumber = backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
                         CardPokemonScreen(navController, pokemonNumber, pokemonViewModel)
                     }
 
                     composable(
                         route = "cardPokemonFavoritoScreen/{pokemonNumber}",
-                        arguments = listOf(navArgument("pokemonNumber") {
-                            type = NavType.StringType
-                        })
+                        arguments = listOf(navArgument("pokemonNumber") { type = NavType.StringType })
                     ) { backStackEntry ->
-                        val pokemonNumber =
-                            backStackEntry.arguments?.getString("pokemonNumber")
+                        val pokemonNumber = backStackEntry.arguments?.getString("pokemonNumber")
                         if (pokemonNumber != null) {
                             CardPokemonFavoritoScreen(navController, pokemonNumber, userViewModel)
                         }
@@ -177,4 +129,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

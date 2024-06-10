@@ -16,9 +16,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val userDao = AppDatabase.getDatabase(application).usuarioDao()
         userRepository = UserRepository(userDao)
+        loadLoggedUser()
     }
 
     var user: Usuario? by mutableStateOf(null)
+
+    private fun loadLoggedUser() = viewModelScope.launch {
+        val loggedUser = userRepository.getLoggedUser()
+        user = loggedUser
+    }
 
     fun toggleFavorite(pokemon: PokemonListaItem) {
         user?.let { usuario ->
@@ -70,6 +76,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun reloadUser(userId: Long) {
         viewModelScope.launch {
             user = userRepository.getUser(userId)
+        }
+    }
+
+    fun userIsLogged(ativo: Boolean) {
+        user?.isLogged = ativo
+        viewModelScope.launch {
+            user?.let { updateUser(it) }
         }
     }
 }

@@ -3,11 +3,17 @@ package br.com.pokedex.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -34,7 +40,7 @@ fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewMo
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp, bottom = 100.dp)
     ) {
         TituloPrincipal("Informações da conta")
         var nome: String?
@@ -102,18 +108,28 @@ fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewMo
             texto = "Sobre",
             subtexto = "Saiba mais sobre o app."
         )
-
-        TituloPrincipal(texto = "Outros")
-        Text(
-            text = "Sair",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color.Red,
-            modifier = Modifier.padding(top = 16.dp)
-        )
-        Text(
-            text = "Você entrou como $nome",
-        )
+        Spacer(modifier = Modifier.weight(1f))
+        Button(
+            onClick = {
+                userViewModel?.userIsLogged(false)
+                navController?.navigate("onboardingScreen")
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(Color.Red)
+        ) {
+            Icon(
+                imageVector = Icons.Default.ExitToApp,
+                contentDescription = null
+            )
+            Text(
+                text = "Sair da conta",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
     }
     if (navController != null) {
         FooterBar(navController = navController)
