@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +36,7 @@ import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -43,30 +45,46 @@ fun FormularioCadastroScreen(navController: NavController?, userViewModel: UserV
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var name by rememberSaveable { mutableStateOf("") }
+    var isLoading by rememberSaveable { mutableStateOf(false) }
+    var showCadastroRealizado by rememberSaveable { mutableStateOf(false) }
 
     val coroutineScope = rememberCoroutineScope()
 
     val onNext: () -> Unit = { currentPage++ }
 
-    when (currentPage) {
-        0 -> navController?.let { CadastroEmailTemplate(it, email, { email = it }, onNext) }
-        1 -> CadastroSenhaTemplate(navController, password, { password = it }, onNext)
-        2 -> navController?.let {
-            CadastroNomeTemplate(it, name, { name = it }) {
-                coroutineScope.launch {
-                    val newUser = Usuario(nome = name, email = email, senha = password)
-                    userViewModel.insertUser(newUser)
-                    val validatedUser = userViewModel.validateUser(email, password)
-                    if (validatedUser != null) {
-                        userViewModel.user = validatedUser
-                        userViewModel.userIsLogged(true)
-                        navController.navigate("cadastroRealizadoScreen")
-                    } else {
-                        Toast.makeText(
-                            navController.context,
-                            "Não foi possível realizar o cadastro!",
-                            Toast.LENGTH_SHORT
-                        )
+    if (showCadastroRealizado) {
+        LaunchedEffect(Unit) {
+            delay(3000)
+            navController?.navigate("cadastroRealizadoScreen") {
+                popUpTo("formularioCadastroScreen") { inclusive = true }
+            }
+        }
+    }
+
+    if (isLoading) {
+        LoadingScreen()
+    } else {
+        when (currentPage) {
+            0 -> navController?.let { CadastroEmailTemplate(it, email, { email = it }, onNext) }
+            1 -> CadastroSenhaTemplate(navController, password, { password = it }, onNext)
+            2 -> navController?.let {
+                CadastroNomeTemplate(it, name, { name = it }) {
+                    coroutineScope.launch {
+                        val newUser = Usuario(nome = name, email = email, senha = password)
+                        userViewModel.insertUser(newUser)
+                        val validatedUser = userViewModel.validateUser(email, password)
+                        if (validatedUser != null) {
+                            userViewModel.user = validatedUser
+                            userViewModel.userIsLogged(true)
+                            isLoading = true
+                            showCadastroRealizado = true
+                        } else {
+                            Toast.makeText(
+                                navController.context,
+                                "Não foi possível realizar o cadastro!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
