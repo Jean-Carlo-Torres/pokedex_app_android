@@ -12,6 +12,8 @@ val Pink40 = Color(0xFF7D5260)
 
 val Gray800 = Color(0xFF333333)
 
+val Blue800 = Color(0xFF003399)
+
 val ElementBugColor = Color(0xFF91C12F)
 val ElementDragonColor = Color(0xFF0B6DC3)
 val ElementElectricColor= Color(0xFFF4D23C)

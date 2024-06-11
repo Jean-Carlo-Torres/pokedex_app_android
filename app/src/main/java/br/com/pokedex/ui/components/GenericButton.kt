@@ -1,6 +1,8 @@
 package br.com.pokedex.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.ui.theme.Blue800
 
 @Composable
 fun GenericButton(text: String, onClick: () -> Unit) {
@@ -25,10 +28,12 @@ fun GenericButton(text: String, onClick: () -> Unit) {
         onClick,
         modifier = Modifier
             .fillMaxWidth()
-            .height(58.dp)
+            .height(58.dp),
+        colors = ButtonDefaults.buttonColors(Blue800)
     ) {
         Text(
             text = text,
+            color = Color.White,
             fontSize = 18.sp
         )
     }
@@ -36,8 +41,15 @@ fun GenericButton(text: String, onClick: () -> Unit) {
 
 @Composable
 fun GenericNoFillButton(imagem: Painter, text: String) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+                  Toast.makeText(
+                      context,
+                      "Funcionalidade em desenvolvimento",
+                      Toast.LENGTH_SHORT
+                  ).show()
+        },
         modifier = Modifier
             .fillMaxWidth()
             .height(58.dp),
@@ -47,7 +59,11 @@ fun GenericNoFillButton(imagem: Painter, text: String) {
         ),
         border = BorderStroke(
             1.dp,
-            Color.Black
+            if (isSystemInDarkTheme()) {
+                Color.White
+            } else {
+                Color.Black
+            }
         ),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
@@ -61,7 +77,12 @@ fun GenericNoFillButton(imagem: Painter, text: String) {
         )
         Text(
             text = text,
-            fontSize = 18.sp
+            fontSize = 18.sp,
+            color = if (isSystemInDarkTheme()) {
+                Color.White
+            } else {
+                Color.Black
+            }
         )
     }
 }

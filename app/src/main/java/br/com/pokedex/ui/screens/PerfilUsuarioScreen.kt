@@ -16,6 +16,7 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.FooterBar
+import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
 fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewModel?) {
@@ -37,102 +39,113 @@ fun PerfilUsuarioScreen(navController: NavController?, userViewModel: UserViewMo
         user?.id?.let { userViewModel?.reloadUser(it) }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp, bottom = 100.dp)
-    ) {
-        TituloPrincipal("Informações da conta")
-        var nome: String?
-        var email: String?
-        var senha: String?
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 16.dp,
+                        bottom = 100.dp
+                    )
+            ) {
+                TituloPrincipal("Informações da conta")
+                var nome: String?
+                var email: String?
+                var senha: String?
 
-        if (user != null) {
-            nome = user?.nome
-            email = user?.email
-            senha = user?.senha
-        } else {
-            nome = "Não informado"
-            email = "Não informado"
-            senha = "Não informado"
-        }
-
-        if (nome != null) {
-            ExibeDadosDoUsuario("Nome", nome, onClick = {
-                navController?.navigate("trocarNomePerfil")
-            })
-        }
-        if (email != null) {
-            ExibeDadosDoUsuario("Email", email, onClick = {
-                navController?.navigate("trocarEmailPerfil")
-            })
-        }
-        if (senha != null) {
-            ExibeDadosDoUsuario(
-                "Senha",
-                if (senha.isNotBlank()) {
-                    "•".repeat(senha.length)
+                if (user != null) {
+                    nome = user?.nome
+                    email = user?.email
+                    senha = user?.senha
                 } else {
-                    "Senha"
-                },
-                onClick = {
-                    navController?.navigate("trocarSenhaPerfil")
+                    nome = "Não informado"
+                    email = "Não informado"
+                    senha = "Não informado"
                 }
-            )
-        }
 
-        TituloPrincipal("Idioma")
-        TextoESubtexto(
-            texto = "Idioma da interface",
-            subtexto = "Português (PT-BR)"
-        )
-        TextoESubtexto(
-            texto = "Idioma de informações em jogo",
-            subtexto = "English (US)"
-        )
+                if (nome != null) {
+                    ExibeDadosDoUsuario("Nome", nome, onClick = {
+                        navController?.navigate("trocarNomePerfil")
+                    })
+                }
+                if (email != null) {
+                    ExibeDadosDoUsuario("Email", email, onClick = {
+                        navController?.navigate("trocarEmailPerfil")
+                    })
+                }
+                if (senha != null) {
+                    ExibeDadosDoUsuario(
+                        "Senha",
+                        if (senha.isNotBlank()) {
+                            "•".repeat(senha.length)
+                        } else {
+                            "Senha"
+                        },
+                        onClick = {
+                            navController?.navigate("trocarSenhaPerfil")
+                        }
+                    )
+                }
 
-        TituloPrincipal(texto = "Geral")
-        TextoESubtexto(
-            texto = "Versão",
-            subtexto = "0.0.1"
-        )
-        TextoESubtexto(
-            texto = "Termos e condições",
-            subtexto = "Tudo o que você precisa saber."
-        )
-        TextoESubtexto(
-            texto = "Central de ajuda",
-            subtexto = "Precisa de ajuda? Fale conosco."
-        )
-        TextoESubtexto(
-            texto = "Sobre",
-            subtexto = "Saiba mais sobre o app."
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        Button(
-            onClick = {
-                userViewModel?.userIsLogged(false)
-                navController?.navigate("onboardingScreen")
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(Color.Red)
-        ) {
-            Icon(
-                imageVector = Icons.Default.ExitToApp,
-                contentDescription = null
-            )
-            Text(
-                text = "Sair da conta",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 8.dp)
-            )
+                TituloPrincipal("Idioma")
+                TextoESubtexto(
+                    texto = "Idioma da interface",
+                    subtexto = "Português (PT-BR)"
+                )
+                TextoESubtexto(
+                    texto = "Idioma de informações em jogo",
+                    subtexto = "English (US)"
+                )
+
+                TituloPrincipal(texto = "Geral")
+                TextoESubtexto(
+                    texto = "Versão",
+                    subtexto = "0.0.1"
+                )
+                TextoESubtexto(
+                    texto = "Termos e condições",
+                    subtexto = "Tudo o que você precisa saber."
+                )
+                TextoESubtexto(
+                    texto = "Central de ajuda",
+                    subtexto = "Precisa de ajuda? Fale conosco."
+                )
+                TextoESubtexto(
+                    texto = "Sobre",
+                    subtexto = "Saiba mais sobre o app."
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Button(
+                    onClick = {
+                        userViewModel?.userIsLogged(false)
+                        navController?.navigate("onboardingScreen")
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(Color.Red)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ExitToApp,
+                        tint = Color.White,
+                        contentDescription = null
+                    )
+                    Text(
+                        text = "Sair da conta",
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+            }
+            if (navController != null) {
+                FooterBar(navController = navController)
+            }
         }
-    }
-    if (navController != null) {
-        FooterBar(navController = navController)
     }
 }
 

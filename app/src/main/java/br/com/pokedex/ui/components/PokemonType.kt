@@ -11,6 +11,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -41,102 +42,107 @@ import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
 import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
 import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 import br.com.pokedex.ui.activity.ui.theme.Gray800
+import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
 fun PokemonType(navController: NavController?, viewModel: PokemonViewModel?) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp)
-            .verticalScroll(rememberScrollState())
-    ) {
-        PageHeader(
-            title = "Selecione o tipo",
-            onClick = {
-                navController?.popBackStack()
-            }
-        )
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            ButtonTypeDefault(text = "Todos os tipos", bgColor = Gray800, onClick = {
-                viewModel?.selectedElementType = null
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Água", bgColor = ElementWaterColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.WATER
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Dragão", bgColor = ElementDragonColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.DRAGON
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Elétrico", bgColor = ElementElectricColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.ELECTRIC
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Fada", bgColor = ElementFairyColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.FAIRY
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Fantasma", bgColor = ElementGhostColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.GHOST
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Fogo", bgColor = ElementFireColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.FIRE
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Gelo", bgColor = ElementIceColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.ICE
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Grama", bgColor = ElementGrassColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.GRASS
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Inseto", bgColor = ElementBugColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.BUG
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Lutador", bgColor = ElementFightColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.FIGHTING
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Normal", bgColor = ElementNormalColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.NORMAL
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Noturno", bgColor = ElementDarkColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.DARK
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Metal", bgColor = ElementSteelColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.STEEL
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Pedra", bgColor = ElementRockColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.ROCK
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Psíquico", bgColor = ElementPsychicColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.PSYCHIC
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Terrestre", bgColor = ElementGroundColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.GROUND
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Venenoso", bgColor = ElementPoisonColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.POISON
-                navController?.popBackStack()
-            })
-            ButtonTypeDefault(text = "Voador", bgColor = ElementFlyingColor, onClick = {
-                viewModel?.selectedElementType = ElementTag.FLYING
-                navController?.popBackStack()
-            })
-        }
-    }
+   PokedexTheme {
+       Surface {
+           Column(
+               modifier = Modifier
+                   .fillMaxSize()
+                   .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+                   .verticalScroll(rememberScrollState())
+           ) {
+               PageHeader(
+                   title = "Selecione o tipo",
+                   onClick = {
+                       navController?.popBackStack()
+                   }
+               )
+               Column(
+                   verticalArrangement = Arrangement.spacedBy(8.dp)
+               ) {
+                   ButtonTypeDefault(text = "Todos os tipos", bgColor = Gray800, onClick = {
+                       viewModel?.selectedElementType = null
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Água", bgColor = ElementWaterColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.WATER
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Dragão", bgColor = ElementDragonColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.DRAGON
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Elétrico", bgColor = ElementElectricColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.ELECTRIC
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Fada", bgColor = ElementFairyColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.FAIRY
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Fantasma", bgColor = ElementGhostColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.GHOST
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Fogo", bgColor = ElementFireColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.FIRE
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Gelo", bgColor = ElementIceColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.ICE
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Grama", bgColor = ElementGrassColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.GRASS
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Inseto", bgColor = ElementBugColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.BUG
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Lutador", bgColor = ElementFightColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.FIGHTING
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Normal", bgColor = ElementNormalColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.NORMAL
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Noturno", bgColor = ElementDarkColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.DARK
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Metal", bgColor = ElementSteelColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.STEEL
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Pedra", bgColor = ElementRockColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.ROCK
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Psíquico", bgColor = ElementPsychicColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.PSYCHIC
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Terrestre", bgColor = ElementGroundColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.GROUND
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Venenoso", bgColor = ElementPoisonColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.POISON
+                       navController?.popBackStack()
+                   })
+                   ButtonTypeDefault(text = "Voador", bgColor = ElementFlyingColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.FLYING
+                       navController?.popBackStack()
+                   })
+               }
+           }
+       }
+   }
     Spacer(modifier = Modifier.height(16.dp))
 }
 

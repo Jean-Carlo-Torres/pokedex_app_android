@@ -2,6 +2,7 @@ package br.com.pokedex.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.ui.theme.Gray800
 
 enum class FooterButton(val iconOn: Int, val iconOff: Int, val title: String) {
     POKEDEX(R.drawable.ic_pokedex_on, R.drawable.ic_pokedex_off, "Pokédex"),
@@ -59,7 +61,13 @@ fun FooterBar(navController: NavController?) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(72.dp)
-                    .background(color = Color.White),
+                    .background(
+                        color = if (isSystemInDarkTheme()) {
+                            Gray800
+                        } else {
+                            Color.White
+                        }
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Row(

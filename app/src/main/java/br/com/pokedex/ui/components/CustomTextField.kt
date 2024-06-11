@@ -1,5 +1,6 @@
 package br.com.pokedex.ui.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,7 +33,19 @@ fun CustomTextField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, color = if (isError) Color.Red else Color.Black) },
+        label = {
+            Text(
+                label, color = if (isError) {
+                    Color.Red
+                } else {
+                    if (isSystemInDarkTheme()) {
+                        Color.White
+                    } else {
+                        Color.Black
+                    }
+                }
+            )
+        },
         placeholder = { Text(placeholder) },
         modifier = Modifier
             .fillMaxWidth(),

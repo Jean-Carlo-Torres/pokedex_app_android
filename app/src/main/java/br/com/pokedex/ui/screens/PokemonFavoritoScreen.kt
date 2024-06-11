@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -42,6 +43,7 @@ import br.com.pokedex.ui.components.cards.PikachuListData
 import br.com.pokedex.ui.components.cards.SquirtleListData
 import br.com.pokedex.ui.components.cards.VenusaurListData
 import br.com.pokedex.ui.components.cards.WartortleListData
+import br.com.pokedex.ui.theme.PokedexTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -68,41 +70,45 @@ fun PokemonFavoritoScreen(navController: NavController?, userViewModel: UserView
         MewListData()
     )
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = "Favoritos",
-            fontSize = 18.sp,
-            fontWeight = FontWeight(500),
-            modifier = Modifier.padding(16.dp)
-        )
+    PokedexTheme {
+        Surface {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Text(
+                    text = "Favoritos",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(500),
+                    modifier = Modifier.padding(16.dp)
+                )
 
-        if (favoritePokemons?.isEmpty() == true) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                padraoImagem(imagem = painterResource(id = R.drawable.placeholder))
-                padraoTextoPrimario(text = "Você não favoritou nenhum Pokémon :( ")
-                padraoTextoSecundario(text = "Clique no ícone de coração dos seus pokémons favoritos e eles aparecerão aqui.")
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier.padding(top = 16.dp, start = 8.dp, end = 8.dp, bottom = 84.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(pokemonList.filter { pokemon ->
-                    favoritePokemons?.contains(pokemon.nome) == true
-                }) { pokemon ->
-                    ListaCardPokemon(pokemon = pokemon, viewModel = userViewModel, onClick = {
-                        navController?.navigate("cardPokemonFavoritoScreen/${pokemon.numero}")
-                    })
+                if (favoritePokemons?.isEmpty() == true) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        padraoImagem(imagem = painterResource(id = R.drawable.placeholder))
+                        padraoTextoPrimario(text = "Você não favoritou nenhum Pokémon :( ")
+                        padraoTextoSecundario(text = "Clique no ícone de coração dos seus pokémons favoritos e eles aparecerão aqui.")
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.padding(top = 16.dp, start = 8.dp, end = 8.dp, bottom = 84.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(pokemonList.filter { pokemon ->
+                            favoritePokemons?.contains(pokemon.nome) == true
+                        }) { pokemon ->
+                            ListaCardPokemon(pokemon = pokemon, viewModel = userViewModel, onClick = {
+                                navController?.navigate("cardPokemonFavoritoScreen/${pokemon.numero}")
+                            })
+                        }
+                    }
                 }
             }
+            if (navController != null) {
+                FooterBar(navController = navController)
+            }
         }
-    }
-    if (navController != null) {
-        FooterBar(navController = navController)
     }
 }
 

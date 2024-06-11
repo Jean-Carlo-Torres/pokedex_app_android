@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +36,7 @@ import br.com.pokedex.ui.components.ListaCardPokemon
 import br.com.pokedex.ui.components.SearchTextField
 import br.com.pokedex.ui.components.SortListPokemon
 import br.com.pokedex.ui.components.cards.*
+import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
 fun ListaPokemonScreen(
@@ -42,118 +44,122 @@ fun ListaPokemonScreen(
     pokemonViewModel: PokemonViewModel,
     userViewModel: UserViewModel) {
 
-    if (userViewModel.user?.isLogged == true) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Column(
-                modifier = Modifier
-                    .padding(start = 8.dp, end = 8.dp, bottom = 84.dp)
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                var pokemonList = listOf(
-                    BulbasaurListData(),
-                    IvysaurListData(),
-                    VenusaurListData(),
-                    CharmanderListData(),
-                    CharmeleonListData(),
-                    CharizardListData(),
-                    SquirtleListData(),
-                    WartortleListData(),
-                    BlastoiseListData(),
-                    BeedrillListData(),
-                    PikachuListData(),
-                    CleifairyListData(),
-                    DugtrioListData(),
-                    OnixListData(),
-                    LickitungListData(),
-                    KoffingListData(),
-                    MewListData()
-                )
-
-                var searchText = ""
-                var text by remember {
-                    mutableStateOf(searchText)
-                }
-                SearchTextField(
-                    searchText = text,
-                    onSearchChange = {
-                        text = it
-                    }
-                )
-
-                val searchedPokemons = remember(text) {
-                    if (text.isNotBlank()) {
-                        pokemonList.filter { pokemon ->
-                            pokemon.nome.contains(text, ignoreCase = true)
-                        }
-                    } else {
-                        pokemonList
-                    }
-                }
-
-                val selectedElementType = pokemonViewModel.selectedElementType
-                val filteredPokemonList = remember(selectedElementType) {
-                    if (selectedElementType != null) {
-                        pokemonList.filter { pokemon ->
-                            pokemon.elementTag?.contains(selectedElementType) == true
-                        }
-                    } else {
-                        pokemonList
-                    }
-                }
-                val sortListIndex = pokemonViewModel.sortedListIndex
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+    PokedexTheme {
+        Surface {
+            if (userViewModel.user?.isLogged == true) {
+                Box(
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    FilterElementType(navController, pokemonViewModel)
-                    SortListPokemon(navController, pokemonViewModel)
-                }
-
-                pokemonList = when (sortListIndex) {
-                    1 -> pokemonList.sortedBy { it.numero }
-                    2 -> pokemonList.sortedByDescending { it.numero }
-                    3 -> pokemonList.sortedBy { it.nome }
-                    4 -> pokemonList.sortedByDescending { it.nome }
-                    else -> pokemonList
-                }
-
-                pokemonList.forEach { pokemon ->
-                    if (text.isBlank() && selectedElementType == null) {
-                        ListaCardPokemon(
-                            pokemon = pokemon,
-                            onClick = {
-                                navController?.navigate("cardPokemonScreen/${pokemon.numero}")
-                            },
-                            viewModel = userViewModel
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Column(
+                        modifier = Modifier
+                            .padding(start = 8.dp, end = 8.dp, bottom = 84.dp)
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        var pokemonList = listOf(
+                            BulbasaurListData(),
+                            IvysaurListData(),
+                            VenusaurListData(),
+                            CharmanderListData(),
+                            CharmeleonListData(),
+                            CharizardListData(),
+                            SquirtleListData(),
+                            WartortleListData(),
+                            BlastoiseListData(),
+                            BeedrillListData(),
+                            PikachuListData(),
+                            CleifairyListData(),
+                            DugtrioListData(),
+                            OnixListData(),
+                            LickitungListData(),
+                            KoffingListData(),
+                            MewListData()
                         )
-                    } else {
-                        if (searchedPokemons.contains(pokemon) || selectedElementType?.let {
-                                pokemon.elementTag?.contains(it)
-                            } == true) {
-                            ListaCardPokemon(
-                                pokemon = pokemon,
-                                onClick = {
-                                    navController?.navigate("cardPokemonScreen/${pokemon.numero}")
-                                },
-                                viewModel = userViewModel
-                            )
+
+                        var searchText = ""
+                        var text by remember {
+                            mutableStateOf(searchText)
                         }
+                        SearchTextField(
+                            searchText = text,
+                            onSearchChange = {
+                                text = it
+                            }
+                        )
+
+                        val searchedPokemons = remember(text) {
+                            if (text.isNotBlank()) {
+                                pokemonList.filter { pokemon ->
+                                    pokemon.nome.contains(text, ignoreCase = true)
+                                }
+                            } else {
+                                pokemonList
+                            }
+                        }
+
+                        val selectedElementType = pokemonViewModel.selectedElementType
+                        val filteredPokemonList = remember(selectedElementType) {
+                            if (selectedElementType != null) {
+                                pokemonList.filter { pokemon ->
+                                    pokemon.elementTag?.contains(selectedElementType) == true
+                                }
+                            } else {
+                                pokemonList
+                            }
+                        }
+                        val sortListIndex = pokemonViewModel.sortedListIndex
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            FilterElementType(navController, pokemonViewModel)
+                            SortListPokemon(navController, pokemonViewModel)
+                        }
+
+                        pokemonList = when (sortListIndex) {
+                            1 -> pokemonList.sortedBy { it.numero }
+                            2 -> pokemonList.sortedByDescending { it.numero }
+                            3 -> pokemonList.sortedBy { it.nome }
+                            4 -> pokemonList.sortedByDescending { it.nome }
+                            else -> pokemonList
+                        }
+
+                        pokemonList.forEach { pokemon ->
+                            if (text.isBlank() && selectedElementType == null) {
+                                ListaCardPokemon(
+                                    pokemon = pokemon,
+                                    onClick = {
+                                        navController?.navigate("cardPokemonScreen/${pokemon.numero}")
+                                    },
+                                    viewModel = userViewModel
+                                )
+                            } else {
+                                if (searchedPokemons.contains(pokemon) || selectedElementType?.let {
+                                        pokemon.elementTag?.contains(it)
+                                    } == true) {
+                                    ListaCardPokemon(
+                                        pokemon = pokemon,
+                                        onClick = {
+                                            navController?.navigate("cardPokemonScreen/${pokemon.numero}")
+                                        },
+                                        viewModel = userViewModel
+                                    )
+                                }
+                            }
+                        }
+
+                    }
+                    if (navController != null) {
+                        FooterBar(navController = navController)
                     }
                 }
-
-            }
-            if (navController != null) {
-                FooterBar(navController = navController)
+            } else {
+                navController?.navigate("onboardingScreen")
             }
         }
-    } else {
-        navController?.navigate("onboardingScreen")
     }
 }
 

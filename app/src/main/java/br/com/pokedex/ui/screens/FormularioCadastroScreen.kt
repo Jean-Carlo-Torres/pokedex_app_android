@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,6 +37,7 @@ import br.com.pokedex.model.Usuario
 import br.com.pokedex.ui.components.CustomTextField
 import br.com.pokedex.ui.components.GenericButton
 import br.com.pokedex.ui.components.PageHeader
+import br.com.pokedex.ui.theme.PokedexTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -99,60 +101,64 @@ fun CadastroEmailTemplate(
     onEmailChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    var showError by remember { mutableStateOf(false) }
-    val isEmailValid = email.isNotBlank() && email.contains("@")
+    PokedexTheme {
+        Surface {
+            var showError by remember { mutableStateOf(false) }
+            val isEmailValid = email.isNotBlank() && email.contains("@")
 
-    CadastroTemplate(
-        navController = navController,
-        headerText = "Vamos começar!",
-        subHeaderText = "Qual é o seu e-mail?",
-        onNext = {
-            if (isEmailValid) {
-                onNext()
-            } else {
-                showError = true
+            CadastroTemplate(
+                navController = navController,
+                headerText = "Vamos começar!",
+                subHeaderText = "Qual é o seu e-mail?",
+                onNext = {
+                    if (isEmailValid) {
+                        onNext()
+                    } else {
+                        showError = true
+                    }
+                }
+            ) {
+                CustomTextField(
+                    value = email,
+                    onValueChange = {
+                        onEmailChange(it)
+                        showError = false
+                    },
+                    label = "Email",
+                    placeholder = "example@gmail.com",
+                    isError = showError
+                )
+                if (showError) {
+                    Text(
+                        text = "Por favor, insira um e-mail válido.",
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                } else {
+                    Text(
+                        text = "Use um endereço de e-mail válido.",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(text = "Continuar", onClick = {
+                        if (isEmailValid) onNext() else showError = true
+                    })
+                }
             }
-        }
-    ) {
-        CustomTextField(
-            value = email,
-            onValueChange = {
-                onEmailChange(it)
-                showError = false
-            },
-            label = "Email",
-            placeholder = "example@gmail.com",
-            isError = showError
-        )
-        if (showError) {
-            Text(
-                text = "Por favor, insira um e-mail válido.",
-                color = Color.Red,
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        } else {
-            Text(
-                text = "Use um endereço de e-mail válido.",
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        }
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(text = "Continuar", onClick = {
-                if (isEmailValid) onNext() else showError = true
-            })
         }
     }
 }
@@ -164,65 +170,69 @@ fun CadastroSenhaTemplate(
     onPasswordChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    var showPassword by remember { mutableStateOf(false) }
-    var showError by remember { mutableStateOf(false) }
-    val isPasswordValid = password.isNotBlank() && password.length >= 8
+    PokedexTheme {
+        Surface {
+            var showPassword by remember { mutableStateOf(false) }
+            var showError by remember { mutableStateOf(false) }
+            val isPasswordValid = password.isNotBlank() && password.length >= 8
 
-    CadastroTemplate(
-        navController = navController,
-        headerText = "Agora...",
-        subHeaderText = "Crie uma senha",
-        onNext = {
-            if (isPasswordValid) {
-                onNext()
-            } else {
-                showError = true
+            CadastroTemplate(
+                navController = navController,
+                headerText = "Agora...",
+                subHeaderText = "Crie uma senha",
+                onNext = {
+                    if (isPasswordValid) {
+                        onNext()
+                    } else {
+                        showError = true
+                    }
+                }
+            ) {
+                Spacer(modifier = Modifier.height(16.dp))
+                CustomTextField(
+                    value = password,
+                    onValueChange = {
+                        onPasswordChange(it)
+                        showError = false
+                    },
+                    label = "Senha",
+                    placeholder = "Senha",
+                    isPassword = true,
+                    showPassword = showPassword,
+                    onShowPasswordChange = { showPassword = !showPassword },
+                    isError = showError
+                )
+                if (showError) {
+                    Text(
+                        text = "Sua senha deve ter pelo menos 8 caracteres.",
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                } else {
+                    Text(
+                        text = "Sua senha deve ter pelo menos 8 caracteres",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(
+                        text = "Continuar",
+                        onClick = { if (isPasswordValid) onNext() else showError = true })
+                }
             }
-        }
-    ) {
-        Spacer(modifier = Modifier.height(16.dp))
-        CustomTextField(
-            value = password,
-            onValueChange = {
-                onPasswordChange(it)
-                showError = false
-            },
-            label = "Senha",
-            placeholder = "Senha",
-            isPassword = true,
-            showPassword = showPassword,
-            onShowPasswordChange = { showPassword = !showPassword },
-            isError = showError
-        )
-        if (showError) {
-            Text(
-                text = "Sua senha deve ter pelo menos 8 caracteres.",
-                color = Color.Red,
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        } else {
-            Text(
-                text = "Sua senha deve ter pelo menos 8 caracteres",
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        }
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(
-                text = "Continuar",
-                onClick = { if (isPasswordValid) onNext() else showError = true })
         }
     }
 }
@@ -234,60 +244,64 @@ fun CadastroNomeTemplate(
     onNameChange: (String) -> Unit,
     onNext: () -> Unit
 ) {
-    var showError by remember { mutableStateOf(false) }
-    val isNameValid = name.isNotBlank()
+    PokedexTheme {
+        Surface {
+            var showError by remember { mutableStateOf(false) }
+            val isNameValid = name.isNotBlank()
 
-    CadastroTemplate(
-        navController = navController,
-        headerText = "Para finalizar",
-        subHeaderText = "Qual é o seu nome?",
-        onNext = {
-            if (isNameValid) {
-                onNext()
-            } else {
-                showError = true
+            CadastroTemplate(
+                navController = navController,
+                headerText = "Para finalizar",
+                subHeaderText = "Qual é o seu nome?",
+                onNext = {
+                    if (isNameValid) {
+                        onNext()
+                    } else {
+                        showError = true
+                    }
+                },
+            ) {
+                CustomTextField(
+                    value = name,
+                    onValueChange = {
+                        onNameChange(it)
+                        showError = false
+                    },
+                    label = "Nome",
+                    placeholder = "Nome",
+                    isError = showError
+                )
+                if (showError) {
+                    Text(
+                        text = "Por favor, insira um nome válido.",
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                } else {
+                    Text(
+                        text = "Esse será seu nome de usuário no aplicativo.",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(
+                        text = "Criar conta",
+                        onClick = { if (isNameValid) onNext() else showError = true })
+                }
             }
-        },
-    ) {
-        CustomTextField(
-            value = name,
-            onValueChange = {
-                onNameChange(it)
-                showError = false
-            },
-            label = "Nome",
-            placeholder = "Nome",
-            isError = showError
-        )
-        if (showError) {
-            Text(
-                text = "Por favor, insira um nome válido.",
-                color = Color.Red,
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        } else {
-            Text(
-                text = "Esse será seu nome de usuário no aplicativo.",
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            )
-        }
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(
-                text = "Criar conta",
-                onClick = { if (isNameValid) onNext() else showError = true })
         }
     }
 }
@@ -301,41 +315,45 @@ fun CadastroTemplate(
     onNext: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 16.dp,
-                top = 48.dp
-            )
-            .verticalScroll(rememberScrollState())
-            .navigationBarsPadding()
-            .imePadding()
-    ) {
-        PageHeader(
-            onClick = {
-                navController?.popBackStack()
-            },
-            title = title
-        )
-        Text(
-            text = headerText,
-            textAlign = TextAlign.Center,
-            fontSize = 26.sp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 50.dp)
-        )
-        Text(
-            text = subHeaderText,
-            textAlign = TextAlign.Center,
-            fontSize = 26.sp,
-            fontWeight = FontWeight(500),
-            modifier = Modifier.fillMaxWidth()
-        )
-        content()
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 16.dp,
+                        top = 48.dp
+                    )
+                    .verticalScroll(rememberScrollState())
+                    .navigationBarsPadding()
+                    .imePadding()
+            ) {
+                PageHeader(
+                    onClick = {
+                        navController?.popBackStack()
+                    },
+                    title = title
+                )
+                Text(
+                    text = headerText,
+                    textAlign = TextAlign.Center,
+                    fontSize = 26.sp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 50.dp)
+                )
+                Text(
+                    text = subHeaderText,
+                    textAlign = TextAlign.Center,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight(500),
+                    modifier = Modifier.fillMaxWidth()
+                )
+                content()
+            }
+        }
     }
 }
 

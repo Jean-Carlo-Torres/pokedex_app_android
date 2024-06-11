@@ -2,6 +2,7 @@ package br.com.pokedex.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.ui.theme.PokedexTheme
 import br.com.pokedex.ui.components.GenericButton
 
 @Composable
@@ -52,101 +55,117 @@ fun OnboardingScreen(navController: NavController?) {
 
 @Composable
 fun Onboarding1(onNext: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 150.dp,
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 32.dp
-            ),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        padraoImagem(painterResource(id = R.drawable.image134))
-        padraoTextoPrimario("Todos os Pokémons em um só Lugar")
-        padraoTextoSecundario("Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo")
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(text = "Continuar", onClick = onNext)
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = 150.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 32.dp
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                padraoImagem(painterResource(id = R.drawable.image134))
+                padraoTextoPrimario("Todos os Pokémons em um só Lugar")
+                padraoTextoSecundario("Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo")
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(text = "Continuar", onClick = onNext)
+                }
+            }
         }
     }
 }
 
 @Composable
 fun Onboarding2(onNext: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 150.dp,
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 32.dp
-            ),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        padraoImagem(imagem = painterResource(id = R.drawable.sprite_hilda))
-        padraoTextoPrimario("Mantenha sua Pokédex atualizada")
-        padraoTextoSecundario("Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.")
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(text = "Vamos começar!", onClick = onNext)
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = 150.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 32.dp
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                padraoImagem(imagem = painterResource(id = R.drawable.sprite_hilda))
+                padraoTextoPrimario("Mantenha sua Pokédex atualizada")
+                padraoTextoSecundario("Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.")
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(text = "Vamos começar!", onClick = onNext)
+                }
+            }
         }
     }
 }
 
 @Composable
 fun Onboarding3(navController: NavController?, onNext: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 150.dp,
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 32.dp
-            ),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        padraoImagem(imagem = painterResource(id = R.drawable.trainers))
-        padraoTextoPrimario("Está pronto para essa aventura?")
-        padraoTextoSecundario("Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!")
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = 150.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 32.dp
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                padraoImagem(imagem = painterResource(id = R.drawable.trainers))
+                padraoTextoPrimario("Está pronto para essa aventura?")
+                padraoTextoSecundario("Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!")
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            GenericButton(text = "Criar conta", onClick = onNext)
-        }
-        Text(
-            text = "Já tenho uma conta",
-            fontSize = 18.sp,
-            fontWeight = FontWeight(500),
-            color = Color(0xFF173EA5),
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .clickable {
-                    navController?.navigate("formaDeLoginScreen")
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    GenericButton(text = "Criar conta", onClick = onNext)
                 }
-        )
+                Text(
+                    text = "Já tenho uma conta",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(500),
+                    color = if (isSystemInDarkTheme()) {
+                        Color.White
+                    } else {
+                        Color(0xFF173EA5)
+                    },
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .clickable {
+                            navController?.navigate("formaDeLoginScreen")
+                        }
+                )
+            }
+        }
     }
 }
 
 @Composable
- fun padraoTextoSecundario(text: String) {
+fun padraoTextoSecundario(text: String) {
     Text(
         text = text,
         fontSize = 16.sp,
@@ -160,7 +179,7 @@ fun Onboarding3(navController: NavController?, onNext: () -> Unit) {
 }
 
 @Composable
- fun padraoTextoPrimario(text: String) {
+fun padraoTextoPrimario(text: String) {
     Text(
         text = text,
         fontSize = 26.sp,
@@ -170,7 +189,7 @@ fun Onboarding3(navController: NavController?, onNext: () -> Unit) {
 }
 
 @Composable
- fun padraoImagem(imagem: Painter) {
+fun padraoImagem(imagem: Painter) {
     Image(
         painter = imagem,
         contentDescription = null,
