@@ -1,30 +1,33 @@
 package br.com.pokedex.ui.screens
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,28 +36,62 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.pokedex.R
+import br.com.pokedex.ui.activity.ui.theme.Blue800
 import br.com.pokedex.ui.activity.ui.theme.PokedexTheme
 import br.com.pokedex.ui.components.GenericButton
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(navController: NavController?) {
-    var currentPage by remember { mutableIntStateOf(0) }
-    val context = LocalContext.current
+    val pagerState = rememberPagerState(pageCount = { 3 })
 
-    val onNext: () -> Unit = { currentPage++ }
+    PokedexTheme {
+        Surface {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier.weight(1f)
+                ) { page ->
+                    when (page) {
+                        0 -> Onboarding1()
+                        1 -> Onboarding2()
+                        2 -> Onboarding3(navController)
+                    }
+                }
 
-    when (currentPage) {
-        0 -> Onboarding1(onNext)
-        1 -> Onboarding2(onNext)
-        2 -> Onboarding3(navController, onNext)
-        3 -> LaunchedEffect(Unit) {
-            navController?.navigate("formaDeCadastroScreen")
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    repeat(3) { index ->
+                        val size by animateDpAsState(if (pagerState.currentPage == index) 12.dp else 8.dp)
+                        val color = if (pagerState.currentPage == index) Blue800 else Color.LightGray
+
+                        Box(
+                            modifier = Modifier
+                                .size(size)
+                                .background(color, CircleShape)
+                                .padding(4.dp)
+                        )
+                        if (index < 2) {
+                            Spacer(modifier = Modifier.width(8.dp))
+                        }
+                    }
+                }
+        Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }
 
 @Composable
-fun Onboarding1(onNext: () -> Unit) {
+fun Onboarding1() {
     PokedexTheme {
         Surface {
             Column(
@@ -73,20 +110,13 @@ fun Onboarding1(onNext: () -> Unit) {
                 padraoTextoPrimario("Todos os Pokémons em um só Lugar")
                 padraoTextoSecundario("Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo")
                 Spacer(modifier = Modifier.weight(1f))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    GenericButton(text = "Continuar", onClick = onNext)
-                }
             }
         }
     }
 }
 
 @Composable
-fun Onboarding2(onNext: () -> Unit) {
+fun Onboarding2() {
     PokedexTheme {
         Surface {
             Column(
@@ -105,20 +135,13 @@ fun Onboarding2(onNext: () -> Unit) {
                 padraoTextoPrimario("Mantenha sua Pokédex atualizada")
                 padraoTextoSecundario("Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.")
                 Spacer(modifier = Modifier.weight(1f))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    GenericButton(text = "Vamos começar!", onClick = onNext)
-                }
             }
         }
     }
 }
 
 @Composable
-fun Onboarding3(navController: NavController?, onNext: () -> Unit) {
+fun Onboarding3(navController: NavController?) {
     PokedexTheme {
         Surface {
             Column(
@@ -142,17 +165,15 @@ fun Onboarding3(navController: NavController?, onNext: () -> Unit) {
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    GenericButton(text = "Criar conta", onClick = onNext)
+                    GenericButton(text = "Criar conta", onClick = {
+                        navController?.navigate("formaDeCadastroScreen")
+                    })
                 }
                 Text(
                     text = "Já tenho uma conta",
                     fontSize = 18.sp,
                     fontWeight = FontWeight(500),
-                    color = if (isSystemInDarkTheme()) {
-                        Color.White
-                    } else {
-                        Color(0xFF173EA5)
-                    },
+                    color = Color(0xFF173EA5),
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .clickable {
@@ -195,7 +216,7 @@ fun padraoImagem(imagem: Painter) {
         contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
-            .height(320.dp)
+            .heightIn(min = 320.dp)
             .padding(bottom = 16.dp)
     )
 }
@@ -203,17 +224,17 @@ fun padraoImagem(imagem: Painter) {
 @Preview(showBackground = true)
 @Composable
 private fun Onboarding1Preview() {
-//     Onboarding1(onNext = {})
+     Onboarding1()
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Onboarding2Preview() {
-//    Onboarding2(onNext = {})
+    Onboarding2()
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Onboarding3Preview() {
-    Onboarding3(navController = null, onNext = {})
+    Onboarding3(navController = null)
 }
