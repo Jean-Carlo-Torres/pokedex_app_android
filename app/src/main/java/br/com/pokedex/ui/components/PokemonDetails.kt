@@ -1,6 +1,7 @@
 package br.com.pokedex.ui.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,13 +9,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,13 +41,16 @@ fun PokemonDetails(pokemon: Pokemon) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = "PESO",
-                    fontSize = 8.sp
-                )
+                TextDescription(text = "PESO", icon = R.drawable.ic_peso)
                 Surface(
                     modifier = Modifier
-                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .border(
+                            0.5.dp, if (isSystemInDarkTheme()) {
+                                Color.White
+                            } else {
+                                Color.Black
+                            }, RoundedCornerShape(4.dp)
+                        )
                         .width(154.dp)
                         .height(43.dp)
                 ) {
@@ -57,13 +66,16 @@ fun PokemonDetails(pokemon: Pokemon) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = "ALTURA",
-                    fontSize = 8.sp
-                )
+                TextDescription(text = "ALTURA", icon = R.drawable.ic_altura)
                 Surface(
                     modifier = Modifier
-                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .border(
+                            0.5.dp, if (isSystemInDarkTheme()) {
+                                Color.White
+                            } else {
+                                Color.Black
+                            }, RoundedCornerShape(4.dp)
+                        )
                         .width(154.dp)
                         .height(43.dp)
                 ) {
@@ -83,15 +95,18 @@ fun PokemonDetails(pokemon: Pokemon) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = "CATEGORIA",
-                    fontSize = 8.sp
-                )
+                TextDescription(text = "CATEGORIA", icon = R.drawable.ic_categoria)
                 Surface(
                     modifier = Modifier
-                        .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .border(
+                            0.5.dp, if (isSystemInDarkTheme()) {
+                                Color.White
+                            } else {
+                                Color.Black
+                            }, RoundedCornerShape(4.dp)
+                        )
                         .width(154.dp)
-                        .height(43.dp)
+                        .heightIn(min = 43.dp)
                 ) {
                     Text(
                         text = pokemon.categoria,
@@ -105,14 +120,17 @@ fun PokemonDetails(pokemon: Pokemon) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = "HABILIDADES",
-                    fontSize = 8.sp
-                )
+                TextDescription(text = "HABILIDADES", icon = R.drawable.ic_habilidades)
                 Column {
                     Surface(
                         modifier = Modifier
-                            .border(0.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                            .border(
+                                0.5.dp, if (isSystemInDarkTheme()) {
+                                    Color.White
+                                } else {
+                                    Color.Black
+                                }, RoundedCornerShape(4.dp)
+                            )
                             .width(154.dp)
                             .heightIn(min = 43.dp)
                     ) {
@@ -159,6 +177,25 @@ fun PokemonWeaknesses(fraquezas: List<@Composable () -> Unit>) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun TextDescription(text: String, icon: Int) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = Modifier.padding(bottom = 2.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = painterResource(id = icon),
+            contentDescription = null,
+        )
+        Text(
+            text = text,
+            fontSize = 8.sp,
+            fontWeight = FontWeight(500)
+        )
     }
 }
 
