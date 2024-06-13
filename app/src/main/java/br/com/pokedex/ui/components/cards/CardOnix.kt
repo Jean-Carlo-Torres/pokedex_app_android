@@ -25,7 +25,7 @@ val onix = Pokemon(
     descricao = "À medida que escava o solo, absorve muitos objetos duros. Isso é o que torna seu corpo tão sólido.",
     peso = 210.0,
     altura = 8.8,
-    categoria = Categoria.ROCK,
+    categoria = Categoria.ROCK.descricao,
     habilidades = listOf("Rock Head", "Sturdy").toTypedArray(),
     element = listOf(
         { ElementRockButton() },

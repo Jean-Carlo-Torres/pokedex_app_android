@@ -31,7 +31,7 @@ import br.com.pokedex.ui.activity.ui.theme.ElementNormalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPoisonColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPsychicColor
 import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
-import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
+import br.com.pokedex.ui.activity.ui.theme.ElementMetalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 import br.com.pokedex.ui.activity.ui.theme.Gray800
 
@@ -60,7 +60,7 @@ fun FilterElementType(navController: NavController?, viewModel: PokemonViewModel
         (selectedElementType?.equals(ElementTag.POISON) == true) -> ElementPoisonColor
         (selectedElementType?.equals(ElementTag.PSYCHIC) == true) -> ElementPsychicColor
         (selectedElementType?.equals(ElementTag.ROCK) == true) -> ElementRockColor
-        (selectedElementType?.equals(ElementTag.STEEL) == true) -> ElementSteelColor
+        (selectedElementType?.equals(ElementTag.METAL) == true) -> ElementMetalColor
         (selectedElementType?.equals(ElementTag.WATER) == true) -> ElementWaterColor
 
         else -> Gray800

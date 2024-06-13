@@ -42,8 +42,8 @@ import br.com.pokedex.ui.theme.PokedexTheme
 fun ListaPokemonScreen(
     navController: NavController?,
     pokemonViewModel: PokemonViewModel,
-    userViewModel: UserViewModel) {
-
+    userViewModel: UserViewModel
+) {
     PokedexTheme {
         Surface {
             if (userViewModel.user?.isLogged == true) {
@@ -75,7 +75,16 @@ fun ListaPokemonScreen(
                             OnixListData(),
                             LickitungListData(),
                             KoffingListData(),
-                            MewListData()
+                            MewListData(),
+                            SuicuneListData(),
+                            AggronListData(),
+                            RayquazaListData(),
+                            LucarioListData(),
+                            SerperiorListData(),
+                            ZoroarkListData(),
+                            ChandelureListData(),
+                            CubchooListData(),
+                            ToucannonListData(),
                         )
 
                         var searchText = ""
@@ -166,5 +175,9 @@ fun ListaPokemonScreen(
 @Preview(showBackground = true)
 @Composable
 private fun ListaPokemonScreenPreview() {
-    ListaPokemonScreen(navController = null, pokemonViewModel = viewModel(), userViewModel = viewModel())
+    ListaPokemonScreen(
+        navController = null,
+        pokemonViewModel = viewModel(),
+        userViewModel = viewModel()
+    )
 }

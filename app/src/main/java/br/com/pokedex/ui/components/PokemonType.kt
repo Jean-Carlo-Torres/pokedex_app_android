@@ -38,7 +38,7 @@ import br.com.pokedex.ui.activity.ui.theme.ElementIceColor
 import br.com.pokedex.ui.activity.ui.theme.ElementNormalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPoisonColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPsychicColor
-import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
+import br.com.pokedex.ui.activity.ui.theme.ElementMetalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
 import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 import br.com.pokedex.ui.activity.ui.theme.Gray800
@@ -115,8 +115,8 @@ fun PokemonType(navController: NavController?, viewModel: PokemonViewModel?) {
                        viewModel?.selectedElementType = ElementTag.DARK
                        navController?.popBackStack()
                    })
-                   ButtonTypeDefault(text = "Metal", bgColor = ElementSteelColor, onClick = {
-                       viewModel?.selectedElementType = ElementTag.STEEL
+                   ButtonTypeDefault(text = "Metal", bgColor = ElementMetalColor, onClick = {
+                       viewModel?.selectedElementType = ElementTag.METAL
                        navController?.popBackStack()
                    })
                    ButtonTypeDefault(text = "Pedra", bgColor = ElementRockColor, onClick = {

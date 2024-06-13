@@ -94,7 +94,7 @@ fun PokemonDetails(pokemon: Pokemon) {
                         .height(43.dp)
                 ) {
                     Text(
-                        text = pokemon.categoria.name,
+                        text = pokemon.categoria,
                         fontWeight = FontWeight(500),
                         modifier = Modifier.padding(8.dp),
                         fontSize = 18.sp,
@@ -176,7 +176,7 @@ private fun PokemonDetailsPreview() {
                     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
                     peso = 6.9,
                     altura = 0.7,
-                    categoria = Categoria.SEED,
+                    categoria = Categoria.SEED.descricao,
                     habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
                     element = listOf({ ElementGrassButton() }, { ElementPoisonButton() }),
                     fraquezas = listOf(

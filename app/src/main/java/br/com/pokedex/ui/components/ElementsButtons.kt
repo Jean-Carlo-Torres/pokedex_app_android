@@ -3,7 +3,6 @@ package br.com.pokedex.ui.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.pokedex.R
@@ -24,7 +23,7 @@ import br.com.pokedex.ui.activity.ui.theme.ElementNormalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPoisonColor
 import br.com.pokedex.ui.activity.ui.theme.ElementPsychicColor
 import br.com.pokedex.ui.activity.ui.theme.ElementRockColor
-import br.com.pokedex.ui.activity.ui.theme.ElementSteelColor
+import br.com.pokedex.ui.activity.ui.theme.ElementMetalColor
 import br.com.pokedex.ui.activity.ui.theme.ElementWaterColor
 import br.com.pokedex.ui.theme.PokedexTheme
 
@@ -166,7 +165,7 @@ fun ElementMetalButton() {
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_metal),
             text = "Metal",
-            backgroundColor = ElementSteelColor,
+            backgroundColor = ElementMetalColor,
         )
     )
 }
@@ -351,7 +350,7 @@ fun ElementMetalButtonSmall() {
     ElementEvolutionButton(
         properties = ElementGenericButtonProperties(
             icon = painterResource(id = R.drawable.ic_metal),
-            backgroundColor = ElementSteelColor,
+            backgroundColor = ElementMetalColor,
         )
     )
 }

@@ -24,7 +24,7 @@ val bulbasaur = Pokemon(
     descricao = "Há uma semente de planta nas costas desde o dia em que este Pokémon nasce. A semente cresce lentamente.\n",
     peso = 6.9,
     altura = 0.7,
-    categoria = Categoria.SEED,
+    categoria = Categoria.SEED.descricao,
     habilidades = listOf("Overgrow", "Chlorophyll").toTypedArray(),
     element = listOf(
         { ElementGrassButton() },
@@ -47,7 +47,7 @@ val ivysaur = Pokemon(
     descricao = "Quando o bulbo nas costas cresce, parece perder a capacidade de ficar em pé nas patas traseiras.\n",
     peso = 13.0,
     altura = 1.0,
-    categoria = Categoria.SEED,
+    categoria = Categoria.SEED.descricao,
     habilidades = listOf("Overgrow").toTypedArray(),
     element = listOf(
         { ElementGrassButton() },
@@ -70,7 +70,7 @@ val venusaur = Pokemon(
     descricao = "Sua planta floresce quando está absorvendo energia solar. Ele permanece em movimento para buscar a luz do sol.\n",
     peso = 100.0,
     altura = 2.0,
-    categoria = Categoria.SEED,
+    categoria = Categoria.SEED.descricao,
     habilidades = listOf("Overgrow").toTypedArray(),
     element = listOf(
         { ElementGrassButton() },

@@ -38,7 +38,16 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
         OnixData(),
         LickitungData(),
         KoffingData(),
-        MewData()
+        MewData(),
+        SuicuneData(),
+        AggronData(),
+        RayquazaData(),
+        LucarioData(),
+        SerperiorData(),
+        ZoroarkData(),
+        ChandelureData(),
+        CubchooData(),
+        ToucannonData(),
     )
 
     val sortListIndex = viewModel?.sortedListIndex

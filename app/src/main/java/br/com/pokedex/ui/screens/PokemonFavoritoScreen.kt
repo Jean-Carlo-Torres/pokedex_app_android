@@ -26,23 +26,32 @@ import br.com.pokedex.model.Usuario
 import br.com.pokedex.repository.UserRepository
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
+import br.com.pokedex.ui.components.cards.AggronListData
 import br.com.pokedex.ui.components.cards.BeedrillListData
 import br.com.pokedex.ui.components.cards.BlastoiseListData
 import br.com.pokedex.ui.components.cards.BulbasaurListData
+import br.com.pokedex.ui.components.cards.ChandelureListData
 import br.com.pokedex.ui.components.cards.CharizardListData
 import br.com.pokedex.ui.components.cards.CharmanderListData
 import br.com.pokedex.ui.components.cards.CharmeleonListData
 import br.com.pokedex.ui.components.cards.CleifairyListData
+import br.com.pokedex.ui.components.cards.CubchooListData
 import br.com.pokedex.ui.components.cards.DugtrioListData
 import br.com.pokedex.ui.components.cards.IvysaurListData
 import br.com.pokedex.ui.components.cards.KoffingListData
 import br.com.pokedex.ui.components.cards.LickitungListData
+import br.com.pokedex.ui.components.cards.LucarioListData
 import br.com.pokedex.ui.components.cards.MewListData
 import br.com.pokedex.ui.components.cards.OnixListData
 import br.com.pokedex.ui.components.cards.PikachuListData
+import br.com.pokedex.ui.components.cards.RayquazaListData
+import br.com.pokedex.ui.components.cards.SerperiorListData
 import br.com.pokedex.ui.components.cards.SquirtleListData
+import br.com.pokedex.ui.components.cards.SuicuneListData
+import br.com.pokedex.ui.components.cards.ToucannonListData
 import br.com.pokedex.ui.components.cards.VenusaurListData
 import br.com.pokedex.ui.components.cards.WartortleListData
+import br.com.pokedex.ui.components.cards.ZoroarkListData
 import br.com.pokedex.ui.theme.PokedexTheme
 import kotlinx.coroutines.launch
 
@@ -67,7 +76,16 @@ fun PokemonFavoritoScreen(navController: NavController?, userViewModel: UserView
         OnixListData(),
         LickitungListData(),
         KoffingListData(),
-        MewListData()
+        MewListData(),
+        SuicuneListData(),
+        AggronListData(),
+        RayquazaListData(),
+        LucarioListData(),
+        SerperiorListData(),
+        ZoroarkListData(),
+        ChandelureListData(),
+        CubchooListData(),
+        ToucannonListData(),
     )
 
     PokedexTheme {

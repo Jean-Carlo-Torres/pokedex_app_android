@@ -12,7 +12,7 @@ class Pokemon(
     val descricao: String,
     val peso: Double,
     val altura: Double,
-    val categoria: Categoria,
+    val categoria: String,
     val habilidades: Array<String>,
     val fraquezas: List<@Composable () -> Unit>,
     val evolucao: List<PokemonListaItem>,

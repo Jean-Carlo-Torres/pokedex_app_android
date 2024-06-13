@@ -24,7 +24,7 @@ val beedrill = Pokemon(
     descricao = "Tem três ferrões venenosos nas patas dianteiras e na cauda. Eles são usados para espetar seu inimigo repetidamente.",
     peso = 29.5,
     altura = 1.0,
-    categoria = Categoria.POISON,
+    categoria = Categoria.POISON.descricao,
     habilidades = listOf("Swarm").toTypedArray(),
     element = listOf(
         { ElementBugButton() },
