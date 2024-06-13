@@ -156,7 +156,7 @@ class MainActivity : ComponentActivity() {
                             ) { backStackEntry ->
                                 val pokemonNumber =
                                     backStackEntry.arguments?.getString("pokemonNumber") ?: "001"
-                                CardPokemonScreen(navController, pokemonNumber, pokemonViewModel)
+                                CardPokemonScreen(navController, pokemonNumber, pokemonViewModel,userViewModel)
                             }
 
                             composable(

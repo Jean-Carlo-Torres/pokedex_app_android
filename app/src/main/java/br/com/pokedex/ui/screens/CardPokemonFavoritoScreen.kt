@@ -98,7 +98,7 @@ fun CardPokemonFavoritoScreen(
                         .verticalScroll(rememberScrollState())
                 ) {
                     Column {
-                        CardPokemon(pokemonListCard[page])
+                        CardPokemon(pokemonListCard[page], userViewModel, navController)
                     }
                 }
             }

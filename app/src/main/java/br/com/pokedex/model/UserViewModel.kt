@@ -36,6 +36,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun toggleFavorite(pokemon: Pokemon) {
+        user?.let { usuario ->
+            if (usuario.pokemonsFavoritos.contains(pokemon.nome)) {
+                removePokemon(pokemon.nome)
+            } else {
+                addPokemon(pokemon.nome)
+            }
+        }
+    }
+
     fun insertUser(usuario: Usuario) = viewModelScope.launch {
         userRepository.insert(usuario)
         user = usuario

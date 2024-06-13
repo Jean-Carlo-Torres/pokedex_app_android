@@ -14,13 +14,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import br.com.pokedex.model.PokemonViewModel
+import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.CardPokemon
 import br.com.pokedex.ui.components.cards.*
 import br.com.pokedex.ui.theme.PokedexTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, viewModel: PokemonViewModel?) {
+fun CardPokemonScreen(
+    navController: NavController?,
+    pokemonNumber: String,
+    pokemonViewModel: PokemonViewModel?,
+    userViewModel: UserViewModel?
+) {
     var pokemonListCard = listOf(
         BulbasaurData(),
         IvysaurData(),
@@ -50,7 +56,7 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
         ToucannonData(),
     )
 
-    val sortListIndex = viewModel?.sortedListIndex
+    val sortListIndex = pokemonViewModel?.sortedListIndex
     pokemonListCard = when (sortListIndex) {
         1 -> pokemonListCard.sortedBy { it.numero }
         2 -> pokemonListCard.sortedByDescending { it.numero }
@@ -60,7 +66,8 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
     }
 
     val initialPage = pokemonListCard.indexOfFirst { it.numero == pokemonNumber }
-    val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { pokemonListCard.size })
+    val pagerState =
+        rememberPagerState(initialPage = initialPage, pageCount = { pokemonListCard.size })
 
     PokedexTheme {
         Surface {
@@ -74,7 +81,7 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
                         .verticalScroll(rememberScrollState())
                 ) {
                     Column {
-                        CardPokemon(pokemonListCard[page])
+                        CardPokemon(pokemonListCard[page], userViewModel, navController)
                     }
                 }
             }
@@ -85,6 +92,11 @@ fun CardPokemonScreen(navController: NavController?, pokemonNumber: String, view
 @Preview
 @Composable
 private fun CardPokemonScreenPreview() {
-    CardPokemonScreen(navController = null, pokemonNumber = "002", viewModel = null)
+    CardPokemonScreen(
+        navController = null,
+        pokemonNumber = "002",
+        pokemonViewModel = null,
+        userViewModel = null
+    )
 }
 
