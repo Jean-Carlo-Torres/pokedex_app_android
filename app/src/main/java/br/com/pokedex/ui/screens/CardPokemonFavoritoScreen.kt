@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import br.com.pokedex.model.ExibeCardPokemons
 import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.CardPokemon
 import br.com.pokedex.ui.components.cards.AggronData
@@ -51,36 +52,10 @@ fun CardPokemonFavoritoScreen(
     userViewModel: UserViewModel?
 ) {
     val favoritePokemons = userViewModel?.user?.pokemonsFavoritos
-    var pokemonListCard = listOf(
-        BulbasaurData(),
-        IvysaurData(),
-        VenusaurData(),
-        CharmanderData(),
-        CharmeleonData(),
-        CharizardData(),
-        SquirtleData(),
-        WartortleData(),
-        BlastoiseData(),
-        BeedrillData(),
-        PikachuData(),
-        CleifairyData(),
-        DugtrioData(),
-        OnixData(),
-        LickitungData(),
-        KoffingData(),
-        MewData(),
-        SuicuneData(),
-        AggronData(),
-        RayquazaData(),
-        LucarioData(),
-        SerperiorData(),
-        ZoroarkData(),
-        ChandelureData(),
-        CubchooData(),
-        ToucannonData(),
-    ).filter {
-        favoritePokemons?.contains(it.nome) ?: false
-    }
+    var pokemonListCard = ExibeCardPokemons()
+        .filter {
+            favoritePokemons?.contains(it.nome) ?: false
+        }
 
     val initialPage = pokemonListCard.indexOfFirst { it.numero == pokemonNumber }
     val pagerState =

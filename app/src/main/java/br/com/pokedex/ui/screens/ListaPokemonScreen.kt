@@ -17,25 +17,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import br.com.pokedex.R
-import br.com.pokedex.model.PokemonListaItem
+import br.com.pokedex.model.ExibeListPokemons
 import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.UserViewModel
-import br.com.pokedex.model.enums.ElementTag
-import br.com.pokedex.ui.components.BackgroundGrass
-import br.com.pokedex.ui.components.ElementGrassButton
-import br.com.pokedex.ui.components.ElementPoisonButton
 import br.com.pokedex.ui.components.FilterElementType
 import br.com.pokedex.ui.components.FooterBar
 import br.com.pokedex.ui.components.ListaCardPokemon
 import br.com.pokedex.ui.components.SearchTextField
 import br.com.pokedex.ui.components.SortListPokemon
-import br.com.pokedex.ui.components.cards.*
 import br.com.pokedex.ui.theme.PokedexTheme
 
 @Composable
@@ -58,34 +55,8 @@ fun ListaPokemonScreen(
                             .verticalScroll(rememberScrollState()),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        var pokemonList = listOf(
-                            BulbasaurListData(),
-                            IvysaurListData(),
-                            VenusaurListData(),
-                            CharmanderListData(),
-                            CharmeleonListData(),
-                            CharizardListData(),
-                            SquirtleListData(),
-                            WartortleListData(),
-                            BlastoiseListData(),
-                            BeedrillListData(),
-                            PikachuListData(),
-                            CleifairyListData(),
-                            DugtrioListData(),
-                            OnixListData(),
-                            LickitungListData(),
-                            KoffingListData(),
-                            MewListData(),
-                            SuicuneListData(),
-                            AggronListData(),
-                            RayquazaListData(),
-                            LucarioListData(),
-                            SerperiorListData(),
-                            ZoroarkListData(),
-                            ChandelureListData(),
-                            CubchooListData(),
-                            ToucannonListData(),
-                        )
+                        var pokemonList = ExibeListPokemons()
+
 
                         var searchText = ""
                         var text by remember {
@@ -126,6 +97,12 @@ fun ListaPokemonScreen(
                         ) {
                             FilterElementType(navController, pokemonViewModel)
                             SortListPokemon(navController, pokemonViewModel)
+                        }
+
+                        if (searchedPokemons.isEmpty() && text.isNotBlank()) {
+                            ExibePlaceholderSeAListaEstiverVazia()
+                        } else {
+                            pokemonList
                         }
 
                         pokemonList = when (sortListIndex) {
@@ -169,6 +146,19 @@ fun ListaPokemonScreen(
                 navController?.navigate("onboardingScreen")
             }
         }
+    }
+}
+
+@Composable
+fun ExibePlaceholderSeAListaEstiverVazia() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        padraoImagem(imagem = painterResource(id = R.drawable.placeholder))
+        padraoTextoPrimario(text = "Pokémon não encontrado!")
+        padraoTextoSecundario(text =  "Tente pesquisar por um nome diferente.")
     }
 }
 

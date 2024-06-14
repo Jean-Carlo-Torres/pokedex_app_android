@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import br.com.pokedex.model.ExibeCardPokemons
 import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.ui.components.CardPokemon
@@ -27,34 +28,7 @@ fun CardPokemonScreen(
     pokemonViewModel: PokemonViewModel?,
     userViewModel: UserViewModel?
 ) {
-    var pokemonListCard = listOf(
-        BulbasaurData(),
-        IvysaurData(),
-        VenusaurData(),
-        CharmanderData(),
-        CharmeleonData(),
-        CharizardData(),
-        SquirtleData(),
-        WartortleData(),
-        BlastoiseData(),
-        BeedrillData(),
-        PikachuData(),
-        CleifairyData(),
-        DugtrioData(),
-        OnixData(),
-        LickitungData(),
-        KoffingData(),
-        MewData(),
-        SuicuneData(),
-        AggronData(),
-        RayquazaData(),
-        LucarioData(),
-        SerperiorData(),
-        ZoroarkData(),
-        ChandelureData(),
-        CubchooData(),
-        ToucannonData(),
-    )
+    var pokemonListCard = ExibeCardPokemons()
 
     val sortListIndex = pokemonViewModel?.sortedListIndex
     pokemonListCard = when (sortListIndex) {

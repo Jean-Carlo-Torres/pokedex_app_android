@@ -39,32 +39,35 @@ import br.com.pokedex.ui.activity.ui.theme.Gray800
 fun FilterElementType(navController: NavController?, viewModel: PokemonViewModel) {
     val selectedElementType = viewModel.selectedElementType
     val text = when (selectedElementType != null) {
-        true -> selectedElementType.name
+        true -> selectedElementType.descricao
         false -> "Todos os tipos"
     }
-    val containerColor = when (selectedElementType != null) {
-        (selectedElementType?.equals(null) == true) -> Gray800
-        (selectedElementType?.equals(ElementTag.BUG) == true) -> ElementBugColor
-        (selectedElementType?.equals(ElementTag.DARK) == true) -> ElementDarkColor
-        (selectedElementType?.equals(ElementTag.DRAGON) == true) -> ElementDragonColor
-        (selectedElementType?.equals(ElementTag.ELECTRIC) == true) -> ElementElectricColor
-        (selectedElementType?.equals(ElementTag.FAIRY) == true) -> ElementFairyColor
-        (selectedElementType?.equals(ElementTag.FIGHTING) == true) -> ElementFightColor
-        (selectedElementType?.equals(ElementTag.FIRE) == true) -> ElementFireColor
-        (selectedElementType?.equals(ElementTag.FLYING) == true) -> ElementFlyingColor
-        (selectedElementType?.equals(ElementTag.GHOST) == true) -> ElementGhostColor
-        (selectedElementType?.equals(ElementTag.GRASS) == true) -> ElementGrassColor
-        (selectedElementType?.equals(ElementTag.GROUND) == true) -> ElementGroundColor
-        (selectedElementType?.equals(ElementTag.ICE) == true) -> ElementIceColor
-        (selectedElementType?.equals(ElementTag.NORMAL) == true) -> ElementNormalColor
-        (selectedElementType?.equals(ElementTag.POISON) == true) -> ElementPoisonColor
-        (selectedElementType?.equals(ElementTag.PSYCHIC) == true) -> ElementPsychicColor
-        (selectedElementType?.equals(ElementTag.ROCK) == true) -> ElementRockColor
-        (selectedElementType?.equals(ElementTag.METAL) == true) -> ElementMetalColor
-        (selectedElementType?.equals(ElementTag.WATER) == true) -> ElementWaterColor
+    val elementColorMap = mapOf(
+        ElementTag.BUG to ElementBugColor,
+        ElementTag.DARK to ElementDarkColor,
+        ElementTag.DRAGON to ElementDragonColor,
+        ElementTag.ELECTRIC to ElementElectricColor,
+        ElementTag.FAIRY to ElementFairyColor,
+        ElementTag.FIGHTING to ElementFightColor,
+        ElementTag.FIRE to ElementFireColor,
+        ElementTag.FLYING to ElementFlyingColor,
+        ElementTag.GHOST to ElementGhostColor,
+        ElementTag.GRASS to ElementGrassColor,
+        ElementTag.GROUND to ElementGroundColor,
+        ElementTag.ICE to ElementIceColor,
+        ElementTag.NORMAL to ElementNormalColor,
+        ElementTag.POISON to ElementPoisonColor,
+        ElementTag.PSYCHIC to ElementPsychicColor,
+        ElementTag.ROCK to ElementRockColor,
+        ElementTag.METAL to ElementMetalColor,
+        ElementTag.WATER to ElementWaterColor
+    )
 
-        else -> Gray800
+    val containerColor = when {
+        selectedElementType == null -> Gray800
+        else -> elementColorMap[selectedElementType] ?: Gray800
     }
+
     FilterButtonDefault(
         navController,
         text,
@@ -74,7 +77,6 @@ fun FilterElementType(navController: NavController?, viewModel: PokemonViewModel
         }
     )
 }
-
 
 @Composable
 fun SortListPokemon(navController: NavController?, viewModel: PokemonViewModel) {

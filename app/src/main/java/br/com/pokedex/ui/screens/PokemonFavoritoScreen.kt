@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import br.com.pokedex.R
+import br.com.pokedex.model.ExibeListPokemons
 import br.com.pokedex.model.PokemonViewModel
 import br.com.pokedex.model.UserViewModel
 import br.com.pokedex.model.Usuario
@@ -59,34 +60,7 @@ import kotlinx.coroutines.launch
 fun PokemonFavoritoScreen(navController: NavController?, userViewModel: UserViewModel) {
     val favoritePokemons = userViewModel.user?.pokemonsFavoritos
 
-    val pokemonList = listOf(
-        BulbasaurListData(),
-        IvysaurListData(),
-        VenusaurListData(),
-        CharmanderListData(),
-        CharmeleonListData(),
-        CharizardListData(),
-        SquirtleListData(),
-        WartortleListData(),
-        BlastoiseListData(),
-        BeedrillListData(),
-        PikachuListData(),
-        CleifairyListData(),
-        DugtrioListData(),
-        OnixListData(),
-        LickitungListData(),
-        KoffingListData(),
-        MewListData(),
-        SuicuneListData(),
-        AggronListData(),
-        RayquazaListData(),
-        LucarioListData(),
-        SerperiorListData(),
-        ZoroarkListData(),
-        ChandelureListData(),
-        CubchooListData(),
-        ToucannonListData(),
-    )
+    val pokemonList = ExibeListPokemons()
 
     PokedexTheme {
         Surface {

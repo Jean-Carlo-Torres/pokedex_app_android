@@ -57,21 +57,36 @@ fun OnboardingScreen(navController: NavController?) {
                     modifier = Modifier.weight(1f)
                 ) { page ->
                     when (page) {
-                        0 -> Onboarding1()
-                        1 -> Onboarding2()
-                        2 -> Onboarding3(navController)
+                        0 -> OnboardingContent(
+                            imageResId = R.drawable.image134,
+                            primaryText = "Todos os Pokémons em um só Lugar",
+                            secondaryText = "Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo"
+                        )
+
+                        1 -> OnboardingContent(
+                            imageResId = R.drawable.sprite_hilda,
+                            primaryText = "Mantenha sua Pokédex atualizada",
+                            secondaryText = "Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet."
+                        )
+
+                        2 -> OnboardingContent(
+                            imageResId = R.drawable.trainers,
+                            primaryText = "Está pronto para essa aventura?",
+                            secondaryText = "Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!",
+                            navController = navController
+                        )
                     }
                 }
 
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     repeat(3) { index ->
                         val size by animateDpAsState(if (pagerState.currentPage == index) 12.dp else 8.dp)
-                        val color = if (pagerState.currentPage == index) Blue800 else Color.LightGray
+                        val color =
+                            if (pagerState.currentPage == index) Blue800 else Color.LightGray
 
                         Box(
                             modifier = Modifier
@@ -84,14 +99,19 @@ fun OnboardingScreen(navController: NavController?) {
                         }
                     }
                 }
-        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
 }
 
 @Composable
-fun Onboarding1() {
+fun OnboardingContent(
+    imageResId: Int,
+    primaryText: String,
+    secondaryText: String,
+    navController: NavController? = null
+) {
     PokedexTheme {
         Surface {
             Column(
@@ -106,80 +126,33 @@ fun Onboarding1() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                padraoImagem(painterResource(id = R.drawable.image134))
-                padraoTextoPrimario("Todos os Pokémons em um só Lugar")
-                padraoTextoSecundario("Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo")
-                Spacer(modifier = Modifier.weight(1f))
-            }
-        }
-    }
-}
+                padraoImagem(painterResource(id = imageResId))
+                padraoTextoPrimario(primaryText)
+                padraoTextoSecundario(secondaryText)
 
-@Composable
-fun Onboarding2() {
-    PokedexTheme {
-        Surface {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = 150.dp,
-                        start = 16.dp,
-                        end = 16.dp,
-                        bottom = 32.dp
-                    ),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                padraoImagem(imagem = painterResource(id = R.drawable.sprite_hilda))
-                padraoTextoPrimario("Mantenha sua Pokédex atualizada")
-                padraoTextoSecundario("Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.")
-                Spacer(modifier = Modifier.weight(1f))
-            }
-        }
-    }
-}
-
-@Composable
-fun Onboarding3(navController: NavController?) {
-    PokedexTheme {
-        Surface {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = 150.dp,
-                        start = 16.dp,
-                        end = 16.dp,
-                        bottom = 32.dp
-                    ),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                padraoImagem(imagem = painterResource(id = R.drawable.trainers))
-                padraoTextoPrimario("Está pronto para essa aventura?")
-                padraoTextoSecundario("Basta criar uma conta e começar a explorar o mundo dos Pokémon hoje!")
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    GenericButton(text = "Criar conta", onClick = {
-                        navController?.navigate("formaDeCadastroScreen")
-                    })
+                if (navController != null) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        GenericButton(text = "Criar conta", onClick = {
+                            navController.navigate("formaDeCadastroScreen")
+                        })
+                    }
+                    Text(
+                        text = "Já tenho uma conta",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight(500),
+                        color = Color(0xFF173EA5),
+                        modifier = Modifier
+                            .padding(top = 16.dp)
+                            .clickable {
+                                navController.navigate("formaDeLoginScreen")
+                            }
+                    )
+                } else {
+                    Spacer(modifier = Modifier.weight(1f))
                 }
-                Text(
-                    text = "Já tenho uma conta",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFF173EA5),
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .clickable {
-                            navController?.navigate("formaDeLoginScreen")
-                        }
-                )
             }
         }
     }
@@ -224,17 +197,9 @@ fun padraoImagem(imagem: Painter) {
 @Preview(showBackground = true)
 @Composable
 private fun Onboarding1Preview() {
-     Onboarding1()
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun Onboarding2Preview() {
-    Onboarding2()
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun Onboarding3Preview() {
-    Onboarding3(navController = null)
+    OnboardingContent(
+        imageResId = R.drawable.image134,
+        primaryText = "Todos os Pokémons em um só Lugar",
+        secondaryText = "Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo"
+    )
 }
