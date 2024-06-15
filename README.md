@@ -2,8 +2,6 @@
 
 App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém informações detalhadas sobre os diferentes tipos de Pokémon.
 
-:construction: Projeto em desenvolvimento :construction:
-
 ## 🔨 Funcionalidades do projeto
 
 ### Recursos Principais
@@ -11,6 +9,8 @@ App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém info
 * ``Detalhes do Pokémon``: ao selecionar um Pokémon na lista, exibe informações detalhadas sobre ele, como tipo, altura, peso e habilidades.
 * ``Login de usuário``: permite o usuário criar sua conta com seus dados pessoais, permitindo criar uma lista de pokémons favoritos.
 * ``listagem de Pokémons favoritos``: Após a criação da conta, permite que o usuário selecione seus pokémons favoritos, todos os pokémons selecionados serão filtrados para uma lista propria de cada usuário.
+* ``Pesquisar Pokémon``: Permite que o usuário busque um Pokémon pelo nome.
+* ``Filtros e Ordenação``: Permite filtrar a lista de Pokémon de acordo com o elemento de cada Pokémon e a ordenação da lista.
 
 <hr>
 
@@ -30,11 +30,19 @@ App Android desenvolvido com o Jetpack Compose de uma Pokédex, que contém info
 
 <img src = "github/listando_os_pokemons_favoritos.gif">
 
+* ### Filtros de Busca e Ordenação de Lista
+
+<img src = "github/filtro_e_ordenacao.gif">
+
 ## ✔️ Técnicas e tecnologias utilizadas
-* Android
-* Kotlin
-* Jetpack Compose
-* Room Database
+* ``Android``: Utilizando a versão 34 da API do Android
+* ``Kotlin``: Linguagem de Programação principal
+* ``Jetpack Compose``: Estruturação do layout do app.
+* ``Room Database``: Banco de dados nativo, permitindo o salvamento dos dados do usuário.
+
+## ✌️Créditos
+Projeto feito utilizando o layout do Figma feito <a href="https://www.linkedin.com/in/junior-saraiva/"> Junior Saraiva</a> <br>
+* Link do layout: <a href="https://www.figma.com/community/file/1202971127473077147/pokedex-pokemon-app"> layout </a>
 
 ## 🤝 Contribuições
 
